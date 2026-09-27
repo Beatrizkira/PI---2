@@ -1,0 +1,21 @@
+{
+  "name": "meu-projeto-integrador-backend",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
+    "start:prod": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "dotenv": "latest",
+    "express": "latest"
+  },
+  "devDependencies": {
+    "@types/express": "latest",
+    "@types/node": "latest",
+    "cross-env": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}
