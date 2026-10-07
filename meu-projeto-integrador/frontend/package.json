@@ -1,20 +1,44 @@
 {
-  "name": "meu-projeto-integrador-frontend",
+  "name": "es-empilhadeiras",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vite --mode development",
-    "build": "tsc -b && vite build --mode production",
-    "preview": "vite preview --mode production"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.1.1",
+    "@prisma/client": "^5.22.0",
+    "apexcharts": "^4.7.0",
+    "bootstrap": "^5.3.5",
+    "next": "^16.0.8",
+    "react": "^19.0.0",
+    "react-apexcharts": "^1.7.0",
+    "react-bootstrap": "^2.10.9",
+    "react-countup": "^6.5.3",
+    "react-data-table-component": "^7.7.0",
+    "react-dom": "^19.0.0",
+    "react-select": "^5.10.2",
+    "react-toastify": "^11.0.5",
+    "styled-components": "^6.1.19",
+    "swiper": "^11.2.6"
   },
   "devDependencies": {
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "@vitejs/plugin-react": "latest",
-    "typescript": "latest",
-    "vite": "latest"
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "baseline-browser-mapping": "^2.10.25",
+    "prisma": "^5.22.0",
+    "typescript": "^5"
+  },
+  "allowScripts": {
+    "prisma@5.22.0": true,
+    "@prisma/engines@5.22.0": true,
+    "sharp@0.34.5": true,
+    "@prisma/client@5.22.0": true
   }
 }
