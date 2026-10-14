@@ -10,7 +10,7 @@ function ComponentName() {
             <div className="row">
               <div className="col-lg-12">
                 <div className="title-center-area-main">
-                  <h2 className="title">Why You Choose Us?</h2>
+                  <h2 className="title">Tire suas dúvidas conosco</h2>
                   <p className="disc">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
                     pretium mollis ex, vel interdum augue faucibus sit amet. Proin

@@ -40,17 +40,16 @@ const BannerOne = () => {
                                         <div className="banner-bg-image bg_image bg_one-banner ptb--120 ptb_md--80 ptb_sm--60">
                                             <div className="banner-one-inner-content">
                                                 <span className="pre">
-                                                    Get up to 30% off on your first $150 purchase
+                                                   Ganhe até 30% de desconto na sua primeira compra de R$150,00
                                                 </span>
                                                 <h1 className="title">
-                                                    Do not miss our amazing <br />
-                                                    grocery deals
+                                                    Não perca nossas incríveis ofertas <br />
                                                 </h1>
                                                 <Link
                                                     href="/shop"
                                                     className="rts-btn btn-primary radious-sm with-icon"
                                                 >
-                                                    <div className="btn-text">Shop Now</div>
+                                                    <div className="btn-text">Comprar agora</div>
                                                     <div className="arrow-icon">
                                                         <i className="fa-light fa-arrow-right"></i>
                                                     </div>
@@ -66,17 +65,17 @@ const BannerOne = () => {
                                         <div className="banner-bg-image bg_image bg_one-banner two ptb--120 ptb_md--80 ptb_sm--60">
                                             <div className="banner-one-inner-content">
                                                 <span className="pre">
-                                                    Get up to 30% off on your first $150 purchase
+                                                     Ganhe até 30% de desconto na sua primeira compra de R$150,00
                                                 </span>
                                                 <h1 className="title">
-                                                    Do not miss our amazing <br />
-                                                    grocery deals
+                                                   Não perca nossas incríveis ofertas <br />
+                                                
                                                 </h1>
                                                 <Link
                                                     href="/shop"
                                                     className="rts-btn btn-primary radious-sm with-icon"
                                                 >
-                                                    <div className="btn-text">Shop Now</div>
+                                                    <div className="btn-text">Comprar Agora</div>
                                                     <div className="arrow-icon">
                                                         <i className="fa-light fa-arrow-right"></i>
                                                     </div>
