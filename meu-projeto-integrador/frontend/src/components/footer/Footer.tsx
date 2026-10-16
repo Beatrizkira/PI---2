@@ -19,19 +19,19 @@ function FooterOne() {
                                         <div className="info">
                                             <span>Tem alguma dúvida? Ligue 24/7</span>
                                             <a href="#" className="number">
-                                                +11 9999 6666
+                                                +11 96200-7833
                                             </a>
                                         </div>
                                     </div>
                                     <div className="opening-hour">
                                         <div className="single">
                                             <p>
-                                                Segunda - Sexta: <span>8:00am - 6:00pm</span>
+                                                Segunda - Sexta: <span>7:00am - 5:00pm</span>
                                             </p>
                                         </div>
                                         <div className="single">
                                             <p>
-                                                Sábado: <span>8:00am - 6:00pm</span>
+                                                Sábado: <span>Fechado</span>
                                             </p>
                                         </div>
                                         <div className="single">
@@ -117,10 +117,10 @@ function FooterOne() {
                                     <form className="footersubscribe-form" action="#">
                                         <input
                                             type="email"
-                                            placeholder="Your email address"
+                                            placeholder="Seu endereço de email"
                                             required
                                         />
-                                        <button className="rts-btn btn-primary">Subscribe</button>
+                                        <button className="rts-btn btn-primary">Inscreva-se</button>
                                     </form>
                                     <p className="dsic">
                                         Eu gostaria de receber comunicações de marketing da ES Empilhadeiras.
@@ -133,27 +133,12 @@ function FooterOne() {
                                     <span>Nos Siga:</span>
                                     <ul>
                                         <li>
-                                            <a href="#">
-                                                <i className="fa-brands fa-facebook-f" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa-brands fa-twitter" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa-brands fa-youtube" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
+                                            <a href="https://api.whatsapp.com/send/?phone=5511962007833&text&type=phone_number&app_absent=0">
                                                 <i className="fa-brands fa-whatsapp" />
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="https://www.instagram.com/se_empilhadeira/">
                                                 <i className="fa-brands fa-instagram" />
                                             </a>
                                         </li>

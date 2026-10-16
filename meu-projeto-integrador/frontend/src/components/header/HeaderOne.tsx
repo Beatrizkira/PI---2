@@ -187,7 +187,7 @@ function HeaderOne() {
                                         </p>
                                     </div>
                                     <div className="contact-number-area">
-                                        <p>Precisa de ajuda? Contate-nos: <a href="tel:+4733378901">+11 6699882200</a></p>
+                                        <p>Precisa de ajuda? Contate-nos: <a href="tel:(11) 96200-7833">(11) 96200-7833</a></p>
                                     </div>
                                 </div>
                             </div>
