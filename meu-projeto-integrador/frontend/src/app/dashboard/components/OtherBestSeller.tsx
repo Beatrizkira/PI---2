@@ -77,12 +77,12 @@ function MyComponent() {
 
               {/* LIST */}
               {[
-                { img: "08.jpg", price: "$99.00", date: "5 June 2025" },
-                { img: "09.jpg", price: "$86.00", date: "5 June 2024" },
-                { img: "10.jpg", price: "$69.00", date: "5 Aug 2024" },
-                { img: "11.jpg", price: "$49.00", date: "5 June 2023" },
-                { img: "12.jpg", price: "$86.00", date: "5 June 2025" },
-                { img: "13.jpg", price: "$88.00", date: "5 June 2024" },
+                { img: "08.jpg", price: "R$ 99,00", date: "5 June 2025" },
+                { img: "09.jpg", price: "R$ 86,00", date: "5 June 2024" },
+                { img: "10.jpg", price: "R$ 69,00", date: "5 Aug 2024" },
+                { img: "11.jpg", price: "R$ 49,00", date: "5 June 2023" },
+                { img: "12.jpg", price: "R$ 86,00", date: "5 June 2025" },
+                { img: "13.jpg", price: "R$ 88,00", date: "5 June 2024" },
               ].map((item, i) => (
                 <div key={i} className="product-top-area-single bottom">
                   <div className="image-area">
@@ -152,13 +152,13 @@ function MyComponent() {
 
               {/* LIST */}
               {[
-                { name: "Robert", img: "01.png", price: "$2,000" },
-                { name: "Mark Henri", img: "03.png", price: "$1,000" },
-                { name: "Krisob Kadri", img: "04.png", price: "$1,999" },
-                { name: "Koriana Joo", img: "05.png", price: "$1,25" },
-                { name: "Marlee", img: "06.png", price: "$5,653" },
-                { name: "John Brush", img: "01.png", price: "$2,600" },
-                { name: "John Brush", img: "01.png", price: "$2,600" },
+                { name: "Robert", img: "01.png", price: "R$ 2.000,00" },
+                { name: "Mark Henri", img: "03.png", price: "R$ 1.000,00" },
+                { name: "Krisob Kadri", img: "04.png", price: "R$ 1.999,00" },
+                { name: "Koriana Joo", img: "05.png", price: "R$ 1,25" },
+                { name: "Marlee", img: "06.png", price: "R$ 5.653,00" },
+                { name: "John Brush", img: "01.png", price: "R$ 2.600,00" },
+                { name: "John Brush", img: "01.png", price: "R$ 2.600,00" },
               ].map((item, i) => (
                 <div key={i} className="product-top-area-single bottom">
                   <div className="image-area">

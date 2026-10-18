@@ -2,13 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { useWishlist } from '@/components/header/WishlistContext';
 import { useCart } from "@/components/header/CartContext";
+import { formatBRL } from '@/utils/currency';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+const FIXED_PRODUCT_PRICE = 7;
+
 const CartMain = () => {
-  const { wishlistItems, removeFromWishlist, updateItemQuantity } = useWishlist();
+  const { wishlistItems, removeFromWishlist } = useWishlist();
 
   const [coupon, setCoupon] = useState('');
   const [discount, setDiscount] = useState(0);
@@ -16,7 +19,7 @@ const CartMain = () => {
   const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
-    const total = wishlistItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const total = wishlistItems.reduce((acc, item) => acc + FIXED_PRODUCT_PRICE * item.quantity, 0);
     setSubtotal(total);
   }, [wishlistItems]);
 
@@ -59,7 +62,7 @@ const CartMain = () => {
       id: Date.now(),
       image: item.image,
       title: item.name ?? 'Default Product Title',
-      price: parseFloat(item.price ?? '0'),
+      price: FIXED_PRODUCT_PRICE,
       quantity: 1,
       active: true,
     });
@@ -75,7 +78,7 @@ const CartMain = () => {
           <div className="col-xl-12 col-12 order-2 order-xl-1">
             <div className="cart-area-main-wrapper">
               <div className="cart-top-area-note">
-                <p>Add <span>$59.69</span> to cart and get free shipping</p>
+                <p>Adicione <span>{formatBRL(59.69)}</span> ao carrinho e ganhe frete grátis</p>
                 <div className="bottom-content-deals mt--10">
                   <div className="single-progress-area-incard">
                     <div className="progress">
@@ -109,29 +112,9 @@ const CartMain = () => {
                       <span>SKU:SKUZNFER</span>
                     </div>
                   </div>
-                  <div className="price"><p>${item.price.toFixed(2)}</p></div>
-                  <div className="quantity">
-                    <div className="quantity-edit">
-                      <input type="text" className="input" value={item.quantity} readOnly />
-                      <div className="button-wrapper-action">
-                        <button
-                          className="button minus"
-                          onClick={() =>
-                            item.quantity > 1 && updateItemQuantity(item.id, item.quantity - 1)
-                          }
-                        >
-                          <i className="fa-regular fa-chevron-down" />
-                        </button>
-                        <button
-                          className="button plus"
-                          onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
-                        >
-                          <i className="fa-regular fa-chevron-up" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="subtotal"><p>${(item.price * item.quantity).toFixed(2)}</p></div>
+                  <div className="price"><p>{formatBRL(FIXED_PRODUCT_PRICE)}</p></div>
+                  <div className="quantity"><p>{item.quantity}</p></div>
+                  <div className="subtotal"><p>{formatBRL(FIXED_PRODUCT_PRICE * item.quantity)}</p></div>
                   <div className="button-area">
                     <a href="#" className="rts-btn btn-primary radious-sm with-icon"
                       onClick={e => {

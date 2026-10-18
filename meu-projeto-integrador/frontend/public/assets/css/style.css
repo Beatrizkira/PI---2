@@ -18593,51 +18593,6 @@ li.with-megamenu:hover .rts-megamenu {
   flex-wrap: wrap;
 }
 
-.single-shopping-card-one .cart-counter-action .quantity-edit {
-  width: 92px;
-  display: flex;
-  align-items: center;
-  border: 1px solid rgba(43, 66, 38, 0.12);
-  border-radius: 4px;
-  padding: 3px 10px;
-  justify-content: space-between;
-  background: #fff;
-  box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.04);
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit .button-wrapper-action {
-  border: 1px solid rgba(43, 66, 38, 0.12);
-  border-radius: 2px;
-  background: #fff;
-  display: flex;
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit input {
-  padding: 0;
-  font-weight: 600;
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit button {
-  padding: 0;
-  max-width: max-content;
-  font-size: 0;
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit button i {
-  font-size: 10px;
-  padding: 4px 6px;
-  transition: 0.3s;
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit button:first-child i {
-  border-right: 1px solid rgba(43, 66, 38, 0.12);
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit button:hover i {
-  background: var(--color-primary);
-  color: #fff;
-}
-
 .single-shopping-card-one .cart-counter-action .rts-btn {
   font-size: 14px;
   padding: 8px 16px !important;
@@ -18652,6 +18607,28 @@ li.with-megamenu:hover .rts-megamenu {
 
 .single-shopping-card-one .cart-counter-action .rts-btn:hover {
   background: var(--color-primary);
+  color: #fff;
+}
+
+.single-shopping-card-one .cart-counter-action .rts-btn.consult-part-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 28px;
+  padding: 6px 8px !important;
+  border: 1px solid #263238;
+  border-radius: 4px;
+  background: transparent;
+  color: #263238;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.single-shopping-card-one .cart-counter-action .rts-btn.consult-part-button:hover {
+  background: #263238;
   color: #fff;
 }
 
@@ -18731,6 +18708,25 @@ li.with-megamenu:hover .rts-megamenu {
 }
 
 .single-shopping-card-one.deals-of-day .cart-counter-action .rts-btn .arrow-icon i {
+  color: #fff;
+}
+
+.single-shopping-card-one.deals-of-day .cart-counter-action .rts-btn.consult-part-button {
+  background: transparent;
+  color: #263238;
+  border-color: #263238;
+}
+
+.single-shopping-card-one.deals-of-day .cart-counter-action .rts-btn.consult-part-button .btn-text {
+  color: #263238;
+}
+
+.single-shopping-card-one.deals-of-day .cart-counter-action .rts-btn.consult-part-button:hover {
+  background: #263238;
+  color: #fff;
+}
+
+.single-shopping-card-one.deals-of-day .cart-counter-action .rts-btn.consult-part-button:hover .btn-text {
   color: #fff;
 }
 
@@ -22649,6 +22645,19 @@ body.modal-open {
   border: 1px solid #629D23;
 }
 
+.product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn.consult-part-button {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 8px !important;
+  border-color: #263238;
+  color: #263238;
+}
+
+.product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn.consult-part-button:hover {
+  background: #263238;
+  color: #fff;
+}
+
 .category-active-menu-sidebar {
   padding-left: 0;
   list-style: none;
@@ -23378,52 +23387,6 @@ body.modal-open {
 
 .single-cart-area-list.main .subtotal {
   flex-basis: 12%;
-}
-
-.single-cart-area-list.main .quantity-edit {
-  width: 92px;
-  display: flex;
-  align-items: center;
-  border: 1px solid rgba(43, 66, 38, 0.12);
-  border-radius: 4px;
-  padding: 2px 10px;
-  justify-content: space-between;
-  background: #fff;
-  box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.04);
-}
-
-.single-cart-area-list.main .quantity-edit .button-wrapper-action {
-  border: 1px solid rgba(43, 66, 38, 0.12);
-  border-radius: 2px;
-  background: #fff;
-  display: flex;
-}
-
-.single-cart-area-list.main .quantity-edit input {
-  padding: 0;
-  max-width: max-content;
-  font-weight: 600;
-}
-
-.single-cart-area-list.main .quantity-edit button {
-  padding: 0;
-  max-width: max-content;
-  font-size: 0;
-}
-
-.single-cart-area-list.main .quantity-edit button i {
-  font-size: 10px;
-  padding: 4px 6px;
-  transition: 0.3s;
-}
-
-.single-cart-area-list.main .quantity-edit button:first-child i {
-  border-right: 1px solid rgba(43, 66, 38, 0.12);
-}
-
-.single-cart-area-list.main .quantity-edit button:hover i {
-  background: var(--color-primary);
-  color: #fff;
 }
 
 .deactive {
@@ -24226,7 +24189,6 @@ body.modal-open {
 
 @media screen and (max-width: 1666px) and (min-width: 1199px) {
 
-  .shop-grid-sidebar .single-shopping-card-one .cart-counter-action .quantity-edit,
   .shop-grid-sidebar .product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn {
     width: 100%;
     max-width: 100%;
@@ -24239,8 +24201,7 @@ body.modal-open {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 
-  .shop-grid-sidebar .single-shopping-card-one .cart-counter-action .quantity-edit,
-  .shop-grid-sidebar .product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn {
+  .shop-grid-sidebar .product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn:not(.consult-part-button) {
     width: max-content;
     max-width: max-content;
   }
@@ -24252,8 +24213,7 @@ body.modal-open {
 
 @media only screen and (max-width: 767px) {
 
-  .shop-grid-sidebar .single-shopping-card-one .cart-counter-action .quantity-edit,
-  .shop-grid-sidebar .product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn {
+  .shop-grid-sidebar .product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn:not(.consult-part-button) {
     width: max-content;
     max-width: max-content;
   }
@@ -26171,18 +26131,6 @@ header.header-three .sub-dropdown .submenu.third-lvl.base {
   }
 }
 
-.rts-product-details-section .details-product-area table tr .cart-edit .quantity-edit {
-  width: 110px;
-  height: 50px;
-}
-
-@media (max-width: 768px) {
-  .rts-product-details-section .details-product-area table tr .cart-edit .quantity-edit {
-    width: 50%;
-    margin: 0 auto;
-  }
-}
-
 .rts-product-details-section .details-product-area .product-status {
   display: flex;
   align-items: center;
@@ -26659,36 +26607,6 @@ header.header-three .sub-dropdown .submenu.third-lvl.base {
   align-items: center;
 }
 
-.rts-product-details-section .details-product-area .product-bottom-action3 .cart-edit2 .quantity-edit {
-  width: 110px;
-  height: 45px;
-  display: flex;
-  padding: 3px 10px;
-  border-radius: 5px;
-}
-
-.rts-product-details-section .details-product-area .product-bottom-action3 .cart-edit2 .quantity-edit input {
-  text-align: center;
-  max-width: 55px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #000;
-}
-
-.rts-product-details-section .details-product-area .product-bottom-action3 .cart-edit2 .quantity-edit button {
-  background: none;
-  font-size: 0;
-}
-
-.rts-product-details-section .details-product-area .product-bottom-action3 .cart-edit2 .quantity-edit button i {
-  font-size: 16px;
-  color: #d3d3d3;
-}
-
-.rts-product-details-section .details-product-area .product-bottom-action3 .cart-edit2 .quantity-edit button i:hover {
-  color: #ff0000;
-}
-
 .rts-product-details-section .details-product-area .product-bottom-action3 .cart-edit2 span {
   margin-left: 20px;
   font-size: 14px;
@@ -26775,35 +26693,6 @@ header.header-three .sub-dropdown .submenu.third-lvl.base {
   margin-right: 20px;
   display: flex;
   align-items: center;
-}
-
-.rts-product-details-section .details-product-area .cart-edit .quantity-edit,
-.rts-product-details-section .details-product-area .cart-edits .quantity-edit {
-  width: 123px;
-  display: flex;
-  padding: 3px 10px;
-  border-radius: 5px;
-}
-
-.rts-product-details-section .details-product-area .cart-edit .quantity-edit input,
-.rts-product-details-section .details-product-area .cart-edits .quantity-edit input {
-  text-align: center;
-  max-width: 55px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #000;
-}
-
-.rts-product-details-section .details-product-area .cart-edit .quantity-edit button,
-.rts-product-details-section .details-product-area .cart-edits .quantity-edit button {
-  background: none;
-  font-size: 0;
-}
-
-.rts-product-details-section .details-product-area .cart-edit .quantity-edit button i,
-.rts-product-details-section .details-product-area .cart-edits .quantity-edit button i {
-  font-size: 16px;
-  color: #d3d3d3;
 }
 
 .rts-product-details-section .details-product-area .cart-edit span,

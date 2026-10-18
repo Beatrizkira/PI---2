@@ -34,18 +34,11 @@ function HeaderOne() {
 
   // Example data (id + title + slug)
   const allSuggestions = [
-    { id: 1, title: "Profitable business makes your profit Best Solution" },
-    { id: 2, title: "Details Profitable business makes your profit" },
-    { id: 3, title: "One Profitable business makes your profit" },
-    { id: 4, title: "Me Profitable business makes your profit" },
-    { id: 5, title: "Details business makes your profit" },
-    { id: 6, title: "Firebase business makes your profit" },
-    { id: 7, title: "Netlyfy business makes your profit" },
-    { id: 8, title: "Profitable business makes your profit" },
-    { id: 9, title: "Valuable business makes your profit" },
-    { id: 10, title: "System business makes your profit" },
-    { id: 11, title: "Profitables business makes your profit" },
-    { id: 12, title: "Content business makes your profit" }
+    { id: 1, title: "Alternador motor toyota" },
+    { id: 2, title: "Amortecedor capo motor toyota" },
+    { id: 3, title: "Bomba d'agua motor toyota 4y" },
+    { id: 4, title: "Bomba motor xinchay" },
+    { id: 5, title: "Amortecedor capo motor toyota" },
   ].map((item) => ({
     ...item,
     slug: makeSlug(item.title) // auto generate 🔥

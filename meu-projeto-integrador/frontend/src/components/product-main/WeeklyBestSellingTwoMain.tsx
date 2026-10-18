@@ -1,8 +1,9 @@
 "use client"
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ProductDetails from "@/components/modal/ProductDetails";
 import CompareModal from "@/components/modal/CompareModal";
+import { formatBRL } from '@/utils/currency';
 
 interface BlogGridMainProps {
     Slug: string;
@@ -22,47 +23,6 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
     type ModalType = 'one' | 'two' | 'three' | null;
     const [activeModal, setActiveModal] = useState<ModalType>(null);
     const handleClose = () => setActiveModal(null);
-
-    // number count up and down
-    useEffect(() => {
-        const handleQuantityClick = (e: Event) => {
-            const button = e.currentTarget as HTMLElement;
-            const parent = button.closest('.quantity-edit') as HTMLElement | null;
-            if (!parent) return;
-
-            const input = parent.querySelector('.input') as HTMLInputElement | null;
-            const addToCart = parent.querySelector('a.add-to-cart') as HTMLElement | null;
-            if (!input) return;
-
-            let oldValue = parseInt(input.value || '1', 10);
-            let newVal = oldValue;
-
-            if (button.classList.contains('plus')) {
-                newVal = oldValue + 1;
-            } else if (button.classList.contains('minus')) {
-                newVal = oldValue > 1 ? oldValue - 1 : 1;
-            }
-
-            input.value = newVal.toString();
-            if (addToCart) {
-                addToCart.setAttribute('data-quantity', newVal.toString());
-            }
-        };
-
-        const buttons = document.querySelectorAll('.quantity-edit .button');
-
-        // 💡 Remove any existing handlers first (safe rebind)
-        buttons.forEach(button => {
-            button.removeEventListener('click', handleQuantityClick);
-            button.addEventListener('click', handleQuantityClick);
-        });
-
-        return () => {
-            buttons.forEach(button => {
-                button.removeEventListener('click', handleQuantityClick);
-            });
-        };
-    }, []);
 
 
 
@@ -100,7 +60,7 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
                 <Link href={`/shop/${Slug}`}>
                     <h4 className="title">{ProductTitle ? ProductTitle : 'How to growing your business'}</h4>
                 </Link>
-                <h6 className="price">{`$${Price}`}</h6>
+                <h6 className="price">{formatBRL(Price ?? '0')}</h6>
             </div>
             <CompareModal show={activeModal === 'one'} handleClose={handleClose} />
             <ProductDetails

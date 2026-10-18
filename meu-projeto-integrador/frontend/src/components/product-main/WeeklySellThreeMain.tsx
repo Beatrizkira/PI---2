@@ -1,10 +1,10 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ProductDetails from "@/components/modal/ProductDetails";
 import CompareModal from "@/components/modal/CompareModal";
 
-import { useCart } from "@/components/header/CartContext"; // Import the useCart hook
 import { useWishlist } from "@/components/header/WishlistContext";
+import { formatBRL, parseBRL } from '@/utils/currency';
 
 import { useCompare } from '@/components/header/CompareContext'; //
 import { ToastContainer, toast } from 'react-toastify';
@@ -33,64 +33,7 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
     const handleClose = () => setActiveModal(null);
 
 
-    // number count up and down
-    useEffect(() => {
-        const handleQuantityClick = (e: Event) => {
-            const button = e.currentTarget as HTMLElement;
-            const parent = button.closest('.quantity-edit') as HTMLElement | null;
-            if (!parent) return;
 
-            const input = parent.querySelector('.input') as HTMLInputElement | null;
-            const addToCart = parent.querySelector('a.add-to-cart') as HTMLElement | null;
-            if (!input) return;
-
-            let oldValue = parseInt(input.value || '1', 10);
-            let newVal = oldValue;
-
-            if (button.classList.contains('plus')) {
-                newVal = oldValue + 1;
-            } else if (button.classList.contains('minus')) {
-                newVal = oldValue > 1 ? oldValue - 1 : 1;
-            }
-
-            input.value = newVal.toString();
-            if (addToCart) {
-                addToCart.setAttribute('data-quantity', newVal.toString());
-            }
-        };
-
-        const buttons = document.querySelectorAll('.quantity-edit .button');
-
-        // 💡 Remove any existing handlers first (safe rebind)
-        buttons.forEach(button => {
-            button.removeEventListener('click', handleQuantityClick);
-            button.addEventListener('click', handleQuantityClick);
-        });
-
-        return () => {
-            buttons.forEach(button => {
-                button.removeEventListener('click', handleQuantityClick);
-            });
-        };
-    }, []);
-
-
-
-    // cart item
-    const { addToCart } = useCart(); // Now works
-
-    const handleAdd = () => {
-        addToCart({
-            id: Date.now(), // unique ID
-            image: `/assets/images/grocery/${ProductImage}`,
-            title: ProductTitle ?? 'Default Product Title',
-            price: parseFloat(Price ?? '0'),
-            quantity: 1,
-            active: true,
-        });
-        setAdded(true);
-        setTimeout(() => setAdded(false), 5000);
-    };
 
     const { addToWishlist } = useWishlist();
     const handleWishlist = () => {
@@ -98,14 +41,11 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
             id: Date.now(),
             image: `/assets/images/grocery/${ProductImage}`,
             title: ProductTitle ?? 'Default Product Title',
-            price: parseFloat(Price ?? '0'),
+            price: parseBRL(Price ?? '0'),
             quantity: 1,
         });
     };
 
-
-    const [added, setAdded] = useState(false);
-    const [wishlisted, setWishlisted] = useState(false);
 
     const { addToCompare } = useCompare();
     const handleCompare = () => {
@@ -124,7 +64,6 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
 
     // tostify
     const compare = () => toast('Successfully Add To Compare !');
-    const addcart = () => toast('Successfully Add To Cart !');
     const addwishlist = () => toast('Successfully Add To Wishlist !');
 
 
@@ -185,23 +124,12 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
                 </Link>
                 <span className="availability">500g Pack</span>
                 <div className="price-area">
-                    <span className="current">{`$${Price}`}</span>
-                    <div className="previous">$36.00</div>
+                    <span className="current">{formatBRL(Price ?? '0')}</span>
+                    <div className="previous">{formatBRL(36)}</div>
                 </div>
                 <div className="cart-counter-action">
-                    <Link
-                        href="#"
-                        className="rts-btn btn-primary add-to-card radious-sm with-icon"
-                        onClick={e => {
-                            e.preventDefault();
-                            handleAdd();
-                            addcart();
-                        }}
-                    >
-                        <div className="btn-text">{added ? 'Added' : 'Add'}</div>
-                        <div className="arrow-icon">
-                            <i className={added ? "fa-solid fa-check" : "fa-regular fa-cart-shopping"} />
-                        </div>
+                    <Link href={`/shop/${Slug}`} className="rts-btn consult-part-button">
+                        Consultar Peça
                     </Link>
                 </div>
             </div>

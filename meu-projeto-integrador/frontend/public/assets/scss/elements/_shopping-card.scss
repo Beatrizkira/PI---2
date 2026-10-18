@@ -181,49 +181,6 @@
         gap: 7px;
         margin-top: 10px;
         flex-wrap: wrap;
-        .quantity-edit{
-            width: 92px;
-            display: flex;
-            align-items: center;
-            border: 1px solid rgba(43, 66, 38, 0.12);
-            border-radius: 4px;
-            padding: 3px 10px;
-            justify-content: space-between;
-            background: #fff;
-            box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.04);
-            .button-wrapper-action{
-                border: 1px solid rgba(43, 66, 38, 0.12);
-                border-radius: 2px;
-                background: #fff;
-                display: flex;
-            }
-            input{
-                padding: 0;
-                max-width: 10px;
-                font-weight: 600;
-            }
-            button{
-                padding: 0;
-                max-width: max-content;
-                font-size: 0;
-                i{
-                    font-size: 10px;
-                    padding: 4px 6px;
-                    transition: .3s;
-                }
-                &:first-child{
-                    i{
-                        border-right: 1px solid rgba(43, 66, 38, 0.12);
-                    }
-                }
-                &:hover{
-                    i{
-                        background: var(--color-primary);
-                        color: #fff;
-                    }
-                }
-            }
-        }
         .rts-btn{
             font-size: 14px;
             padding: 8px 16px !important;
@@ -244,6 +201,26 @@
             &:hover{
                 background: var(--color-primary);
                 color: #fff;
+            }
+            &.consult-part-button{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                min-height: 28px;
+                padding: 6px 8px !important;
+                border: 1px solid #263238;
+                border-radius: 4px;
+                background: transparent;
+                color: #263238;
+                font-size: 11px;
+                font-weight: 600;
+                line-height: 1.2;
+                text-align: center;
+                &:hover{
+                    background: #263238;
+                    color: #fff;
+                }
             }
         }
     }
@@ -321,6 +298,21 @@
             }
             .arrow-icon{
                 i{
+                    color: #fff;
+                }
+            }
+        }
+        .cart-counter-action .rts-btn.consult-part-button{
+            background: transparent;
+            color: #263238;
+            border-color: #263238;
+            .btn-text{
+                color: #263238;
+            }
+            &:hover{
+                background: #263238;
+                color: #fff;
+                .btn-text{
                     color: #fff;
                 }
             }

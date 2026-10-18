@@ -110,7 +110,7 @@ const AddProductPage = () => {
                   <input
                     type="text"
                     id="salePrice"
-                    placeholder="$250"
+                    placeholder="R$ 250,00"
                     value={formData.salePrice}
                     onChange={handleInputChange}
                   />

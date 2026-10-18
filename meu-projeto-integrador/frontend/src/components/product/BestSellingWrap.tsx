@@ -52,7 +52,7 @@ const WeeklyBestSelling: React.FC = () => {
                                         <div className="row">
                                             <div className="col-lg-12">
                                                 <div className="title-area-between">
-                                                    <h2 className="title-left">Weekly Best Selling Groceries</h2>
+                                                    <h2 className="title-left">Peças e Acessórios Mais <Vendidos></Vendidos></h2>
                                                     <ul
                                                         className="nav nav-tabs best-selling-grocery"
                                                         id="myTab"

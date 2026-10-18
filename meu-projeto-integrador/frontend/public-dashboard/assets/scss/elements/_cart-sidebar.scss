@@ -116,68 +116,8 @@
     margin-right: 15px;
     max-width: 75px;
 }
-.cart-bar .cart-edit .quantity-edit {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    border: 1px solid #E7E7E7;
-    padding: 3px 10px;
-    border-radius: 5px;
-    margin-bottom: 3px;
-}
-.cart-edit .quantity-edit {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 3px 10px;
-    border-radius: 5px;
-}
 .cart-bar .cart-edit .item-wrapper {
     display: inline-block;
-}
-.cart-bar .cart-edit .quantity-edit button {
-    background: none;
-    font-size: 0;
-}
-.cart-bar .cart-edit .quantity-edit button i {
-    font-size: 14px;
-    color: #C0C0C0;
-}
-.cart-edit .quantity-edit button i {
-    font-size: 16px;
-    color: #d3d3d3;
-}
-edit .quantity-edit button {
-    background: none;
-    font-size: 0;
-}
-.cart-edit .quantity-edit button {
-    background: none;
-    font-size: 0;
-}
-.cart-bar .cart-edit .quantity-edit button i {
-    font-size: 14px;
-    color: #000000;
-    &:hover{
-        color: var(--color-primary  );
-    }
-}
-.cart-edit .quantity-edit button i {
-    font-size: 16px;
-    color: #d3d3d3;
-}
-
-.cart-bar .cart-edit .quantity-edit input {
-    text-align: center;
-    max-width: 26px;
-    padding: 0;
-}
-.cart-edit .quantity-edit input {
-    text-align: center;
-    max-width: 55px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #040404;
 }
 .cart-bar .cart-edit .product-edit {
     margin-right: 15px;

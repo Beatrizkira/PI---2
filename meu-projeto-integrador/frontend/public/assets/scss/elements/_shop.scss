@@ -295,7 +295,6 @@
 // shop grid sidebar area start
 .shop-grid-sidebar{
     @media screen and (max-width: 1666px) and (min-width: 1199px) {
-        .single-shopping-card-one .cart-counter-action .quantity-edit,
         .product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn{
             width: 100%;
             max-width: 100%;
@@ -305,8 +304,7 @@
         }
     }
     @media #{$md-layout} {
-        .single-shopping-card-one .cart-counter-action .quantity-edit,
-        .product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn{
+        .product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn:not(.consult-part-button){
             width: max-content;
             max-width: max-content;
         }
@@ -315,8 +313,7 @@
         }
     }
     @media #{$sm-layout} {
-        .single-shopping-card-one .cart-counter-action .quantity-edit,
-        .product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn{
+        .product-area-wrapper-shopgrid-list .single-shopping-card-one .cart-counter-action .rts-btn:not(.consult-part-button){
             width: max-content;
             max-width: max-content;
         }

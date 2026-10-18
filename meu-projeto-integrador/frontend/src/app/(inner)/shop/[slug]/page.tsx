@@ -7,6 +7,7 @@ import RelatedProduct from "@/components/product/RelatedProduct";
 import FooterOne from "@/components/footer/Footer";
 import Product from "@/data/Product.json";
 import { useParams } from 'next/navigation';
+import { formatBRL, parseBRL } from '@/utils/currency';
 
 import { useCart } from "@/components/header/CartContext";
 import { ToastContainer, toast } from 'react-toastify';
@@ -28,7 +29,7 @@ const CompareElements: React.FC = () => {
       id: Date.now(),
       image: `/assets/images/grocery/${blogPost.bannerImg}`,
       title: blogPost.title ?? 'Default Product Title',
-      price: parseFloat(blogPost.price ?? '0'),
+      price: parseBRL(blogPost.price ?? '0'),
       quantity: 1,
       active: true,
     });
@@ -139,8 +140,8 @@ const CompareElements: React.FC = () => {
                             Priyoshop has brought to you the Hijab 3 Pieces Combo Pack PS23...
                           </p>
                           <span className="product-price mb--15 d-block" style={{ color: "#DC2626", fontWeight: 600 }}>
-                            ${blogPost.price}
-                            <span className="old-price ml--15">$69.35</span>
+                            {formatBRL(blogPost.price ?? '0')}
+                            <span className="old-price ml--15">R$ 69,35</span>
                           </span>
 
                           <div className="product-bottom-action">
@@ -485,11 +486,11 @@ const CompareElements: React.FC = () => {
                     </div>
                     <div className="single-offer-area">
                       <div className="icon"><img src="/assets/images/shop/02.svg" alt="icon" /></div>
-                      <div className="details"><p>Flat $250 off on Citi Credit Card EMI Transactions over $30</p></div>
+                      <div className="details"><p>R$ 250 de desconto em compras acima de R$ 30 no cartão Citi</p></div>
                     </div>
                     <div className="single-offer-area">
                       <div className="icon"><img src="/assets/images/shop/03.svg" alt="icon" /></div>
-                      <div className="details"><p>Free Worldwide Shipping on all orders over $100</p></div>
+                      <div className="details"><p>Frete grátis em compras acima de R$ 100</p></div>
                     </div>
                   </div>
                   <div className="our-payment-method">

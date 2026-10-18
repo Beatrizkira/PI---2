@@ -1,5 +1,6 @@
 "use client";
 import HeaderOne from "@/components/header/HeaderOne";
+import { formatBRL, parseBRL } from '@/utils/currency';
 import { useState, Suspense } from 'react';
 import ShopMain from "./ShopMain";
 import ShopMainList from "./ShopMainList";
@@ -120,7 +121,7 @@ function ShopContent() {
 
   const filteredProducts: PostType[] = combinedFilteredProducts
     .filter(product => {
-      const productPrice = product.price ? parseFloat(product.price) : 0;
+      const productPrice = product.price ? parseBRL(product.price) : 0;
       if (productPrice < minPrice || productPrice > maxPrice) {
         return false;
       }
@@ -205,7 +206,7 @@ function ShopContent() {
                       />
                       <div className="filter-value-min-max">
                         <span>
-                          Price: ${minPrice} — ${maxPrice}
+                          Preço: {formatBRL(minPrice)} — {formatBRL(maxPrice)}
                         </span>
                         <button type="submit" className="rts-btn btn-primary">
                           Filter

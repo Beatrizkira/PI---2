@@ -1,8 +1,6 @@
 "use client"
-import React, { useState } from 'react';
-import { useCart } from "@/components/header/CartContext";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React from 'react';
+import { formatBRL } from '@/utils/currency';
 
 interface BlogGridMainProps {
   Slug: string;
@@ -18,34 +16,11 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
   Price,
 }) => {
 
-  // 🔥 FIXED QUANTITY (React State Only)
-  const [qty, setQty] = useState(1);
-  const increaseQty = () => setQty(prev => prev + 1);
-  const decreaseQty = () => setQty(prev => (prev > 1 ? prev - 1 : 1));
-
-  // cart item
-  const { addToCart } = useCart();
-
-  const handleAdd = () => {
-    addToCart({
-      id: Date.now(),
-      image: `/assets/images/grocery/${ProductImage}`,
-      title: ProductTitle ?? 'Default Product Title',
-      price: parseFloat(Price ?? '0'),
-      quantity: qty, // 👈 FIXED
-      active: true,
-    });
-    toast('Successfully Add To Cart !');
-  };
-
   return (
     <>
       <div className="single-shopping-card-one discount-offer">
         <a href={`/shop/${Slug}`} className="thumbnail-preview">
           <div className="badge">
-            <span>
-              25% <br /> Off
-            </span>
             <i className="fa-solid fa-bookmark" />
           </div>
           <img src={`/assets/images/grocery/${ProductImage}`} alt="grocery" />
@@ -57,41 +32,16 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
               <h4 className="title">{ProductTitle ?? 'How to growing your business'}</h4>
             </a>
 
-            <span className="availability">500g Pack</span>
+            <span className="availability">Toyota</span>
 
             <div className="price-area">
-              <span className="current">${Price}</span>
-              <div className="previous">$36.00</div>
+              <span className="current">{formatBRL(Price ?? '0')}</span>
+              <div className="previous">{formatBRL(36)}</div>
             </div>
 
             <div className="cart-counter-action">
-              <div className="quantity-edit">
-                <input type="text" className="input" value={qty} readOnly />
-
-                <div className="button-wrapper-action">
-                  <button className="button minus" onClick={decreaseQty}>
-                    <i className="fa-regular fa-chevron-down" />
-                  </button>
-
-                  <button className="button plus" onClick={increaseQty}>
-                    +<i className="fa-regular fa-chevron-up" />
-                  </button>
-                </div>
-              </div>
-
-              <a
-                href="#"
-                className="rts-btn btn-primary radious-sm with-icon"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleAdd();
-                }}
-              >
-                <div className="btn-text">Add To Cart</div>
-
-                <div className="arrow-icon">
-                  <i className="fa-regular fa-cart-shopping" />
-                </div>
+              <a href={`/shop/${Slug}`} className="rts-btn consult-part-button">
+                Consultar Peça
               </a>
             </div>
           </div>

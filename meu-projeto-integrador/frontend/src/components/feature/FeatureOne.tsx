@@ -28,8 +28,8 @@ function FeatureOne() {
                                     </svg>
                                 </div>
                                 <div className="content">
-                                    <h4 className="title">Wide Assortment</h4>
-                                    <span>Orders $50 or more</span>
+                                    <h4 className="title">Grande variedade</h4>
+                                    <span>Melhores marcas</span>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +62,8 @@ function FeatureOne() {
                                     </svg>
                                 </div>
                                 <div className="content">
-                                    <h4 className="title">Easy Return Policy</h4>
-                                    <span>Orders $50 or more</span>
+                                    <h4 className="title">Política de Devolução Fácil</h4>
+                                    <span>Atendimento Personalizado</span>
                                 </div>
                             </div>
                         </div>
@@ -112,8 +112,8 @@ function FeatureOne() {
                                     </svg>
                                 </div>
                                 <div className="content">
-                                    <h4 className="title">Best Prices &amp; Offers</h4>
-                                    <span>Orders $50 or more</span>
+                                    <h4 className="title">Orçamentos Personalizados</h4>
+                                    <span>Atendimento ágil</span>
                                 </div>
                             </div>
                         </div>
@@ -138,8 +138,8 @@ function FeatureOne() {
                                     </svg>
                                 </div>
                                 <div className="content">
-                                    <h4 className="title">Support 24/7</h4>
-                                    <span>Orders $50 or more</span>
+                                    <h4 className="title">Melhores preços e ofertas</h4>
+                                    <span>Lider do Segmento</span>
                                 </div>
                             </div>
                         </div>
@@ -180,8 +180,8 @@ function FeatureOne() {
                                     </svg>
                                 </div>
                                 <div className="content">
-                                    <h4 className="title">Best Prices &amp; Offers</h4>
-                                    <span>Orders $50 or more</span>
+                                    <h4 className="title">Suporte Especializado</h4>
+                                    <span>Agilidade no Atendimento</span>
                                 </div>
                             </div>
                         </div>

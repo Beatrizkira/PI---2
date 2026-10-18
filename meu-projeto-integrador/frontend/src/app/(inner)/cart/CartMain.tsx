@@ -1,9 +1,10 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useCart } from '@/components/header/CartContext';
+import { formatBRL } from '@/utils/currency';
 
 const CartMain = () => {
-  const { cartItems, removeFromCart, updateItemQuantity } = useCart();
+  const { cartItems, removeFromCart } = useCart();
 
   const [coupon, setCoupon] = useState('');
   const [discount, setDiscount] = useState(0);
@@ -56,7 +57,7 @@ const CartMain = () => {
           <div className="col-xl-9 col-12 order-2 order-xl-1">
             <div className="cart-area-main-wrapper">
               <div className="cart-top-area-note">
-                <p>Add <span>$59.69</span> to cart and get free shipping</p>
+                <p>Adicione <span>{formatBRL(59.69)}</span> ao carrinho e ganhe frete grátis</p>
                 <div className="bottom-content-deals mt--10">
                   <div className="single-progress-area-incard">
                     <div className="progress">
@@ -89,29 +90,9 @@ const CartMain = () => {
                       <span>SKU:SKUZNFER</span>
                     </div>
                   </div>
-                  <div className="price"><p>${item.price.toFixed(2)}</p></div>
-                  <div className="quantity">
-                    <div className="quantity-edit">
-                      <input type="text" className="input" value={item.quantity} readOnly />
-                      <div className="button-wrapper-action">
-                        <button
-                          className="button minus"
-                          onClick={() =>
-                            item.quantity > 1 && updateItemQuantity(item.id, item.quantity - 1)
-                          }
-                        >
-                          <i className="fa-regular fa-chevron-down" />
-                        </button>
-                        <button
-                          className="button plus"
-                          onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
-                        >
-                          <i className="fa-regular fa-chevron-up" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="subtotal"><p>${(item.price * item.quantity).toFixed(2)}</p></div>
+                  <div className="price"><p>{formatBRL(item.price)}</p></div>
+                  <div className="quantity"><p>{item.quantity}</p></div>
+                  <div className="subtotal"><p>{formatBRL(item.price * item.quantity)}</p></div>
                 </div>
               ))}
 
@@ -143,7 +124,7 @@ const CartMain = () => {
               <h5 className="title">Cart Totals</h5>
               <div className="subtotal">
                 <span>Subtotal</span>
-                <h6 className="price">${subtotal.toFixed(2)}</h6>
+                <h6 className="price">{formatBRL(subtotal)}</h6>
               </div>
               <div className="shipping">
                 <span>Shipping</span>
@@ -157,7 +138,7 @@ const CartMain = () => {
               <div className="bottom">
                 <div className="wrapper">
                   <span>Total</span>
-                  <h6 className="price">${finalTotal.toFixed(2)}</h6>
+                  <h6 className="price">{formatBRL(finalTotal)}</h6>
                 </div>
                 <div className="button-area">
                   <button className="rts-btn btn-primary">Proceed To Checkout</button>

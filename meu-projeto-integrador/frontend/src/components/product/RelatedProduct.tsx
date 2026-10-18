@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import WeeklyBestSellingMain from "@/components/product-main/WeeklyBestSellingMain";
@@ -18,47 +18,6 @@ interface PostType {
 
 function FeatureProduct() {
 
-
-    // number count up and down
-    useEffect(() => {
-        const handleQuantityClick = (e: Event) => {
-            const button = e.currentTarget as HTMLElement;
-            const parent = button.closest('.quantity-edit') as HTMLElement | null;
-            if (!parent) return;
-
-            const input = parent.querySelector('.input') as HTMLInputElement | null;
-            const addToCart = parent.querySelector('a.add-to-cart') as HTMLElement | null;
-            if (!input) return;
-
-            let oldValue = parseInt(input.value || '1', 10);
-            let newVal = oldValue;
-
-            if (button.classList.contains('plus')) {
-                newVal = oldValue + 1;
-            } else if (button.classList.contains('minus')) {
-                newVal = oldValue > 1 ? oldValue - 1 : 1;
-            }
-
-            input.value = newVal.toString();
-            if (addToCart) {
-                addToCart.setAttribute('data-quantity', newVal.toString());
-            }
-        };
-
-        const buttons = document.querySelectorAll('.quantity-edit .button');
-
-        // 💡 Remove any existing handlers first (safe rebind)
-        buttons.forEach(button => {
-            button.removeEventListener('click', handleQuantityClick);
-            button.addEventListener('click', handleQuantityClick);
-        });
-
-        return () => {
-            buttons.forEach(button => {
-                button.removeEventListener('click', handleQuantityClick);
-            });
-        };
-    }, []);
 
     // modal activation
     type ModalType = 'one' | 'two' | 'three' | null;

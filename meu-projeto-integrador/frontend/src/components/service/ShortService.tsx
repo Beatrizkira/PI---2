@@ -29,9 +29,9 @@ function ComponentName() {
                   </svg>
                 </div>
                 <div className="information">
-                  <h4 className="title">Best Prices &amp; Offers</h4>
+                  <h4 className="title">Melhores preços e ofertas</h4>
                   <p className="disc">
-                    We prepared special discounts you on grocery products.
+                    Preparamos descontos especiais em peças e acessórios para você!
                   </p>
                 </div>
               </div>
@@ -60,9 +60,9 @@ function ComponentName() {
                   </svg>
                 </div>
                 <div className="information">
-                  <h4 className="title">100% Return Policy</h4>
+                  <h4 className="title">Política de devolução de 100%</h4>
                   <p className="disc">
-                    We prepared special discounts you on grocery products.
+                    Atendimento personalizado
                   </p>
                 </div>
               </div>
@@ -107,9 +107,9 @@ function ComponentName() {
                   </svg>
                 </div>
                 <div className="information">
-                  <h4 className="title">Support 24/7</h4>
+                  <h4 className="title">Suporte 24/7</h4>
                   <p className="disc">
-                    We prepared special discounts you on grocery products.
+                    Agilidade no atendimento
                   </p>
                 </div>
               </div>
@@ -146,9 +146,9 @@ function ComponentName() {
                   </svg>
                 </div>
                 <div className="information">
-                  <h4 className="title">Great Offer Daily Deal</h4>
+                  <h4 className="title">Melhores preços e ofertas</h4>
                   <p className="disc">
-                    We prepared special discounts you on grocery products.
+                    Lider do segmento de empilhadeiras e peças de reposição
                   </p>
                 </div>
               </div>

@@ -138,8 +138,8 @@ export default function Home() {
                                                         style={{ color: "#DC2626", fontWeight: 600 }}
                                                     >
                                                         {" "}
-                                                        $35
-                                                        <span className="old-price ml--15">$69.35</span>
+                                                        R$ 35,00
+                                                        <span className="old-price ml--15">R$ 69,35</span>
                                                     </span>
                                                     <div className="product-bottom-action">
                                                         <a

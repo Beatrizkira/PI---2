@@ -58,7 +58,7 @@ function MyComponent() {
                 <div className="indec">
                   <div className="left">
                     <p>5.29%</p>
-                    <span>$79.00</span>
+                    <span>R$ 79,00</span>
                   </div>
                   <img src="/assets/images-dashboard/brand/arrow-m.png" alt="ekomart" />
                 </div>
@@ -83,7 +83,7 @@ function MyComponent() {
                 <div className="indec">
                   <div className="left">
                     <p>5.29%</p>
-                    <span>$79.00</span>
+                    <span>R$ 79,00</span>
                   </div>
                   <img src="/assets/images-dashboard/brand/arrow-m.png" alt="ekomart" />
                 </div>
@@ -108,7 +108,7 @@ function MyComponent() {
                 <div className="indec">
                   <div className="left">
                     <p>5.29%</p>
-                    <span>$79.00</span>
+                    <span>R$ 79,00</span>
                   </div>
                   <img src="/assets/images-dashboard/brand/arrow-m.png" alt="ekomart" />
                 </div>
@@ -133,7 +133,7 @@ function MyComponent() {
                 <div className="indec">
                   <div className="left">
                     <p>5.29%</p>
-                    <span>$79.00</span>
+                    <span>R$ 79,00</span>
                   </div>
                   <img src="/assets/images-dashboard/brand/arrow-m.png" alt="ekomart" />
                 </div>
@@ -158,7 +158,7 @@ function MyComponent() {
                 <div className="indec">
                   <div className="left">
                     <p>5.29%</p>
-                    <span>$79.00</span>
+                    <span>R$ 79,00</span>
                   </div>
                   <img src="/assets/images-dashboard/brand/arrow-m.png" alt="ekomart" />
                 </div>
