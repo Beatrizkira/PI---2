@@ -6,6 +6,7 @@ import { useCart } from "@/components/header/CartContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
+import { formatBRL, parseBRL } from '@/utils/currency';
 
 interface ModalProps {
   show: boolean;
@@ -22,15 +23,11 @@ const ProductDetails: React.FC<ModalProps> = ({
   productTitle,
   productPrice
 }) => {
-  const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<string>('tab1');
   const { addToCart } = useCart();
 
-  const increaseQuantity = () => setQuantity((prev) => prev + 1);
-  const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-
-  const priceNumber = parseFloat(productPrice) || 0;
-  const totalPrice = (priceNumber * quantity).toFixed(2);
+  const priceNumber = parseBRL(productPrice || '0');
+  const totalPrice = priceNumber;
 
   const addcart = () => toast.success('Successfully Added To Cart!');
 
@@ -40,7 +37,7 @@ const ProductDetails: React.FC<ModalProps> = ({
       image: productImage,
       title: productTitle,
       price: priceNumber,
-      quantity: quantity,
+      quantity: 1,
       active: true,
     };
 
@@ -113,7 +110,7 @@ const ProductDetails: React.FC<ModalProps> = ({
                   </h2>
 
                   <span className="product-price">
-                    <span className="old-price">$9.35</span> ${totalPrice}
+                    <span className="old-price">{formatBRL(9.35)}</span> {formatBRL(totalPrice)}
                   </span>
 
                   <p>
@@ -122,18 +119,6 @@ const ProductDetails: React.FC<ModalProps> = ({
                   </p>
 
                   <div className="product-bottom-action">
-                    <div className="cart-edit">
-                      <div className="quantity-edit action-item">
-                        <button className="button" onClick={decreaseQuantity}>
-                          <i className="fal fa-minus minus" />
-                        </button>
-                        <input type="text" className="input" value={quantity} readOnly />
-                        <button className="button plus" onClick={increaseQuantity}>
-                          <i className="fal fa-plus plus" />
-                        </button>
-                      </div>
-                    </div>
-
                     <Link
                       href="#"
                       className="rts-btn btn-primary radious-sm with-icon"

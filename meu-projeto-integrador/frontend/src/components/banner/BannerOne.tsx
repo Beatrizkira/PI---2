@@ -40,7 +40,7 @@ const BannerOne = () => {
                                         <div className="banner-bg-image bg_image bg_one-banner ptb--120 ptb_md--80 ptb_sm--60">
                                             <div className="banner-one-inner-content">
                                                 <span className="pre">
-                                                   Ganhe até 30% de desconto na sua primeira compra de R$150,00
+                                                   Ganhe até 30% de desconto na sua primeira compra de R$ 150,00
                                                 </span>
                                                 <h1 className="title">
                                                     Não perca nossas incríveis ofertas <br />
@@ -65,7 +65,7 @@ const BannerOne = () => {
                                         <div className="banner-bg-image bg_image bg_one-banner two ptb--120 ptb_md--80 ptb_sm--60">
                                             <div className="banner-one-inner-content">
                                                 <span className="pre">
-                                                     Ganhe até 30% de desconto na sua primeira compra de R$150,00
+                                                     Ganhe até 30% de desconto na sua primeira compra de R$ 150,00
                                                 </span>
                                                 <h1 className="title">
                                                    Não perca nossas incríveis ofertas <br />

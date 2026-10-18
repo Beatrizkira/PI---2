@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from './CartContext';
+import { formatBRL } from '@/utils/currency';
 
 
 
@@ -44,7 +45,7 @@ const CartDropdown: React.FC = () => {
                 </Link>
                 <div className="number">
                   {item.quantity} <i className="fa-regular fa-x" />
-                  <span>${(item.price * item.quantity).toFixed(2)}</span>
+                  <span>{formatBRL(item.price * item.quantity)}</span>
                 </div>
               </div>
             </div>
@@ -55,7 +56,7 @@ const CartDropdown: React.FC = () => {
           <div className="bottom-content-deals mt--10">
             <div className="top">
               <span>Sub Total:</span>
-              <span className="number-c">${total.toFixed(2)}</span>
+              <span className="number-c">{formatBRL(total)}</span>
             </div>
             <div className="single-progress-area-incard">
               <div className="progress">
@@ -70,7 +71,7 @@ const CartDropdown: React.FC = () => {
             </div>
             {total < freeShippingThreshold && (
               <p>
-                Gaste Mais <span>${remaining.toFixed(2)}</span> para alcançar{' '}
+                Gaste Mais <span>{formatBRL(remaining)}</span> para alcançar{' '}
                 <span>Frete Grátis</span>
               </p>
             )}

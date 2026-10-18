@@ -186,7 +186,7 @@ function ComponentName() {
                                                             </a>
                                                             <div className="number">
                                                                 1 <i className="fa-regular fa-x" />
-                                                                <span>$36.00</span>
+                                                                <span>R$ 36,00</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -207,7 +207,7 @@ function ComponentName() {
                                                             </a>
                                                             <div className="number">
                                                                 1 <i className="fa-regular fa-x" />
-                                                                <span>$36.00</span>
+                                                                <span>R$ 36,00</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -228,7 +228,7 @@ function ComponentName() {
                                                             </a>
                                                             <div className="number">
                                                                 1 <i className="fa-regular fa-x" />
-                                                                <span>$36.00</span>
+                                                                <span>R$ 36,00</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -240,7 +240,7 @@ function ComponentName() {
                                                     <div className="bottom-content-deals mt--10">
                                                         <div className="top">
                                                             <span>Sub Total:</span>
-                                                            <span className="number-c">$108.00</span>
+                                                            <span className="number-c">R$ 108,00</span>
                                                         </div>
                                                         <div className="single-progress-area-incard">
                                                             <div className="progress">
@@ -255,7 +255,7 @@ function ComponentName() {
                                                             </div>
                                                         </div>
                                                         <p>
-                                                            Spend More <span>$125.00</span> to reach{" "}
+                                                            Gaste mais <span>R$ 125,00</span> para alcançar{" "}
                                                             <span>Free Shipping</span>
                                                         </p>
                                                     </div>

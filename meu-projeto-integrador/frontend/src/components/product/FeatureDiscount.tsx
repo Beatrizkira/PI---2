@@ -14,14 +14,14 @@ function FeatureDiscount() {
                                 <div className="single-feature-card bg_image one">
                                     <div className="content-area">
                                         <Link href="/shop" className="rts-btn btn-primary">
-                                            Weekend Discount
+                                            ES Empilhadeiras
                                         </Link>
                                         <h3 className="title">
-                                            Drink Fresh Corn Juice <br />
-                                            <span>Good Taste</span>
+                                            Acessórios de <br />
+                                            <span>Melhor qualidade</span>
                                         </h3>
                                         <Link href="/shop" className="shop-now-goshop-btn">
-                                            <span className="text">Shop Now</span>
+                                            <span className="text">Compre agora</span>
                                             <div className="plus-icon">
                                                 <i className="fa-sharp fa-regular fa-plus" />
                                             </div>
@@ -36,14 +36,14 @@ function FeatureDiscount() {
                                 <div className="single-feature-card bg_image two">
                                     <div className="content-area">
                                         <Link href="/shop" className="rts-btn btn-primary">
-                                            Weekend Discount
+                                            ES Empilhadeiras
                                         </Link>
                                         <h3 className="title">
-                                            Organic Lemon Flavored
-                                            <span>Banana Chips</span>
+                                            Motores das
+                                            <span>Melhores marcas</span>
                                         </h3>
                                         <Link href="/shop" className="shop-now-goshop-btn">
-                                            <span className="text">Shop Now</span>
+                                            <span className="text">Compre agora</span>
                                             <div className="plus-icon">
                                                 <i className="fa-sharp fa-regular fa-plus" />
                                             </div>
@@ -58,14 +58,14 @@ function FeatureDiscount() {
                                 <div className="single-feature-card bg_image three">
                                     <div className="content-area">
                                         <a href="/shop" className="rts-btn btn-primary">
-                                            Weekend Discount
+                                            ES Empilhadeiras
                                         </a>
                                         <h3 className="title">
-                                            Nozes Pecanera Brasil
-                                            <span>Chocolate Snacks</span>
+                                            Filtros com
+                                            <span>Alta Durabilidade</span>
                                         </h3>
                                         <Link href="/shop" className="shop-now-goshop-btn">
-                                            <span className="text">Shop Now</span>
+                                            <span className="text">Compre agora</span>
                                             <div className="plus-icon">
                                                 <i className="fa-sharp fa-regular fa-plus" />
                                             </div>
@@ -80,14 +80,14 @@ function FeatureDiscount() {
                                 <div className="single-feature-card bg_image four">
                                     <div className="content-area">
                                         <a href="/shop" className="rts-btn btn-primary">
-                                            Weekend Discount
+                                            ES Empilhadeiras
                                         </a>
                                         <h3 className="title">
-                                            Strawberry Water Drinks
-                                            <span>Flavors Awesome</span>
+                                            Sistemas Elétricos
+                                            <span>Eficientes e duráveis</span>
                                         </h3>
                                         <Link href="/shop" className="shop-now-goshop-btn">
-                                            <span className="text">Shop Now</span>
+                                            <span className="text">Compre agora</span>
                                             <div className="plus-icon">
                                                 <i className="fa-sharp fa-regular fa-plus" />
                                             </div>

@@ -17822,51 +17822,6 @@ table.dataTable thead .sorting_desc::after {
   flex-wrap: wrap;
 }
 
-.single-shopping-card-one .cart-counter-action .quantity-edit {
-  width: 92px;
-  display: flex;
-  align-items: center;
-  border: 1px solid rgba(43, 66, 38, 0.12);
-  border-radius: 4px;
-  padding: 2px 10px;
-  justify-content: space-between;
-  background: #fff;
-  box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.04);
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit .button-wrapper-action {
-  border: 1px solid rgba(43, 66, 38, 0.12);
-  border-radius: 2px;
-  background: #fff;
-  display: flex;
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit input {
-  padding: 0;
-  font-weight: 600;
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit button {
-  padding: 0;
-  max-width: max-content;
-  font-size: 0;
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit button i {
-  font-size: 10px;
-  padding: 4px 6px;
-  transition: 0.3s;
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit button:first-child i {
-  border-right: 1px solid rgba(43, 66, 38, 0.12);
-}
-
-.single-shopping-card-one .cart-counter-action .quantity-edit button:hover i {
-  background: var(--color-primary);
-  color: #fff;
-}
-
 .single-shopping-card-one .cart-counter-action .rts-btn {
   font-size: 14px;
   padding: 8px 16px !important;
@@ -18484,79 +18439,8 @@ table.dataTable thead .sorting_desc::after {
   max-width: 75px;
 }
 
-.cart-bar .cart-edit .quantity-edit {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border: 1px solid #E7E7E7;
-  padding: 3px 10px;
-  border-radius: 5px;
-  margin-bottom: 3px;
-}
-
-.cart-edit .quantity-edit {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 3px 10px;
-  border-radius: 5px;
-}
-
 .cart-bar .cart-edit .item-wrapper {
   display: inline-block;
-}
-
-.cart-bar .cart-edit .quantity-edit button {
-  background: none;
-  font-size: 0;
-}
-
-.cart-bar .cart-edit .quantity-edit button i {
-  font-size: 14px;
-  color: #C0C0C0;
-}
-
-.cart-edit .quantity-edit button i {
-  font-size: 16px;
-  color: #d3d3d3;
-}
-
-edit .quantity-edit button {
-  background: none;
-  font-size: 0;
-}
-
-.cart-edit .quantity-edit button {
-  background: none;
-  font-size: 0;
-}
-
-.cart-bar .cart-edit .quantity-edit button i {
-  font-size: 14px;
-  color: #000000;
-}
-
-.cart-bar .cart-edit .quantity-edit button i:hover {
-  color: var(--color-primary);
-}
-
-.cart-edit .quantity-edit button i {
-  font-size: 16px;
-  color: #d3d3d3;
-}
-
-.cart-bar .cart-edit .quantity-edit input {
-  text-align: center;
-  max-width: 26px;
-  padding: 0;
-}
-
-.cart-edit .quantity-edit input {
-  text-align: center;
-  max-width: 55px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #040404;
 }
 
 .cart-bar .cart-edit .product-edit {

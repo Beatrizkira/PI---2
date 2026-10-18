@@ -48,7 +48,7 @@ export default function Home() {
                                                 +55 (11) 96200-7833
                                             </a>
                                             <a href="#" className="email">
-                                                info@example.com
+                                                se.manuempilhadeira@hotmail.com
                                             </a>
                                         </div>
                                     </div>

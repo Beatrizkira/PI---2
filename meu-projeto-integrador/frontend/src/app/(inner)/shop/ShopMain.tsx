@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useCart } from "@/components/header/CartContext";
 import { useCompare } from "@/components/header/CompareContext";
 import { useWishlist } from "@/components/header/WishlistContext";
 import Link from "next/link";
 import CompareModal from "@/components/modal/CompareModal";
 import ProductDetails from "@/components/modal/ProductDetails";
+import { formatBRL, parseBRL } from '@/utils/currency';
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,32 +26,6 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
   type ModalType = "one" | "two" | "three" | null;
   const [activeModal, setActiveModal] = useState<ModalType>(null);
   const handleClose = () => setActiveModal(null);
-
-  const [added, setAdded] = useState(false);
-
-  const [quantity, setQuantity] = useState(1);
-
-  const increaseQty = () => setQuantity((q) => q + 1);
-  const decreaseQty = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
-
-  // -------------------------------
-  // Add to Cart Logic
-  // -------------------------------
-  const { addToCart } = useCart();
-
-  const handleAdd = () => {
-    addToCart({
-      id: Date.now(),
-      image: `/assets/images/grocery/${ProductImage}`,
-      title: ProductTitle ?? "Default Product Title",
-      price: parseFloat(Price ?? "0"),
-      quantity: quantity,
-      active: true,
-    });
-
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
-  };
 
   const { addToCompare } = useCompare();
   const handleCompare = () => {
@@ -74,13 +48,12 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
       id: Date.now(),
       image: `/assets/images/grocery/${ProductImage}`,
       title: ProductTitle ?? "Default Product Title",
-      price: parseFloat(Price ?? "0"),
+      price: parseBRL(Price ?? "0"),
       quantity: 1,
     });
   };
 
   const compare = () => toast("Successfully Add To Compare !");
-  const addcart = () => toast("Successfully Add To Cart !");
   const wishList = () => toast("Successfully Add To Wishlist !");
 
   return (
@@ -143,49 +116,14 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
         <span className="availability">500g Pack</span>
 
         <div className="price-area">
-          <span className="current">{`$${Price}`}</span>
-          <div className="previous">$36.00</div>
+          <span className="current">{formatBRL(Price ?? '0')}</span>
+          <div className="previous">{formatBRL(36)}</div>
         </div>
 
     
         <div className="cart-counter-action">
-          <div className="quantity-edit">
-            <input
-              type="text"
-              className="input"
-              value={quantity}
-              readOnly
-            />
-
-            <div className="button-wrapper-action">
-              <button className="button minus" onClick={decreaseQty}>
-                <i className="fa-regular fa-chevron-down" />
-              </button>
-
-              <button className="button plus" onClick={increaseQty}>
-                +<i className="fa-regular fa-chevron-up" />
-              </button>
-            </div>
-          </div>
-
-          <a
-            href="#"
-            className="rts-btn btn-primary radious-sm with-icon add-to-cart"
-            onClick={(e) => {
-              e.preventDefault();
-              handleAdd();
-              addcart();
-            }}
-          >
-            <div className="btn-text">{added ? "Added" : "Add"}</div>
-
-            <div className="arrow-icon">
-              <i
-                className={`fa-regular ${
-                  added ? "fa-check" : "fa-cart-shopping"
-                }`}
-              />
-            </div>
+          <Link href={`/shop/${Slug}`} className="rts-btn consult-part-button">
+            Consultar Peça
           </a>
         </div>
       </div>

@@ -11,17 +11,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const categories = [
-  { img: "/assets/images/category/01.png", name: "Organic Vegetable" },
-  { img: "/assets/images/category/02.png", name: "Organic Vegetable" },
-  { img: "/assets/images/category/03.png", name: "Organic Vegetable" },
-  { img: "/assets/images/category/04.png", name: "Organic Vegetable" },
-  { img: "/assets/images/category/05.png", name: "Organic Vegetable" },
-  { img: "/assets/images/category/06.png", name: "Organic Vegetable" },
-  { img: "/assets/images/category/07.png", name: "Organic Vegetable" },
-  { img: "/assets/images/category/08.png", name: "Organic Vegetable" },
-  { img: "/assets/images/category/09.png", name: "Organic Vegetable" },
-  { img: "/assets/images/category/10.png", name: "Organic Vegetable" },
-  { img: "/assets/images/category/06.png", name: "Organic Vegetable" },
+  { img: "/assets/images/category/01.png"},
+  { img: "/assets/images/category/02.png"},
+  { img: "/assets/images/category/03.png"},
+  { img: "/assets/images/category/04.png"},
+  { img: "/assets/images/category/05.png"},
+  { img: "/assets/images/category/06.png"},
+  { img: "/assets/images/category/07.png"},
+  { img: "/assets/images/category/08.png"},
+  { img: "/assets/images/category/09.png"},
+  { img: "/assets/images/category/10.png"},
 ];
 
 function CategoryBannerBottom() {
@@ -55,12 +54,11 @@ function CategoryBannerBottom() {
                     <Link href="/shop-grid-sidebar" className="single-category-one">
                       <Image
                         src={cat.img}
-                        alt={cat.name}
+                        alt="Category"
                         width={60}
                         height={60}
                         style={{ objectFit: "contain" }}
                       />
-                      <p>{cat.name}</p>
                     </Link>
                   </SwiperSlide>
                 ))}

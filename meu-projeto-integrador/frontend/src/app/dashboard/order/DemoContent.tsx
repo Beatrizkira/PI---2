@@ -40,10 +40,10 @@ const OverviewTable: React.FC = () => {
   }, []);
 
   const data: DataRow[] = [
-    { id: 1, orderNo: "#87451", customer: "Esther Howard", date: "02/03/2022", amount: "$200", category: "Notebook", status: "Delivered" },
-    { id: 2, orderNo: "#87452", customer: "Wade Warren", date: "02/03/2022", amount: "$220", category: "Notebook", status: "Delivered" },
-    { id: 3, orderNo: "#87453", customer: "Jenny Wilson", date: "02/03/2022", amount: "$300", category: "Notebook", status: "Delivered" },
-    { id: 4, orderNo: "#87454", customer: "Guy Hawkins", date: "02/03/2022", amount: "$400", category: "Notebook", status: "Delivered" },
+    { id: 1, orderNo: "#87451", customer: "Esther Howard", date: "02/03/2022", amount: "R$ 200,00", category: "Notebook", status: "Delivered" },
+    { id: 2, orderNo: "#87452", customer: "Wade Warren", date: "02/03/2022", amount: "R$ 220,00", category: "Notebook", status: "Delivered" },
+    { id: 3, orderNo: "#87453", customer: "Jenny Wilson", date: "02/03/2022", amount: "R$ 300,00", category: "Notebook", status: "Delivered" },
+    { id: 4, orderNo: "#87454", customer: "Guy Hawkins", date: "02/03/2022", amount: "R$ 400,00", category: "Notebook", status: "Delivered" },
   ];
 
   const columns: TableColumn<DataRow>[] = [

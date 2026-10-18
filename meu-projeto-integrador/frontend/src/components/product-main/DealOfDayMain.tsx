@@ -2,13 +2,13 @@
 import { useState, useEffect } from 'react';
 import ProductDetails from "@/components/modal/ProductDetails";
 import CompareModal from "@/components/modal/CompareModal";
-import { useCart } from "@/components/header/CartContext";
 import { useWishlist } from "@/components/header/WishlistContext";
 
 import { useCompare } from '@/components/header/CompareContext'; //
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
+import { formatBRL, parseBRL } from '@/utils/currency';
 
 
 interface BlogGridMainProps {
@@ -32,27 +32,13 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
 
 
 
-    // add to cart
-    const { addToCart } = useCart();
-
-    const handleAdd = () => {
-        addToCart({
-            id: Date.now(), // use a unique ID per click
-            image: `/assets/images/grocery/${ProductImage}`,
-            title: ProductTitle ?? 'How to growing your business',
-            price: Price ? parseFloat(Price) : 0,
-            quantity: 1,
-            active: true,
-        });
-    };
-
     const { addToWishlist } = useWishlist();
     const handleWishlist = () => {
         addToWishlist({
             id: Date.now(),
             image: `/assets/images/grocery/${ProductImage}`,
             title: ProductTitle ?? 'Default Product Title',
-            price: parseFloat(Price ?? '0'),
+            price: parseBRL(Price ?? '0'),
             quantity: 1,
         });
     };
@@ -77,7 +63,6 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
 
     // tostify
     const compare = () => toast('Successfully Add To Compare !');
-    const addcart = () => toast('Successfully Add To Cart !');
     const wishList = () => toast('Successfully Add To Wishlist !');
 
 
@@ -139,23 +124,12 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
                 </Link>
                 <span className="availability">500g Pack</span>
                 <div className="price-area">
-                    <span className="current">{`${Price}`}</span>
-                    <div className="previous">$36.00</div>
+                    <span className="current">{formatBRL(Price ?? '0')}</span>
+                    <div className="previous">{formatBRL(36)}</div>
                 </div>
                 <div className="cart-counter-action">
-                    <Link
-                        href="#"
-                        className="rts-btn btn-primary radious-sm with-icon"
-                        onClick={e => {
-                            e.preventDefault();
-                            handleAdd();
-                            addcart();
-                        }}
-                    >
-                        <div className="btn-text">Add To Cart</div>
-                        <div className="arrow-icon">
-                            <i className="fa-regular fa-cart-shopping" />
-                        </div>
+                    <Link href={`/shop/${Slug}`} className="rts-btn consult-part-button">
+                        Consultar Peça
                     </Link>
                 </div>
             </div>

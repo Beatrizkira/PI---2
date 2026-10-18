@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import type { ApexOptions } from "apexcharts";
+import { formatBRL } from '@/utils/currency';
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -55,7 +56,7 @@ const SaleStatistics: React.FC = () => {
                     w: { globals: { series: number[][]; seriesNames: string[] } };
                 };
                 return `<div class="custom-tooltip">
-          <span class="custom-tooltip__title">${w.globals.series[seriesIndex][dataPointIndex]} Sales</span>
+          <span class="custom-tooltip__title">${formatBRL(w.globals.series[seriesIndex][dataPointIndex])} em vendas</span>
           <span class="custom-tooltip__subtitle">From ${w.globals.seriesNames[seriesIndex]}</span>
         </div>`;
             },

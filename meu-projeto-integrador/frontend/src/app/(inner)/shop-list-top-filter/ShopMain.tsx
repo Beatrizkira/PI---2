@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from 'react';
-import { useCart } from "@/components/header/CartContext";
 import { useCompare } from '@/components/header/CompareContext';
 import { useWishlist } from "@/components/header/WishlistContext";
 import ProductDetails from "@/components/modal/ProductDetails";
+import { formatBRL, parseBRL } from '@/utils/currency';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,25 +27,6 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
     const [activeModal, setActiveModal] = useState<ModalType>(null);
     const handleClose = () => setActiveModal(null);
 
-    // ✅ FIXED QUANTITY (React Safe)
-    const [quantity, setQuantity] = useState(1);
-    const increment = () => setQuantity(q => q + 1);
-    const decrement = () => setQuantity(q => (q > 1 ? q - 1 : 1));
-
-
-    // cart item
-    const { addToCart } = useCart();
-
-    const handleAdd = () => {
-        addToCart({
-            id: Date.now(),
-            image: `/assets/images/grocery/${ProductImage}`,
-            title: ProductTitle ?? 'Default Product Title',
-            price: parseFloat(Price ?? '0'),
-            quantity: quantity, // 👉 FIXED
-            active: true,
-        });
-    };
 
 
     const { addToCompare } = useCompare();
@@ -69,14 +50,13 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
             id: Date.now(),
             image: `/assets/images/grocery/${ProductImage}`,
             title: ProductTitle ?? 'Default Product Title',
-            price: parseFloat(Price ?? '0'),
+            price: parseBRL(Price ?? '0'),
             quantity: 1,
         });
     };
 
 
     const compare = () => toast('Successfully Add To Compare !');
-    const addcart = () => toast('Successfully Add To Cart !');
     const wishList = () => toast('Successfully Add To Wishlist !');
 
     return (
@@ -135,44 +115,13 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
                 </a>
                 <span className="availability">500g Pack</span>
                 <div className="price-area">
-                    <span className="current">{`$${Price}`}</span>
-                    <div className="previous">$36.00</div>
+                    <span className="current">{formatBRL(Price ?? '0')}</span>
+                    <div className="previous">{formatBRL(36)}</div>
                 </div>
 
                 <div className="cart-counter-action">
-                    {/* ✅ FIXED QUANTITY SYSTEM */}
-                    <div className="quantity-edit">
-                        <input
-                            type="text"
-                            className="input"
-                            value={quantity}
-                            readOnly
-                        />
-
-                        <div className="button-wrapper-action">
-                            <button className="button minus" onClick={decrement}>
-                                <i className="fa-regular fa-chevron-down" />
-                            </button>
-
-                            <button className="button plus" onClick={increment}>
-                                +<i className="fa-regular fa-chevron-up" />
-                            </button>
-                        </div>
-                    </div>
-
-                    <a
-                        href="#"
-                        className="rts-btn btn-primary radious-sm with-icon"
-                        onClick={e => {
-                            e.preventDefault();
-                            handleAdd();
-                            addcart();
-                        }}
-                    >
-                        <div className="btn-text">Add</div>
-                        <div className="arrow-icon">
-                            <i className="fa-regular fa-cart-shopping" />
-                        </div>
+                    <a href={`/shop/${Slug}`} className="rts-btn consult-part-button">
+                        Consultar Peça
                     </a>
                 </div>
             </div>

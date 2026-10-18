@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useCart } from "@/components/header/CartContext";
+import { formatBRL, parseBRL } from '@/utils/currency';
 import { useWishlist } from "@/components/header/WishlistContext";
 
 interface BlogGridMainProps {
@@ -23,27 +23,13 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
     type ModalType = 'one' | 'two' | 'three' | null;
     const [activeModal, setActiveModal] = useState<ModalType>(null);
 
-    // cart item
-    const { addToCart } = useCart(); // Now works
-
-    const handleAdd = () => {
-        addToCart({
-            id: Date.now(), // unique ID
-            image: `/assets/images/grocery/${ProductImage}`,
-            title: ProductTitle ?? 'Default Product Title',
-            price: parseFloat(Price ?? '0'),
-            quantity: 1,
-            active: true,
-        });
-    };
-
     const { addToWishlist } = useWishlist();
     const handleWishlist = () => {
         addToWishlist({
             id: Date.now(),
             image: `/assets/images/grocery/${ProductImage}`,
             title: ProductTitle ?? 'Default Product Title',
-            price: parseFloat(Price ?? '0'),
+            price: parseBRL(Price ?? '0'),
             quantity: 1,
         });
     };
@@ -57,11 +43,6 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
             <div className="image-and-action-area-wrapper">
                 <Link href={`/shop/${Slug}`} className="thumbnail-preview">
                     <div className="badge">
-                        <span>
-                            25% <br />
-                            Off
-                        </span>
-                        <i className="fa-solid fa-bookmark" />
                     </div>
                     <img src={`/assets/images/grocery/${ProductImage}`} alt="grocery" />
                 </Link>
@@ -100,34 +81,12 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
                 </Link>
                 <span className="availability">500g Pack</span>
                 <div className="price-area">
-                    <span className="current">{`$${Price}`}</span>
-                    <div className="previous">$36.00</div>
+                    <span className="current">{formatBRL(Price ?? '0')}</span>
+                    <div className="previous">{formatBRL(36)}</div>
                 </div>
                 <div className="cart-counter-action">
-                    <div className="quantity-edit">
-                        <input type="text" className="input" defaultValue={1} />
-                        <div className="button-wrapper-action">
-                            <button className="button minus">
-                                <i className="fa-regular fa-chevron-down" />
-                            </button>
-                            <button className="button plus">
-                                +<i className="fa-regular fa-chevron-up" />
-                            </button>
-                        </div>
-                    </div>
-                    <Link href="#" className="rts-btn btn-primary radious-sm with-icon"
-                        onClick={e => {
-                            e.preventDefault();
-                            handleAdd();
-                        }}
-                    >
-                        <div className="btn-text add-cart">Add</div>
-                        <div className="arrow-icon">
-                            <i className="fa-regular fa-cart-shopping" />
-                        </div>
-                        <div className="arrow-icon">
-                            <i className="fa-regular fa-cart-shopping" />
-                        </div>
+                    <Link href={`/shop/${Slug}`} className="rts-btn consult-part-button">
+                        Consultar Peça
                     </Link>
                 </div>
             </div>

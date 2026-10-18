@@ -2,6 +2,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useCart } from '@/components/header/CartContext';
+import { formatBRL } from '@/utils/currency';
 
 const DEFAULT_SHIPPING_COST = 50;
 
@@ -144,7 +145,7 @@ export default function CheckOutMain() {
                                             <img src={item.image} alt={item.title} />
                                             <span className="title">{item.title} × {item.quantity}</span>
                                         </div>
-                                        <span className="price">${(item.price * item.quantity).toFixed(2)}</span>
+                                        <span className="price">{formatBRL(item.price * item.quantity)}</span>
                                     </div>
                                 ))
                             )}
@@ -153,7 +154,7 @@ export default function CheckOutMain() {
                                 <div className="left-area">
                                     <span>Subtotal</span>
                                 </div>
-                                <span className="price">${subtotal.toFixed(2)}</span>
+                                <span className="price">{formatBRL(subtotal)}</span>
                             </div>
 
                             {discount > 0 && (
@@ -161,7 +162,7 @@ export default function CheckOutMain() {
                                     <div className="left-area">
                                         <span>Discount (25%)</span>
                                     </div>
-                                    <span className="price">-${discountAmount.toFixed(2)}</span>
+                                    <span className="price">-{formatBRL(discountAmount)}</span>
                                 </div>
                             )}
 
@@ -169,14 +170,14 @@ export default function CheckOutMain() {
                                 <div className="left-area">
                                     <span>Shipping</span>
                                 </div>
-                                <span className="price">${shippingCost.toFixed(2)}</span>
+                                <span className="price">{formatBRL(shippingCost)}</span>
                             </div>
 
                             <div className="single-shop-list">
                                 <div className="left-area">
                                     <span style={{ fontWeight: 600, color: '#2C3C28' }}>Total Price:</span>
                                 </div>
-                                <span className="price" style={{ color: '#629D23' }}>${total.toFixed(2)}</span>
+                                <span className="price" style={{ color: '#629D23' }}>{formatBRL(total)}</span>
                             </div>
 
                             {/* Payment methods */}

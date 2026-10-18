@@ -201,11 +201,11 @@ const DemoContent: React.FC = () => {
                   </div>
                 </div>
               </td>
-              <td className="text-center">$10.00</td>
+              <td className="text-center">R$ 10,00</td>
               <td className="text-center">1</td>
               <td className="text-right">Red</td>
               <td className="text-right">M</td>
-              <td className="text-right">$10.00</td>
+              <td className="text-right">R$ 10,00</td>
             </tr>
             <tr>
               <td>
@@ -219,29 +219,29 @@ const DemoContent: React.FC = () => {
                   </div>
                 </div>
               </td>
-              <td className="text-center">$10.00</td>
+              <td className="text-center">R$ 10,00</td>
               <td className="text-center">1</td>
               <td className="text-right">Blue</td>
               <td className="text-right">L</td>
-              <td className="text-right">$10.00</td>
+              <td className="text-right">R$ 10,00</td>
             </tr>
             <tr className="b-n">
               <td colSpan={5} className="text-end f-w-600">
                 SubTotal
               </td>
-              <td className="text-right">$20.00</td>
+              <td className="text-right">R$ 20,00</td>
             </tr>
             <tr className="b-n">
               <td colSpan={5} className="text-end f-w-600">
                 Tax
               </td>
-              <td className="text-right">$05.00</td>
+              <td className="text-right">R$ 5,00</td>
             </tr>
             <tr className="b-n">
               <td colSpan={5} className="text-end f-w-600">
                 Grand Total
               </td>
-              <td className="text-right f-w-600">$25.00</td>
+              <td className="text-right f-w-600">R$ 25,00</td>
             </tr>
           </tbody>
         </table>

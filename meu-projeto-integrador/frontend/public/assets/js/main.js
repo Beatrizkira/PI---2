@@ -37,7 +37,7 @@
             rtsJs.stickyHeader();
             rtsJs.backToTopInit();
             rtsJs.swiperActivation();
-            rtsJs.cartNumberIncDec();
+            rtsJs.cartInteractions();
             rtsJs.countDown();
             // rtsJs.zoonImage();
             rtsJs.modalpopupCard();
@@ -172,31 +172,7 @@
         },
 
 
-        cartNumberIncDec: function(){
-          $(document).ready(function(){
-            
-            $(function () {
-              $(".button").on("click", function () {
-                var $button = $(this);
-                var $parent = $button.parents('.quantity-edit');
-                var oldValue = $parent.find('.input').val();
-          
-                if ($button.text() == "+") {
-                  var newVal = parseFloat(oldValue) + 1;
-                } else {
-                  // Don't allow decrementing below zero
-                  if (oldValue > 1) {
-                    var newVal = parseFloat(oldValue) - 1;
-                  } else {
-                    newVal = 1;
-                  }
-                }
-                $parent.find('a.add-to-cart').attr('data-quantity', newVal);
-                $parent.find('.input').val(newVal);
-              });
-            });
-          });
-
+        cartInteractions: function(){
           $(".coupon-click").on('click', function (){
             $(this).parents('.coupon-input-area-1').find(".coupon-input-area").toggleClass('show');
           });
@@ -859,8 +835,6 @@
     y = offsetY / zoomer.offsetHeight * 100
     zoomer.style.backgroundPosition = x + '% ' + y + '%';
   }
-
-
 
 
 
