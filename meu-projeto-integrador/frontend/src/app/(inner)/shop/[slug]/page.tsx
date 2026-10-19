@@ -50,26 +50,7 @@ const CompareElements: React.FC = () => {
       src: `/assets/images/grocery/${blogPost.bannerImg}`,
       alt: blogPost.title,
     },
-    {
-      id: 'two',
-      src: '/assets/images/shop/02.jpg',
-      alt: 'product-thumb-filter',
-    },
-    {
-      id: 'three',
-      src: '/assets/images/shop/03.jpg',
-      alt: 'product-thumb-filter',
-    },
-    {
-      id: 'four',
-      src: '/assets/images/shop/04.jpg',
-      alt: 'product-thumb-filter',
-    },
-    {
-      id: 'five',
-      src: '/assets/images/shop/05.jpg',
-      alt: 'product-thumb-filter',
-    },
+  
   ];
 
   return (
@@ -82,7 +63,7 @@ const CompareElements: React.FC = () => {
               <div className="navigator-breadcrumb-wrapper">
                 <a href="/">Home</a>
                 <i className="fa-regular fa-chevron-right" />
-                <a className="current" href="#">Vendor Details</a>
+                <a className="current" href="#">Detalhes do Produto</a>
               </div>
             </div>
           </div>
@@ -127,7 +108,7 @@ const CompareElements: React.FC = () => {
 
                         <div className="contents">
                           <div className="product-status">
-                            <span className="product-catagory">Dress</span>
+                            <span className="product-catagory">Filtros</span>
                             <div className="rating-stars-group">
                               <div className="rating-star"><i className="fas fa-star" /></div>
                               <div className="rating-star"><i className="fas fa-star" /></div>
@@ -137,11 +118,10 @@ const CompareElements: React.FC = () => {
                           </div>
                           <h2 className="product-title">{blogPost.title}</h2>
                           <p className="mt--20 mb--20">
-                            Priyoshop has brought to you the Hijab 3 Pieces Combo Pack PS23...
+                            Filtro de ar externo para empilhadeiras a combustão
                           </p>
                           <span className="product-price mb--15 d-block" style={{ color: "#DC2626", fontWeight: 600 }}>
                             {formatBRL(blogPost.price ?? '0')}
-                            <span className="old-price ml--15">R$ 69,35</span>
                           </span>
 
                           <div className="product-bottom-action">
@@ -153,25 +133,20 @@ const CompareElements: React.FC = () => {
                                 handleAdd();
                               }}
                             >
-                              <div className="btn-text">Add to Cart</div>
-                              <div className="arrow-icon"><i className="fa-regular fa-cart-shopping" /></div>
-                              <div className="arrow-icon"><i className="fa-regular fa-cart-shopping" /></div>
+                              <div className="btn-text">Consultar Peça</div>
                             </a>
                           </div>
 
                           <div className="product-uniques">
                             <span className="sku product-unipue mb--10"><strong>SKU:</strong> BO1D0MX8SJ</span>
-                            <span className="catagorys product-unipue mb--10"><strong>Categories:</strong> T-Shirts, Tops, Mens</span>
-                            <span className="tags product-unipue mb--10"><strong>Tags:</strong> fashion, t-shirts, Men</span>
-                            <span className="tags product-unipue mb--10"><strong>LIFE:</strong> 6 Months</span>
-                            <span className="tags product-unipue mb--10"><strong>Type:</strong> original</span>
-                            <span className="tags product-unipue mb--10"><strong>Category:</strong> Beverages, Dairy & Bakery</span>
+                            <span className="catagorys product-unipue mb--10"><strong>Categories:</strong>  Filtros</span>
+                            <span className="tags product-unipue mb--10"><strong>Tags:</strong> Filtros</span>
+                            <span className="tags product-unipue mb--10"><strong>LIFE:</strong> 6 Meses</span>
+                            <span className="tags product-unipue mb--10"><strong>Type:</strong> Original</span>
                           </div>
 
                           <div className="share-option-shop-details">
-                            <div className="single-share-option"><div className="icon"><i className="fa-regular fa-heart" /></div><span>Add To Wishlist</span></div>
-                            <div className="single-share-option"><div className="icon"><i className="fa-solid fa-share" /></div><span>Share On social</span></div>
-                            <div className="single-share-option"><div className="icon"><i className="fa-light fa-code-compare" /></div><span>Compare</span></div>
+                            <div className="single-share-option"><div className="icon"><i className="fa-regular fa-heart" /></div><span>Add Lista de Desejos</span></div>
                           </div>
                         </div>
                       </div>
@@ -184,22 +159,17 @@ const CompareElements: React.FC = () => {
                       <button
                         onClick={() => setActiveTab('tab1')}
                         className={`nav-link ${activeTab === 'tab1' ? 'active' : ''}`}>
-                        Product Details
+                       Detalhes do Produto
                       </button>
                     </li>
                     <li className="nav-item" role="presentation">
                       <button
                         onClick={() => setActiveTab('tab2')}
                         className={`nav-link ${activeTab === 'tab2' ? 'active' : ''}`}>
-                        Additional Information
+                        Informação Adicional
                       </button>
                     </li>
                     <li className="nav-item" role="presentation">
-                      <button
-                        onClick={() => setActiveTab('tab3')}
-                        className={`nav-link ${activeTab === 'tab3' ? 'active' : ''}`}>
-                        Customer Reviews (01)
-                      </button>
                     </li>
                   </ul>
                   <div className="tab-content" id="myTabContent">
@@ -207,35 +177,14 @@ const CompareElements: React.FC = () => {
                       <div>
                         <div className="single-tab-content-shop-details">
                           <p className="disc">
-                            Uninhibited carnally hired played in whimpered dear gorilla
-                            koala depending and much yikes off far quetzal goodness and
-                            from for grimaced goodness unaccountably and meadowlark near
-                            unblushingly crucial scallop tightly neurotic hungrily some
-                            and dear furiously this apart.
+                            O filtro de ar externo (ou primário) é a primeira barreira de proteção do sistema 
+                            de admissão de ar do motor da empilhadeira. Sua principal função é reter poeira, 
+                            fuligem, terra e detritos suspensos no ar do ambiente operacional, garantindo a 
+                            entrada de ar limpo na câmara de combustão, aumentando a vida útil do motor e 
+                            evitando o desgaste prematuro dos pistões e cilindros.
                           </p>
                           <div className="details-row-2">
-                            <div className="left-area">
-                              <img src="/assets/images/shop/06.jpg" alt="shop" />
-                            </div>
                             <div className="right">
-                              <h4 className="title">
-                                All Natural Italian-Style Chicken Meatballs
-                              </h4>
-                              <p className="mb--25">
-                                Pellentesque habitant morbi tristique senectus et netus
-                                et malesuada fames ac turpis egestas Vestibulum tortor
-                                quam, feugiat vitae, ultricies eget, tempor sit amet,
-                                ante. ibero sit amet quam egestas semperAenean ultricies
-                                mi vitae est Mauris placerat eleifend.
-                              </p>
-                              <ul className="bottom-ul">
-                                <li>
-                                  Elementum sociis rhoncus aptent auctor urna justo
-                                </li>
-                                <li>
-                                  Habitasse venenatis gravida nisl, sollicitudin posuere
-                                </li>
-                              </ul>
                             </div>
                           </div>
                         </div>
@@ -247,55 +196,35 @@ const CompareElements: React.FC = () => {
                     {activeTab === 'tab2' &&
                       <div>
                         <div className="single-tab-content-shop-details">
-                          <p className="disc">
-                            Uninhibited carnally hired played in whimpered dear gorilla
-                            koala depending and much yikes off far quetzal goodness and
-                            from for grimaced goodness unaccountably and meadowlark near
-                            unblushingly crucial scallop tightly neurotic hungrily some
-                            and dear furiously this apart.
-                          </p>
                           <div className="table-responsive table-shop-details-pd">
                             <table className="table">
                               <thead>
                                 <tr>
-                                  <th>Kitchen Fade Defy</th>
-                                  <th>5KG</th>
+                                  <th>Peso</th>
+                                  <th>550g</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td>PRAN Full Cream Milk Powder</td>
-                                  <td>3KG</td>
+                                  <td>Tipo: </td>
+                                  <td>Filtro de ar primário (externo)</td>
                                 </tr>
                                 <tr>
-                                  <td>Net weight</td>
-                                  <td>8KG</td>
-                                </tr>
-                                <tr>
-                                  <td>Brand</td>
-                                  <td>Reactheme</td>
-                                </tr>
-                                <tr>
-                                  <td>Item code</td>
-                                  <td>4000000005</td>
-                                </tr>
-                                <tr>
-                                  <td>Product type</td>
-                                  <td>Powder milk</td>
+                                  <td>Medidas:</td>
+                                  <td>86 x 127 x 313 mm</td>
                                 </tr>
                               </tbody>
                             </table>
                           </div>
                           <p className="cansellation mt--20">
-                            <span> Return/cancellation:</span> No change will be
-                            applicable which are already delivered to customer. If
-                            product quality or quantity problem found then customer can
-                            return/cancel their order on delivery time with presence of
-                            delivery person.
+                            <span> Devolução/ Cancelamento:</span>Não serão aceitas alterações em pedidos que já 
+                            tenham sido entregues ao cliente. Caso seja constatado algum problema com a qualidade
+                             ou a quantidade dos produtos, o cliente poderá devolver ou cancelar o pedido no 
+                             momento da entrega, na presença do entregador.
                           </p>
                           <p className="note">
-                            <span>Note:</span> Product delivery duration may vary due to
-                            product availability in stock.
+                            <span>Nota:</span> O tempo de entrega do produto pode variar devido à disponibilidade
+                             do produto em estoque.
                           </p>
                         </div>
                       </div>}
@@ -479,22 +408,25 @@ const CompareElements: React.FC = () => {
               <div className="col-xl-3 col-lg-4 col-md-12 offset-xl-1  rts-sticky-column-item">
                 <div className="theiaStickySidebar">
                   <div className="shop-sight-sticky-sidevbar mb--20">
-                    <h6 className="title">Available offers</h6>
+                    <h6 className="title">Ofertas disponíveis</h6>
                     <div className="single-offer-area">
                       <div className="icon"><img src="/assets/images/shop/01.svg" alt="icon" /></div>
-                      <div className="details"><p>Get 5% instant discount for the 1st Flipkart Order using Ekomart UPI</p></div>
+                      <div className="details"><p>10% de desconto imediato no PIX
+                        Ganhe 10% de desconto no valor total ao finalizar a compra das suas peças via PIX.</p></div>
                     </div>
                     <div className="single-offer-area">
                       <div className="icon"><img src="/assets/images/shop/02.svg" alt="icon" /></div>
-                      <div className="details"><p>R$ 250 de desconto em compras acima de R$ 30 no cartão Citi</p></div>
+                      <div className="details"><p>5% de desconto no Boleto Bancário
+                       Obtenha 5% de desconto em pagamentos à vista no boleto para qualquer pedido de peças.</p></div>
                     </div>
                     <div className="single-offer-area">
                       <div className="icon"><img src="/assets/images/shop/03.svg" alt="icon" /></div>
-                      <div className="details"><p>Frete grátis em compras acima de R$ 100</p></div>
+                      <div className="details"><p>Frete Grátis para todo o Brasil
+                         Envio gratuito em compras via PIX ou Boleto para pedidos acima de R$ 1.000.</p></div>
                     </div>
                   </div>
                   <div className="our-payment-method">
-                    <h5 className="title">Guaranteed Safe Checkout</h5>
+                    <h5 className="title">Melhores formas de pagamento</h5>
                     <img src="/assets/images/shop/03.png" alt="" />
                   </div>
                 </div>

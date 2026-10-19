@@ -140,7 +140,7 @@ const ProductDetails: React.FC<ModalProps> = ({
 
                   <div className="product-uniques">
                     <span className="sku product-unipue"><span>SKU: </span> BO1D0MX8SJ</span>
-                    <span className="catagorys product-unipue"><span>Categories: </span> T-Shirts, Tops, Mens</span>
+                    <span className="catagorys product-unipue"><span>Categories: </span>Motores e Componentes</span>
                     <span className="tags product-unipue"><span>Tags: </span> fashion, t-shirts, Men</span>
                   </div>
 

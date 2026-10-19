@@ -54,7 +54,7 @@ function FeatureProduct() {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="title-area-between">
-                                    <h2 className="title-left">Related Product</h2>
+                                    <h2 className="title-left">Produtos Relacionados</h2>
                                     <div className="next-prev-swiper-wrapper">
                                         <div className="swiper-button-prev">
                                             <i className="fa-regular fa-chevron-left" />

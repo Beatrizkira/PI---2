@@ -18,53 +18,48 @@ function CategoryMenu() {
 
     const menuItems: MenuItem[] = [
         {
-            icon: "01.svg",
-            label: "Breakfast & Dairy",
+            label: "Motor e Componentes",
             submenu: ["Breakfast", "Dinner", "Pumking"],
         },
         {
             icon: "02.svg",
-            label: "Meats & Seafood",
+            label: "Transmissão",
             submenu: ["Breakfast", "Dinner", "Pumking"],
         },
         {
             icon: "03.svg",
-            label: "Breads & Bakery",
+            label: "Filtros",
             submenu: null,
         },
         {
             icon: "04.svg",
-            label: "Chips & Snacks",
+            label: "Sistema de Combustível",
             submenu: ["Breakfast", "Dinner", "Pumking"],
         },
         {
             icon: "05.svg",
-            label: "Medical Healthcare",
+            label: "Acessórios e Acabamento",
             submenu: null,
         },
         {
             icon: "06.svg",
-            label: "Breads & Bakery",
+            label: "Direção e Suspensão",
             submenu: null,
         },
         {
             icon: "07.svg",
-            label: "Biscuits & Snacks",
+            label: "Sistema de Freios",
             submenu: ["Breakfast", "Dinner", "Pumking"],
         },
         {
             icon: "08.svg",
-            label: "Frozen Foods",
+            label: "Sistema Elétrico / Controles",
             submenu: null,
         },
-        {
-            icon: "09.svg",
-            label: "Grocery & Staples",
-            submenu: null,
-        },
+
         {
             icon: "10.svg",
-            label: "Other Items",
+            label: "Outros",
             submenu: null,
         },
     ];

@@ -52,7 +52,7 @@ const Sidebar = () => {
                             <button
                                 onClick={() => setActiveTab('tab2')}
                                                 className={`nav-link ${activeTab === 'tab2' ? 'active' : ''}`}>
-                                Category
+                                Categrias
                             </button>
                         </div>
                     </nav>
@@ -88,10 +88,10 @@ const Sidebar = () => {
                     </div>
                     <div className="buton-area-bottom">
                         <Link href="/login" className="rts-btn btn-primary">
-                            Sign In
+                            Login
                         </Link>
                         <Link href="/register" className="rts-btn btn-primary">
-                            Sign Up
+                            Cadastre-se
                         </Link>
                     </div>
                 </div>

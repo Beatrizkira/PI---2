@@ -75,66 +75,53 @@ function ComponentName() {
                                         <ul className="category-sub-menu">
                                             <li>
                                                 <a href="#" className="menu-item">
-                                                    <img src="/assets/images/icons/01.svg" alt="icons" />
-                                                    <span>Breakfast &amp; Dairy</span>
+                                                    <span>Motor e Componentes</span>
                                                     <i className="fa-regular fa-plus" />
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
                                                     <img src="/assets/images/icons/02.svg" alt="icons" />
-                                                    <span>Meats &amp; Seafood</span>
+                                                    <span>Transmissão</span>
                                                     <i className="fa-regular fa-plus" />
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
                                                     <img src="/assets/images/icons/03.svg" alt="icons" />
-                                                    <span>Breads &amp; Bakery</span>
+                                                    <span>Filtros</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
                                                     <img src="/assets/images/icons/04.svg" alt="icons" />
-                                                    <span>Chips &amp; Snacks</span>
+                                                    <span>Direção e Suspensão</span>
                                                     <i className="fa-regular fa-plus" />
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
                                                     <img src="/assets/images/icons/05.svg" alt="icons" />
-                                                    <span>Medical Healthcare</span>
+                                                    <span>Sistema Elétrico</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
                                                     <img src="/assets/images/icons/06.svg" alt="icons" />
-                                                    <span>Breads &amp; Bakery</span>
+                                                    <span>Sistema de Combustível</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
                                                     <img src="/assets/images/icons/07.svg" alt="icons" />
-                                                    <span>Biscuits &amp; Snacks</span>
+                                                    <span>Acessórios e Acabamento</span>
                                                     <i className="fa-regular fa-plus" />
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
-                                                    <img src="/assets/images/icons/08.svg" alt="icons" />
-                                                    <span>Frozen Foods</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" className="menu-item">
-                                                    <img src="/assets/images/icons/09.svg" alt="icons" />
-                                                    <span>Grocery &amp; Staples</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" className="menu-item">
                                                     <img src="/assets/images/icons/10.svg" alt="icons" />
-                                                    <span>Other Items</span>
+                                                    <span>Outros</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -146,7 +133,7 @@ function ComponentName() {
                                             required
                                         />
                                         <button className="rts-btn btn-primary radious-sm with-icon">
-                                            <span className="btn-text">Search</span>
+                                            <span className="btn-text">Pesquisar</span>
                                             <span className="arrow-icon">
                                                 <i className="fa-light fa-magnifying-glass" />
                                             </span>

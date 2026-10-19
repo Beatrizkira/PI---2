@@ -32,7 +32,7 @@ const MobileMenu = () => {
                 </li>
 
                 {/* About */}
-                <li><Link className="main" href="/about">About</Link></li>
+                <li><Link className="main" href="/about">Sobre</Link></li>
 
                 {/* Pages */}
                 <li className={`has-droupdown ${openMenuIndex === 1 ? 'mm-active' : ''}`}>
