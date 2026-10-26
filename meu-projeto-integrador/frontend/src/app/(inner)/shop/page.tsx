@@ -29,21 +29,21 @@ function ShopContent() {
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(150);
 
-  const allCategories = ["Beverages", "Biscuits & Snacks", "Breads & Bakery"];
-  const allBrands = ["Frito Lay", "Nespresso", "Oreo", "Quaker", "Welch's"];
+  const allCategories = ["Filtros de Ar", "Filtros de Combustível e Óleo", "Transmissão e Hidráulica"];
+  const allBrands = ["Toyota", "Hyster", "Yale", "Hangcha", "Xinchai"];
 
   const categoryProductIndices: { [key: string]: number[] } = {
-    "Beverages": [1, 3, 4, 5, 6, 7],
-    "Biscuits & Snacks": [8, 9, 10, 12, 16],
-    "Breads & Bakery": [15, 1, 2, 3],
+    "Filtros de Ar": [1, 3, 4, 5, 6, 7],
+    "Filtros de Combustível e Óleo": [8, 9, 10, 12, 16],
+    "Transmissão e Hidráulica": [15, 1, 2, 3],
   };
 
   const brandProductIndices: { [key: string]: number[] } = {
-    "Frito Lay": [1, 3, 4],
-    "Nespresso": [3, 1, 4],
-    "Oreo": [8, 9, 10],
-    "Quaker": [3, 4, 10],
-    "Welch's": [8, 9, 1],
+    "Toyota": [1, 3, 4],
+    "Hyster": [3, 1, 4],
+    "Yale": [8, 9, 10],
+    "Hangcha": [3, 4, 10],
+    "Xinchai": [8, 9, 1],
   };
 
   const handleCategoryChange = (category: string) => {
@@ -137,15 +137,15 @@ function ShopContent() {
 
   return (
     <div className="shop-page">
-      {/* Breadcrumb */}
+      {/* Navegação / Breadcrumb */}
       <div className="rts-navigation-area-breadcrumb bg_light-1">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
               <div className="navigator-breadcrumb-wrapper">
-                <Link href="/">Home</Link>
+                <Link href="/">Início</Link>
                 <i className="fa-regular fa-chevron-right" />
-                <a className="current" href="#">Shop</a>
+                <a className="current" href="#">Produtos</a>
               </div>
             </div>
           </div>
@@ -161,12 +161,12 @@ function ShopContent() {
       <div className="shop-grid-sidebar-area rts-section-gap">
         <div className="container">
           <div className="row g-0">
-            {/* Sidebar */}
+            {/* Barra Lateral */}
             <div className="col-xl-3 col-lg-12 pr--70 pr_lg--10 pr_sm--10 pr_md--5 rts-sticky-column-item">
               <div className="sidebar-filter-main theiaStickySidebar">
-                {/* Price Filter */}
+                {/* Filtro de Preço */}
                 <div className="single-filter-box">
-                  <h5 className="title">Widget Price Filter</h5>
+                  <h5 className="title">Filtrar por Preço</h5>
                   <div className="filterbox-body">
                     <form
                       action="#"
@@ -175,7 +175,7 @@ function ShopContent() {
                     >
                       <div className="half-input-wrapper">
                         <div className="single">
-                          <label htmlFor="min">Min price</label>
+                          <label htmlFor="min">Preço Mín.</label>
                           <input
                             id="min"
                             type="number"
@@ -185,7 +185,7 @@ function ShopContent() {
                           />
                         </div>
                         <div className="single">
-                          <label htmlFor="max">Max price</label>
+                          <label htmlFor="max">Preço Máx.</label>
                           <input
                             id="max"
                             type="number"
@@ -208,16 +208,16 @@ function ShopContent() {
                           Preço: {formatBRL(minPrice)} — {formatBRL(maxPrice)}
                         </span>
                         <button type="submit" className="rts-btn btn-primary">
-                          Filter
+                          Filtrar
                         </button>
                       </div>
                     </form>
                   </div>
                 </div>
 
-                {/* Categories */}
+                {/* Categorias */}
                 <div className="single-filter-box">
-                  <h5 className="title">Product Categories</h5>
+                  <h5 className="title">Categorias de Produtos</h5>
                   <div className="filterbox-body">
                     <div className="category-wrapper ">
                       {allCategories.map((cat, i) => (
@@ -235,9 +235,9 @@ function ShopContent() {
                   </div>
                 </div>
 
-                {/* Brands */}
+                {/* Marcas */}
                 <div className="single-filter-box">
-                  <h5 className="title">Select Brands</h5>
+                  <h5 className="title">Selecionar Marcas</h5>
                   <div className="filterbox-body">
                     <div className="category-wrapper">
                       {allBrands.map((brand, i) => (
@@ -257,13 +257,13 @@ function ShopContent() {
               </div>
             </div>
 
-            {/* Main Content */}
+            {/* Conteúdo Principal */}
             <div className="col-xl-9 col-lg-12">
               <div className="filter-select-area">
                 <div className="top-filter">
-                  <span>Showing {filteredProducts.length} results</span>
+                  <span>Exibindo {filteredProducts.length} resultados</span>
                   <div className="right-end">
-                    <span>Sort: Short By Latest</span>
+                    <span>Ordenar: Mais Recentes</span>
                     <div className="button-tab-area">
                       <ul className="nav nav-tabs" id="myTab" role="tablist">
                         <li className="nav-item" role="presentation">
@@ -298,7 +298,7 @@ function ShopContent() {
                 </div>
               </div>
 
-              {/* Grid or List view */}
+              {/* Visualização em Grade ou Lista */}
               <div className="tab-content" id="myTabContent">
                 <div className="product-area-wrapper-shopgrid-list mt--20 tab-pane fade show active">
                   {activeTab === 'tab1' && (
@@ -318,7 +318,7 @@ function ShopContent() {
                         ))
                       ) : (
                         <div className="col-12 text-center py-5">
-                          <h2>No Product Found</h2>
+                          <h2>Nenhum produto encontrado</h2>
                         </div>
                       )}
                     </div>
@@ -343,7 +343,7 @@ function ShopContent() {
                         ))
                       ) : (
                         <div className="col-12 text-center py-5">
-                          <h2>No Product Found</h2>
+                          <h2>Nenhum produto encontrado</h2>
                         </div>
                       )}
                     </div>
@@ -365,9 +365,9 @@ export default function Home() {
       <Suspense fallback={
         <div className="text-center py-20">
           <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
+            <span className="visually-hidden">A carregar...</span>
           </div>
-          <p className="mt-3">Loading products...</p>
+          <p className="mt-3">A carregar produtos...</p>
         </div>
       }>
         <ShopContent />

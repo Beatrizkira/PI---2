@@ -63,7 +63,7 @@ function HeaderOne() {
   const handleSuggestionClick = (slug: string) => {
     setTimeout(() => setShowSuggestions(false), 120);
     router.push(`/shop/${slug}`);
-    };
+  };
 
   // Submit search form
   const handleSubmit = (e: React.FormEvent) => {
@@ -77,22 +77,22 @@ function HeaderOne() {
   };
 
   // Hide suggestion when clicked outside
- useEffect(() => {
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      inputRef.current &&
-      !inputRef.current.contains(event.target as Node) &&
-      suggestionRef.current &&
-      !suggestionRef.current.contains(event.target as Node)
-    ) {
-      setShowSuggestions(false);
-    }
-  };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node) &&
+        suggestionRef.current &&
+        !suggestionRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false);
+      }
+    };
 
-  document.addEventListener("mousedown", handleClickOutside);
-  return () =>
-    document.removeEventListener("mousedown", handleClickOutside);
-}, []);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Countdown UI
   useEffect(() => {
@@ -169,124 +169,124 @@ function HeaderOne() {
     <>
       <div className="rts-header-one-area-one">
         {/* top bar */}
-                <div className="header-top-area">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="bwtween-area-header-top">
-                                    <div className="discount-area">
-                                        <p className="disc">
-                                            ENTREGA GRÁTIS &amp; 40% DE DESCONTO PARA AS PRÓXIMAS 3 PEDIDOS! FAÇA SEU 1º PEDIDO AGORA.
-                                        </p>
-                                    </div>
-                                    <div className="contact-number-area">
-                                        <p>Precisa de ajuda? Contate-nos: <a href="tel:(11) 96200-7833">(11) 96200-7833</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div className="header-top-area">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="bwtween-area-header-top">
+                  <div className="discount-area">
+                    <p className="disc">
+                      ENTREGA GRÁTIS &amp; 40% DE DESCONTO PARA AS PRÓXIMAS 3 PEDIDOS! FAÇA SEU 1º PEDIDO AGORA.
+                    </p>
+                  </div>
+                  <div className="contact-number-area">
+                    <p>Precisa de ajuda? Contate-nos: <a href="tel:(11) 98661-4269">(11) 98661-4269</a></p>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                {/* logo + search */}
-                <div className="search-header-area-main">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="logo-search-category-wrapper">
-                                    <Link href="/" className="logo-area">
-                                        <img src="/assets/images/logo/logo-01.svg" alt="logo-main" className="logo" />
-                                    </Link>
-                                    <div className="category-search-wrapper">
-                                        <div className="category-btn category-hover-header">
-                                            <img className="parent" src="/assets/images/icons/bar-1.svg" alt="icons" />
-                                            <span>Categorias</span>
-                                            <CategoryMenu />
-                                        </div>
-                                        {/* Search Input Autocomplete */}
-                                        <form onSubmit={handleSubmit} className="search-header" autoComplete="off">
-                                        <input
-                                            ref={inputRef}
-                                        type="text"
-                                        placeholder="Busca por produtos..."
-                                        value={searchTerm}
-                                        onChange={(e) => setSearchTerm(e.target.value)}
-                                        onFocus={() => searchTerm.length > 0 && setShowSuggestions(true)}
-                                        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                                        />
-
-                                        {showSuggestions && suggestions.length > 0 && (
-                                            <ul id="suggestion-box"
-                                               ref={suggestionRef}
-                                                style={{
-                                                position: "absolute",
-                                                top: "48px",
-                                                width: "100%",
-                                                background: "#fff",
-                                                border: "1px solid #ccc",
-                                                borderRadius: "6px",
-                                                listStyle: "none",
-                                                padding: 0,
-                                                margin: 0,
-                                                zIndex: 100,
-                                                maxHeight: "220px",
-                                                overflowY: "auto",
-                                                }}
-                                            >
-                                                {suggestions.map((item) => (
-                                                <li
-                                                    key={item.id}
-                                                    style={{
-                                                    padding: 0,
-                                                    cursor: "pointer",
-                                                    borderBottom: "1px solid #eee",
-                                                    }}
-                                                >
-                                                    <Link
-                                                    href={`/shop/${item.slug}`}
-                                                    style={{
-                                                        display: "block",
-                                                        width: "100%",
-                                                        height: "100%",
-                                                        padding: "10px",
-                                                    }}
-                                                    onClick={() => handleSuggestionClick(item.slug)}
-                                                    >
-                                                    {item.title}
-                                                    </Link>
-                                                </li>
-                                                ))}
-                                            </ul>
-                                            )}
-                                        </form>
-                                    </div>
-                                    <div className="actions-area">
-                                        <div className="search-btn" id="searchs">
-                                            <svg width={17} height={16} viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15.75 14.7188L11.5625 10.5312C12.4688 9.4375 12.9688 8.03125 12.9688 6.5C12.9688 2.9375 10.0312 0 6.46875 0C2.875 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.46875 13C7.96875 13 9.375 12.5 10.5 11.5938L14.6875 15.7812C14.8438 15.9375 15.0312 16 15.25 16C15.4375 16 15.625 15.9375 15.75 15.7812C16.0625 15.5 16.0625 15.0312 15.75 14.7188ZM1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5Z" fill="#1F1F25" />
-                                            </svg>
-                                        </div>
-                                        <div className="menu-btn" id="menu-btn">
-                                            <svg width={20} height={16} viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect y={14} width={20} height={2} fill="#1F1F25" />
-                                                <rect y={7} width={20} height={2} fill="#1F1F25" />
-                                                <rect width={20} height={2} fill="#1F1F25" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div className="accont-wishlist-cart-area-header">
-                                        <Link href="/account" className="btn-border-only account">
-                                            <i className="fa-light fa-user" />
-                                            <span>Conta</span>
-                                        </Link>
-                                        <WishList />
-                                        <Cart />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        {/* logo + search */}
+        <div className="search-header-area-main">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="logo-search-category-wrapper">
+                  <Link href="/" className="logo-area">
+                    <img src="/assets/images/logo/logo-01.svg" alt="logo-main" className="logo" />
+                  </Link>
+                  <div className="category-search-wrapper">
+                    <div className="category-btn category-hover-header">
+                      <img className="parent" src="/assets/images/icons/bar-1.svg" alt="icons" />
+                      <span>Categorias</span>
+                      <CategoryMenu />
                     </div>
+                    {/* Search Input Autocomplete */}
+                    <form onSubmit={handleSubmit} className="search-header" autoComplete="off">
+                      <input
+                        ref={inputRef}
+                        type="text"
+                        placeholder="Busca por produtos..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onFocus={() => searchTerm.length > 0 && setShowSuggestions(true)}
+                        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                      />
+
+                      {showSuggestions && suggestions.length > 0 && (
+                        <ul id="suggestion-box"
+                          ref={suggestionRef}
+                          style={{
+                            position: "absolute",
+                            top: "48px",
+                            width: "100%",
+                            background: "#fff",
+                            border: "1px solid #ccc",
+                            borderRadius: "6px",
+                            listStyle: "none",
+                            padding: 0,
+                            margin: 0,
+                            zIndex: 100,
+                            maxHeight: "220px",
+                            overflowY: "auto",
+                          }}
+                        >
+                          {suggestions.map((item) => (
+                            <li
+                              key={item.id}
+                              style={{
+                                padding: 0,
+                                cursor: "pointer",
+                                borderBottom: "1px solid #eee",
+                              }}
+                            >
+                              <Link
+                                href={`/shop/${item.slug}`}
+                                style={{
+                                  display: "block",
+                                  width: "100%",
+                                  height: "100%",
+                                  padding: "10px",
+                                }}
+                                onClick={() => handleSuggestionClick(item.slug)}
+                              >
+                                {item.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </form>
+                  </div>
+                  <div className="actions-area">
+                    <div className="search-btn" id="searchs">
+                      <svg width={17} height={16} viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.75 14.7188L11.5625 10.5312C12.4688 9.4375 12.9688 8.03125 12.9688 6.5C12.9688 2.9375 10.0312 0 6.46875 0C2.875 0 0 2.9375 0 6.5C0 10.0938 2.90625 13 6.46875 13C7.96875 13 9.375 12.5 10.5 11.5938L14.6875 15.7812C14.8438 15.9375 15.0312 16 15.25 16C15.4375 16 15.625 15.9375 15.75 15.7812C16.0625 15.5 16.0625 15.0312 15.75 14.7188ZM1.5 6.5C1.5 3.75 3.71875 1.5 6.5 1.5C9.25 1.5 11.5 3.75 11.5 6.5C11.5 9.28125 9.25 11.5 6.5 11.5C3.71875 11.5 1.5 9.28125 1.5 6.5Z" fill="#1F1F25" />
+                      </svg>
+                    </div>
+                    <div className="menu-btn" id="menu-btn">
+                      <svg width={20} height={16} viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect y={14} width={20} height={2} fill="#1F1F25" />
+                        <rect y={7} width={20} height={2} fill="#1F1F25" />
+                        <rect width={20} height={2} fill="#1F1F25" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="accont-wishlist-cart-area-header">
+                    <Link href="/account" className="btn-border-only account">
+                      <i className="fa-light fa-user" />
+                      <span>Conta</span>
+                    </Link>
+                    <WishList />
+                    <Cart />
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <HeaderNav />
       </div>
 

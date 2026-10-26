@@ -2,7 +2,7 @@ import React from 'react'
 
 function FooterOne() {
     return (
-        <div><>
+        <div>
             {/* rts footer one area start */}
             <div className="rts-footer-area pt--80 bg_light-1">
                 <div className="container">
@@ -19,7 +19,7 @@ function FooterOne() {
                                         <div className="info">
                                             <span>Tem alguma dúvida? Ligue 24/7</span>
                                             <a href="#" className="number">
-                                                +11 96200-7833
+                                                +11 98661-4269
                                             </a>
                                         </div>
                                     </div>
@@ -126,8 +126,8 @@ function FooterOne() {
                                         Eu gostaria de receber comunicações de marketing da ES Empilhadeiras.
                                     </p>
                                 </div>
-
                             </div>
+
                             <div className="social-and-payment-area-wrapper">
                                 <div className="social-one-wrapper">
                                     <span>Nos Siga:</span>
@@ -146,13 +146,17 @@ function FooterOne() {
                                 </div>
                                 <div className="payment-access">
                                     <span>Formas de Pagamento:</span>
-                                    <img src="assets/images/payment/01.png" alt="" />
+                                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginLeft: '15px' }}>
+                                        <img src="/pix.png" alt="Pix" style={{ height: '25px' }} />
+                                        <img src="/boleto.png" alt="Boleto" style={{ height: '25px' }} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {/* rts footer one area end */}
 
             {/* rts copyright-area start */}
             <div className="rts-copyright-area">
@@ -169,9 +173,8 @@ function FooterOne() {
                 </div>
             </div>
             {/* rts copyright-area end */}
-        </>
         </div>
     )
 }
 
-export default FooterOne
+export default FooterOne;

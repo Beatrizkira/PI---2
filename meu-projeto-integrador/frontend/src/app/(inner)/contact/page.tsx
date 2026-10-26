@@ -16,8 +16,8 @@ export default function Home() {
                                 <div className="contact-banner-content">
                                     <h1 className="title">Tire suas dúvidas conosco</h1>
                                     <p className="disc">
-                                         Tem alguma dúvida sobre nossos serviços ou produtos? Envie sua pergunta 
-                                         abaixo e nossa equipe responderá o mais breve possível.
+                                        Tem alguma dúvida sobre nossos serviços ou produtos? Envie sua pergunta
+                                        abaixo e nossa equipe responderá o mais breve possível.
                                     </p>
                                 </div>
                             </div>
@@ -33,9 +33,9 @@ export default function Home() {
                                 <div className="contact-left-area-main-wrapper">
                                     <h2 className="title">Você pode nos fazer perguntas!</h2>
                                     <p className="disc">
-                                       Entre em contato conosco para tirar suas dúvidas e dar sua opinião, 
-                                       ou resolva seus problemas mais rapidamente através de nossos 
-                                       escritórios de atendimento.
+                                        Entre em contato conosco para tirar suas dúvidas e dar sua opinião,
+                                        ou resolva seus problemas mais rapidamente através de nossos
+                                        escritórios de atendimento.
                                     </p>
                                     <div className="location-single-card">
                                         <div className="icon">
@@ -45,14 +45,14 @@ export default function Home() {
                                             <h3 className="title">Vila Menck, Osasco - SP </h3>
                                             <p>R. Laguna, 201 - Vila Menck, Osasco - SP, 06273-140, Brasil.</p>
                                             <a href="#" className="number">
-                                                +55 (11) 96200-7833
+                                                +55 (11) 98661-4269
                                             </a>
                                             <a href="#" className="email">
                                                 se.manuempilhadeira@hotmail.com
                                             </a>
                                         </div>
                                     </div>
-                                
+
                                 </div>
                             </div>
                             <div className="col-lg-8 pl--50 pl_sm--5 pl_md--5">
