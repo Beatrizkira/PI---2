@@ -44,10 +44,10 @@ export default function Home() {
                       alt="logo"
                     />
                   </div>
-                  <h3 className="title">Register Into Your Account</h3>
+                  <h3 className="title">Crie sua conta</h3>
                   <form action="#" className="registration-form">
                     <div className="input-wrapper">
-                      <label htmlFor="name">Username*</label>
+                      <label htmlFor="name">Nome do usuário*</label>
                       <input type="text" id="name" />
                     </div>
                     <div className="input-wrapper">
@@ -55,13 +55,13 @@ export default function Home() {
                       <input type="email" id="email" />
                     </div>
                     <div className="input-wrapper">
-                      <label htmlFor="password">Password*</label>
+                      <label htmlFor="password">Senha*</label>
                       <input type="password" id="password" />
                     </div>
-                    <button className="rts-btn btn-primary">Register Account</button>
+                    <button className="rts-btn btn-primary">Criar Conta</button>
                     <div className="another-way-to-registration">
                       <div className="registradion-top-text">
-                        <span>Or Register With</span>
+                        <span>Ou Cadastra-se Com</span>
                       </div>
                       <div className="login-with-brand">
                         <a href="#" className="single">
@@ -72,7 +72,7 @@ export default function Home() {
                         </a>
                       </div>
                       <p>
-                        Already Have Account? <a href="#">Login</a>
+                        Já tem uma conta? <a href="#">Login</a>
                       </p>
                     </div>
                   </form>
