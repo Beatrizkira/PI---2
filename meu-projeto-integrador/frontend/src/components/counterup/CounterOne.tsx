@@ -3,11 +3,18 @@
 import React from "react";
 import CountUp from "react-countup";
 
-const counters = [
-  { end: 60, suffix: "M+", label: "Happy <br /> Customers" },
-  { end: 105, suffix: "M+", label: "Grocery <br /> Products" },
-  { end: 80, suffix: "K+", label: "Active <br /> Salesman" },
-  { end: 60, suffix: "K+", label: "Store <br /> Worldwide" },
+type Counter = {
+  end?: number;
+  suffix?: string;
+  text?: string;
+  label: string;
+};
+
+const counters: Counter[] = [
+  { end: 1, suffix: "K", label: "Clientes <br /> atendidos" },
+  { end: 1, suffix: "K+", label: "Vendas <br /> realizadas" },
+  { text: "Osasco", label: "Nossa sede <br /> em SP" },
+  { end: 7, suffix: "+", label: "Anos de <br /> mercado" },
 ];
 
 const CounterArea = () => {
@@ -20,8 +27,14 @@ const CounterArea = () => {
               {counters.map((item, index) => (
                 <div className="single-counter-area" key={index}>
                   <h2 className="title">
-                    <CountUp end={item.end} duration={2.5} enableScrollSpy scrollSpyDelay={500} />
-                    {item.suffix}
+                    {item.text ? (
+                      item.text
+                    ) : (
+                      <>
+                        <CountUp end={item.end ?? 0} duration={2.5} enableScrollSpy scrollSpyDelay={500} />
+                        {item.suffix}
+                      </>
+                    )}
                   </h2>
                   <p dangerouslySetInnerHTML={{ __html: item.label }} />
                 </div>

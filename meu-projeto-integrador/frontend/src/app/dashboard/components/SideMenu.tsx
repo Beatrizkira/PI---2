@@ -11,11 +11,7 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  {
-    title: "Dashboard",
-    icon: "/assets/images-dashboard/icons/01.svg",
-    href: "/dashboard",
-  },
+
   {
     title: "Pedidos",
     icon: "/assets/images-dashboard/icons/09.svg",

@@ -1,62 +1,59 @@
 import React from 'react';
 
-function ComponentName() {
+function About() {
   return (
-    <div>
-<>
-  {/* about area start */}
-  <div className="rts-about-area rts-section-gap2">
-    <div className="container-3">
-      <div className="row align-items-center">
-        <div className="col-lg-4">
-          <div className="thumbnail-left">
-            <img src="assets/images/about/02.jpg" alt="" />
-          </div>
-        </div>
-        <div className="col-lg-8 pl--60 pl_md--10 pt_md--30 pl_sm--10 pt_sm--30">
-          <div className="about-content-area-1">
-            <h2 className="title">
-              Your Destination for Quality Produce <br /> and Pantry Essentials
-            </h2>
-            <p className="disc">
-              Venenatis augue consequat class magnis sed purus, euismod ligula
-              nibh congue quis vestibulum nostra, cubilia varius velit vitae
-              rhoncus. Turpis malesuada fringilla urna dui est torquent aliquet,
-              mi nec fermentum placerat nisi venenatis sapien, mattis nunc
-              nullam rutrum feugiat porta. Pharetra mi nisl consequat semper
-              quam litora aenean eros conubia molestie erat, et cursus integer
-              rutrum sollicitudin auctor curae inceptos senectus sagittis est,
-            </p>
-            <div className="check-main-wrapper">
-              <div className="single-check-area">
-                Elementum sociis rhoncus aptent auctor urna justo
-              </div>
-              <div className="single-check-area">
-                Habitasse venenatis gravida nisl, sollicitudin posuere
-              </div>
-              <div className="single-check-area">
-                Uisque cum convallis nostra in sapien nascetur, netus
-              </div>
-              <div className="single-check-area">
-                Class nunc aliquet nulla dis senectus lputate porta
-              </div>
-              <div className="single-check-area">
-                Aenean gravida a est ante nisl nostra dui hendrerit
-              </div>
-              <div className="single-check-area">
-                Bibendum venenatis dignissim non himenaeos eget
+    <>
+      {/* about area start */}
+      <div className="rts-about-area rts-section-gap2">
+        <div className="container-3">
+          <div className="row align-items-center">
+            <div className="col-lg-4">
+              <div className="thumbnail-left">
+                <img src="/assets/images/about/sobre-nos.jpg" alt="Empilhadeira em galpão de armazenagem" />              </div>
+            </div>
+            <div className="col-lg-8 pl--60 pl_md--10 pt_md--30 pl_sm--10 pt_sm--30">
+              <div className="about-content-area-1">
+                <h2 className="title">Nossa História</h2>
+                <p className="disc">
+                  Há sete anos, movida pela visão de entregar excelência e forte
+                  compromisso com os clientes, Sidlania Souza Alves Barbosa deu
+                  o primeiro passo para fundar a empresa e construir uma marca
+                  de confiança no mercado. O que começou como um projeto
+                  pautado em dedicação e trabalho árduo transformou-se
+                  rapidamente em uma trajetória sólida de crescimento e
+                  estabilidade. Nossa sede, localizada na Rua Laguna, 201, no
+                  bairro Vila Menck, em Osasco – SP (CEP 06273-140), foi
+                  cuidadosamente estabelecida para garantir proximidade,
+                  agilidade e total eficiência no atendimento.
+                </p>
+                <p className="disc">
+                  Ao longo dessa jornada de atuação, consolidamos nossa
+                  presença na região mantendo vivos os pilares fundamentais
+                  estabelecidos por nossa fundadora: transparência, inovação
+                  constante e foco absoluto na qualidade. Cada etapa superada
+                  nesses sete anos reflete nosso empenho genuíno em construir
+                  relacionamentos duradouros, sempre priorizando a segurança e a
+                  satisfação de quem escolhe os nossos serviços. Hoje, olhamos
+                  para o futuro com a mesma energia do primeiro dia, prontos
+                  para expandir nosso impacto e continuar escrevendo novos
+                  capítulos de sucesso, autoridade e credibilidade.
+                </p>
+                <div className="check-main-wrapper">
+                  <div className="single-check-area">Transparência</div>
+                  <div className="single-check-area">Inovação constante</div>
+                  <div className="single-check-area">Foco absoluto na qualidade</div>
+                  <div className="single-check-area">
+                    Rua Laguna, 201 – Vila Menck, Osasco – SP
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  {/* about area end */}
-</>
-
-    </div>
+      {/* about area end */}
+    </>
   );
 }
 
-export default ComponentName;
+export default About;

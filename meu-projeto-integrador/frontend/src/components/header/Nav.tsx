@@ -18,12 +18,7 @@ function NavItem() {
                         <Link href="/shop">Produtos</Link>
                     </li>
 
-                    <li className="parents">
-                        <Link target='_blank' href="/dashboard">
-                            Dashboard
-                            <span className="badge">New</span>
-                        </Link>
-                    </li>
+
                     <li className="parent">
                         <Link href="/contact">Contato</Link>
                     </li>
