@@ -124,7 +124,7 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
         <div className="cart-counter-action">
           <Link href={`/shop/${Slug}`} className="rts-btn consult-part-button">
             Consultar Peça
-          </a>
+          </Link>
         </div>
       </div>
 

@@ -50,20 +50,20 @@ export default function Home() {
                 alt="logo"
               />
             </div>
-            <h3 className="title">Login Into Your Account</h3>
+            <h3 className="title">Acesse sua conta</h3>
             <form action="#" className="registration-form">
               <div className="input-wrapper">
                 <label htmlFor="email">Email*</label>
                 <input type="email" id="email" />
               </div>
               <div className="input-wrapper">
-                <label htmlFor="password">Password*</label>
+                <label htmlFor="password">Senha*</label>
                 <input type="password" id="password" />
               </div>
-              <button className="rts-btn btn-primary">Login Account</button>
+              <button className="rts-btn btn-primary">Entrar</button>
               <div className="another-way-to-registration">
                 <div className="registradion-top-text">
-                  <span>Or Register With</span>
+                  <span>Ou entre com</span>
                 </div>
                 <div className="login-with-brand">
                   <a href="#" className="single">
@@ -74,7 +74,7 @@ export default function Home() {
                   </a>
                 </div>
                 <p>
-                  Don't have Acocut? <Link href="/register">Registration</Link>
+                  Não tem uma conta? <Link href="/register">Cadastre-se</Link>
                 </p>
               </div>
             </form>
