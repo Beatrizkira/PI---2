@@ -16,35 +16,35 @@ const AccountTabs = () => {
                 className={`nav-link ${activeTab === 'dashboard' ? 'active' : ''}`}
                 onClick={() => setActiveTab('dashboard')}
               >
-                <i className="fa-regular fa-chart-line"></i> Dashboard
+                <i className="fa-regular fa-chart-line"></i> Painel
               </button>
               <button
                 className={`nav-link ${activeTab === 'order' ? 'active' : ''}`}
                 onClick={() => setActiveTab('order')}
               >
-                <i className="fa-regular fa-bag-shopping"></i> Order
+                <i className="fa-regular fa-bag-shopping"></i> Pedidos
               </button>
               <button
                 className={`nav-link ${activeTab === 'track' ? 'active' : ''}`}
                 onClick={() => setActiveTab('track')}
               >
-                <i className="fa-regular fa-tractor"></i> Track Your Order
+                <i className="fa-regular fa-tractor"></i> Rastrear pedido
               </button>
               <button
                 className={`nav-link ${activeTab === 'address' ? 'active' : ''}`}
                 onClick={() => setActiveTab('address')}
               >
-                <i className="fa-regular fa-location-dot"></i> My Address
+                <i className="fa-regular fa-location-dot"></i> Meus endereços
               </button>
               <button
                 className={`nav-link ${activeTab === 'account' ? 'active' : ''}`}
                 onClick={() => setActiveTab('account')}
               >
-                <i className="fa-regular fa-user"></i> Account Details
+                <i className="fa-regular fa-user"></i> Dados da conta
               </button>
               <button className="nav-link">
                 <Link href="/login">
-                  <i className="fa-light fa-right-from-bracket"></i> Log Out
+                  <i className="fa-light fa-right-from-bracket"></i> Sair
                 </Link>
               </button>
             </div>
@@ -55,50 +55,50 @@ const AccountTabs = () => {
               {activeTab === 'dashboard' && (
                 <div className="dashboard-account-area">
                   <h2 className="title">
-                    Hello Raisa! (Not Raisa?) <Link href="/login">Log Out.</Link>
+                    Olá! (Não é você?) <Link href="/login">Sair.</Link>
                   </h2>
                   <p className="disc">
-                    From your account dashboard you can view your recent orders,
-                    manage your shipping and billing addresses, and edit your password and account details.
+                    No painel da sua conta você pode ver seus pedidos recentes,
+                    gerenciar seus endereços de entrega e cobrança e alterar sua senha e os dados da conta.
                   </p>
                 </div>
               )}
 
               {activeTab === 'order' && (
                 <div className="order-table-account">
-                  <div className="h2 title">Your Orders</div>
+                  <div className="h2 title">Seus pedidos</div>
                   <div className="table-responsive">
                     <table className="table">
                       <thead>
                         <tr>
-                          <th>Order</th>
-                          <th>Date</th>
+                          <th>Pedido</th>
+                          <th>Data</th>
                           <th>Status</th>
                           <th>Total</th>
-                          <th>Actions</th>
+                          <th>Ações</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td>#1357</td>
-                          <td>March 45, 2020</td>
-                          <td>Processing</td>
+                          <td>15 de março de 2020</td>
+                          <td>Em processamento</td>
                           <td>R$ 125,00 por 2 itens</td>
-                          <td><a href="#" className="btn-small d-block">View</a></td>
+                          <td><a href="#" className="btn-small d-block">Ver</a></td>
                         </tr>
                         <tr>
                           <td>#2468</td>
-                          <td>June 29, 2020</td>
-                          <td>Completed</td>
+                          <td>29 de junho de 2020</td>
+                          <td>Concluído</td>
                           <td>R$ 364,00 por 5 itens</td>
-                          <td><a href="#" className="btn-small d-block">View</a></td>
+                          <td><a href="#" className="btn-small d-block">Ver</a></td>
                         </tr>
                         <tr>
                           <td>#2366</td>
-                          <td>August 02, 2020</td>
-                          <td>Completed</td>
+                          <td>2 de agosto de 2020</td>
+                          <td>Concluído</td>
                           <td>R$ 280,00 por 3 itens</td>
-                          <td><a href="#" className="btn-small d-block">View</a></td>
+                          <td><a href="#" className="btn-small d-block">Ver</a></td>
                         </tr>
                       </tbody>
                     </table>
@@ -108,21 +108,21 @@ const AccountTabs = () => {
 
               {activeTab === 'track' && (
                 <div className="tracing-order-account">
-                  <h2 className="title">Orders tracking</h2>
+                  <h2 className="title">Rastreamento de pedidos</h2>
                   <p>
-                    To keep up with the status of your order, kindly input your OrderID
-                    in the designated box below and click the "Track" button.
+                    Para acompanhar o status do seu pedido, informe o número do pedido
+                    no campo abaixo e clique no botão “Rastrear”.
                   </p>
                   <form className="order-tracking">
                     <div className="single-input">
-                      <label>Order Id</label>
-                      <input type="text" placeholder="Found in your order confirmation email" required />
+                      <label>Número do pedido</label>
+                      <input type="text" placeholder="Enviado no e-mail de confirmação do pedido" required />
                     </div>
                     <div className="single-input">
-                      <label>Billing email</label>
-                      <input type="email" placeholder="Email You use during checkout" />
+                      <label>E-mail de cobrança</label>
+                      <input type="email" placeholder="E-mail usado na compra" />
                     </div>
-                    <button className="rts-btn btn-primary" type="submit">Track</button>
+                    <button className="rts-btn btn-primary" type="submit">Rastrear</button>
                   </form>
                 </div>
               )}
@@ -130,47 +130,35 @@ const AccountTabs = () => {
               {activeTab === 'address' && (
                 <div className="shipping-address-billing-address-account">
                   <div className="half">
-                    <h2 className="title">Billing Address</h2>
-                    <p className="address">
-                      3522 Interstate <br />
-                      75 Business Spur, <br />
-                      Sault Ste. <br />
-                      Marie, MI 49783 <br />
-                      New York
-                    </p>
-                    <a href="#">Edit</a>
+                    <h2 className="title">Endereço de cobrança</h2>
+                    <p className="address">Nenhum endereço cadastrado.</p>
+                    <a href="#">Adicionar endereço</a>
                   </div>
                   <div className="half">
-                    <h2 className="title">Shipping Address</h2>
-                    <p className="address">
-                      3522 Interstate <br />
-                      75 Business Spur, <br />
-                      Sault Ste. <br />
-                      Marie, MI 49783 <br />
-                      New York
-                    </p>
-                    <a href="#">Edit</a>
+                    <h2 className="title">Endereço de entrega</h2>
+                    <p className="address">Nenhum endereço cadastrado.</p>
+                    <a href="#">Adicionar endereço</a>
                   </div>
                 </div>
               )}
 
               {activeTab === 'account' && (
                 <form className="account-details-area">
-                  <h2 className="title">Account Details</h2>
+                  <h2 className="title">Dados da conta</h2>
                   <div className="input-half-area">
                     <div className="single-input">
-                      <input type="text" placeholder="First Name" />
+                      <input type="text" placeholder="Nome" />
                     </div>
                     <div className="single-input">
-                      <input type="text" placeholder="Last Name" />
+                      <input type="text" placeholder="Sobrenome" />
                     </div>
                   </div>
-                  <input type="text" placeholder="Display Name" required />
-                  <input type="email" placeholder="Email Address *" required />
-                  <input type="password" placeholder="Current Password *" required />
-                  <input type="password" placeholder="New Password *" />
-                  <input type="password" placeholder="Confirm Password *" />
-                  <button className="rts-btn btn-primary">Save Change</button>
+                  <input type="text" placeholder="Nome de exibição" required />
+                  <input type="email" placeholder="E-mail *" required />
+                  <input type="password" placeholder="Senha atual *" required />
+                  <input type="password" placeholder="Nova senha *" />
+                  <input type="password" placeholder="Confirmar nova senha *" />
+                  <button className="rts-btn btn-primary">Salvar alterações</button>
                 </form>
               )}
 
