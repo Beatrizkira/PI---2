@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import HeaderNav from "./HeaderNav";
 import CategoryMenu from "./CategoryMenu";
-import Cart from "./Cart";
 import WishList from "./WishList";
 import Sidebar from "./Sidebar";
 import BackToTop from "@/components/common/BackToTop";
@@ -280,7 +279,6 @@ function HeaderOne() {
                       <span>Conta</span>
                     </Link>
                     <WishList />
-                    <Cart />
                   </div>
                 </div>
               </div>
@@ -297,4 +295,3 @@ function HeaderOne() {
 }
 
 export default HeaderOne;
-
