@@ -427,7 +427,10 @@ const CompareElements: React.FC = () => {
                   </div>
                   <div className="our-payment-method">
                     <h5 className="title">Melhores formas de pagamento</h5>
-                    <img src="/assets/images/shop/03.png" alt="" />
+                    <div className="d-flex align-items-center gap-3">
+                      <img src="/boleto.png" alt="Boleto" style={{ height: 32, width: "auto" }} />
+                      <img src="/pix.png" alt="Pix" style={{ height: 32, width: "auto" }} />
+                    </div>
                   </div>
                 </div>
               </div>
