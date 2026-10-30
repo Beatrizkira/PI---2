@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const AccountTabs = () => {
-  const [activeTab, setActiveTab] = useState('track');
+  const [activeTab, setActiveTab] = useState('dashboard');
 
   return (
     <div className="account-tab-area-start rts-section-gap">
@@ -17,24 +17,6 @@ const AccountTabs = () => {
                 onClick={() => setActiveTab('dashboard')}
               >
                 <i className="fa-regular fa-chart-line"></i> Painel
-              </button>
-              <button
-                className={`nav-link ${activeTab === 'order' ? 'active' : ''}`}
-                onClick={() => setActiveTab('order')}
-              >
-                <i className="fa-regular fa-bag-shopping"></i> Pedidos
-              </button>
-              <button
-                className={`nav-link ${activeTab === 'track' ? 'active' : ''}`}
-                onClick={() => setActiveTab('track')}
-              >
-                <i className="fa-regular fa-tractor"></i> Rastrear pedido
-              </button>
-              <button
-                className={`nav-link ${activeTab === 'address' ? 'active' : ''}`}
-                onClick={() => setActiveTab('address')}
-              >
-                <i className="fa-regular fa-location-dot"></i> Meus endereços
               </button>
               <button
                 className={`nav-link ${activeTab === 'account' ? 'active' : ''}`}
@@ -58,87 +40,8 @@ const AccountTabs = () => {
                     Olá! (Não é você?) <Link href="/login">Sair.</Link>
                   </h2>
                   <p className="disc">
-                    No painel da sua conta você pode ver seus pedidos recentes,
-                    gerenciar seus endereços de entrega e cobrança e alterar sua senha e os dados da conta.
+                    No painel da sua conta você pode alterar sua senha e os dados da conta.
                   </p>
-                </div>
-              )}
-
-              {activeTab === 'order' && (
-                <div className="order-table-account">
-                  <div className="h2 title">Seus pedidos</div>
-                  <div className="table-responsive">
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th>Pedido</th>
-                          <th>Data</th>
-                          <th>Status</th>
-                          <th>Total</th>
-                          <th>Ações</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>#1357</td>
-                          <td>15 de março de 2020</td>
-                          <td>Em processamento</td>
-                          <td>R$ 125,00 por 2 itens</td>
-                          <td><a href="#" className="btn-small d-block">Ver</a></td>
-                        </tr>
-                        <tr>
-                          <td>#2468</td>
-                          <td>29 de junho de 2020</td>
-                          <td>Concluído</td>
-                          <td>R$ 364,00 por 5 itens</td>
-                          <td><a href="#" className="btn-small d-block">Ver</a></td>
-                        </tr>
-                        <tr>
-                          <td>#2366</td>
-                          <td>2 de agosto de 2020</td>
-                          <td>Concluído</td>
-                          <td>R$ 280,00 por 3 itens</td>
-                          <td><a href="#" className="btn-small d-block">Ver</a></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'track' && (
-                <div className="tracing-order-account">
-                  <h2 className="title">Rastreamento de pedidos</h2>
-                  <p>
-                    Para acompanhar o status do seu pedido, informe o número do pedido
-                    no campo abaixo e clique no botão “Rastrear”.
-                  </p>
-                  <form className="order-tracking">
-                    <div className="single-input">
-                      <label>Número do pedido</label>
-                      <input type="text" placeholder="Enviado no e-mail de confirmação do pedido" required />
-                    </div>
-                    <div className="single-input">
-                      <label>E-mail de cobrança</label>
-                      <input type="email" placeholder="E-mail usado na compra" />
-                    </div>
-                    <button className="rts-btn btn-primary" type="submit">Rastrear</button>
-                  </form>
-                </div>
-              )}
-
-              {activeTab === 'address' && (
-                <div className="shipping-address-billing-address-account">
-                  <div className="half">
-                    <h2 className="title">Endereço de cobrança</h2>
-                    <p className="address">Nenhum endereço cadastrado.</p>
-                    <a href="#">Adicionar endereço</a>
-                  </div>
-                  <div className="half">
-                    <h2 className="title">Endereço de entrega</h2>
-                    <p className="address">Nenhum endereço cadastrado.</p>
-                    <a href="#">Adicionar endereço</a>
-                  </div>
                 </div>
               )}
 
