@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { useState, MouseEvent } from "react";
 
 type MenuItem = {
-    icon: string;
     label: string;
     submenu: string[] | null;
 };
@@ -19,46 +18,39 @@ function CategoryMenu() {
     const menuItems: MenuItem[] = [
         {
             label: "Motor e Componentes",
-            submenu: ["Breakfast", "Dinner", "Pumking"],
+            submenu: ["Motor", "Componentes"],
         },
         {
-            icon: "02.svg",
             label: "Transmissão",
-            submenu: ["Breakfast", "Dinner", "Pumking"],
+            submenu: ["Transmissão", "Componentes"],
         },
         {
-            icon: "03.svg",
             label: "Filtros",
             submenu: null,
         },
         {
-            icon: "04.svg",
+            
             label: "Sistema de Combustível",
-            submenu: ["Breakfast", "Dinner", "Pumking"],
+            submenu: ["Sistema de Combustível", "Componentes"],
         },
         {
-            icon: "05.svg",
             label: "Acessórios e Acabamento",
             submenu: null,
         },
         {
-            icon: "06.svg",
             label: "Direção e Suspensão",
             submenu: null,
         },
         {
-            icon: "07.svg",
             label: "Sistema de Freios",
             submenu: ["Breakfast", "Dinner", "Pumking"],
         },
         {
-            icon: "08.svg",
             label: "Sistema Elétrico / Controles",
             submenu: null,
         },
 
         {
-            icon: "10.svg",
             label: "Outros",
             submenu: null,
         },
@@ -77,7 +69,6 @@ function CategoryMenu() {
                                 if (item.submenu) toggleMenu(index);
                             }}
                         >
-                            <img src={`/assets/images/icons/${item.icon}`} alt="icons" />
                             <span>{item.label}</span>
                             {item.submenu && (
                                 <i
