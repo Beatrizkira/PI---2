@@ -29,7 +29,6 @@ function CategoryMenu() {
             submenu: null,
         },
         {
-            
             label: "Sistema de Combustível",
             submenu: ["Sistema de Combustível", "Componentes"],
         },
@@ -49,7 +48,6 @@ function CategoryMenu() {
             label: "Sistema Elétrico / Controles",
             submenu: null,
         },
-
         {
             label: "Outros",
             submenu: null,
