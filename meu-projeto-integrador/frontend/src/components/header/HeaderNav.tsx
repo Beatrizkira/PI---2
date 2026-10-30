@@ -81,46 +81,46 @@ function ComponentName() {
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
-                                                    <img src="/assets/images/icons/02.svg" alt="icons" />
+
                                                     <span>Transmissão</span>
                                                     <i className="fa-regular fa-plus" />
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
-                                                    <img src="/assets/images/icons/03.svg" alt="icons" />
+
                                                     <span>Filtros</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
-                                                    <img src="/assets/images/icons/04.svg" alt="icons" />
+
                                                     <span>Direção e Suspensão</span>
                                                     <i className="fa-regular fa-plus" />
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
-                                                    <img src="/assets/images/icons/05.svg" alt="icons" />
+
                                                     <span>Sistema Elétrico</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
-                                                    <img src="/assets/images/icons/06.svg" alt="icons" />
+
                                                     <span>Sistema de Combustível</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
-                                                    <img src="/assets/images/icons/07.svg" alt="icons" />
+
                                                     <span>Acessórios e Acabamento</span>
                                                     <i className="fa-regular fa-plus" />
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" className="menu-item">
-                                                    <img src="/assets/images/icons/10.svg" alt="icons" />
+
                                                     <span>Outros</span>
                                                 </a>
                                             </li>
