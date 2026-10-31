@@ -118,10 +118,10 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
             <Link href={`/shop/${Slug}`}>
               <h4 className="title">{ProductTitle ?? 'How to growing your business'}</h4>
             </Link>
-            <span className="availability">500g Pack</span>
+            <span className="availability">Peça original</span>
             <div className="price-area">
               <span className="current">{formatBRL(Price ?? '0')}</span>
-              <div className="previous">{formatBRL(36)}</div>
+
             </div>
 
             <div className="cart-counter-action">

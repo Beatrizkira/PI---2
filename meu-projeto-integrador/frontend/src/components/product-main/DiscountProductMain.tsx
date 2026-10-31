@@ -52,7 +52,7 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
 
                 <div className="price-area">
                     <span className="current">{formatBRL(Price ?? '0')}</span>
-                    <div className="previous">{formatBRL(36)}</div>
+
                 </div>
 
                 <div className="cart-counter-action">

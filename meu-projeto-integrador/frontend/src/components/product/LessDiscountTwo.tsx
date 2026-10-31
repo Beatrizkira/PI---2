@@ -42,7 +42,7 @@ function LessDiscountTwo() {
                                                                     Pastine Mellin Filid Angelo 100% Di Grano Tenero
                                                                 </h4>
                                                             </Link>
-                                                            <span className="availability">500g Pack</span>
+                                                            <span className="availability">Peça original</span>
                                                             <div className="price-area">
                                                                 <span className="current">R$ 36,00</span>
                                                                 <div className="previous">R$ 36,00</div>
@@ -86,7 +86,7 @@ function LessDiscountTwo() {
                                                                     Pastine Mellin Filid Angelo 100% Di Grano Tenero
                                                                 </h4>
                                                             </Link>
-                                                            <span className="availability">500g Pack</span>
+                                                            <span className="availability">Peça original</span>
                                                             <div className="price-area">
                                                                 <span className="current">R$ 36,00</span>
                                                                 <div className="previous">R$ 36,00</div>
@@ -130,7 +130,7 @@ function LessDiscountTwo() {
                                                                     Pastine Mellin Filid Angelo 100% Di Grano Tenero
                                                                 </h4>
                                                             </Link>
-                                                            <span className="availability">500g Pack</span>
+                                                            <span className="availability">Peça original</span>
                                                             <div className="price-area">
                                                                 <span className="current">R$ 36,00</span>
                                                                 <div className="previous">R$ 36,00</div>

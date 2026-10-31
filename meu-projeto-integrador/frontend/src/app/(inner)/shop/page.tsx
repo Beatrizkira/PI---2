@@ -27,7 +27,7 @@ function ShopContent() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(150);
+  const [maxPrice, setMaxPrice] = useState<number>(1000);
 
   const allCategories = ["Filtros de Ar", "Filtros de Combustível e Óleo", "Transmissão e Hidráulica"];
   const allBrands = ["Toyota", "Hyster", "Yale", "Hangcha", "Xinchai"];
@@ -74,9 +74,7 @@ function ShopContent() {
 
   const getFilteredByCategoryProducts = (): PostType[] => {
     if (selectedCategories.length === 0) {
-      const allIndices = Object.values(categoryProductIndices).flat();
-      const uniqueIndices = Array.from(new Set(allIndices));
-      return uniqueIndices.map(i => Product[i]).filter(Boolean);
+      return Product;
     }
 
     const selectedIndices = selectedCategories
@@ -113,9 +111,7 @@ function ShopContent() {
   } else if (selectedBrands.length > 0) {
     combinedFilteredProducts = productsByBrand;
   } else {
-    const allIndices = Object.values(categoryProductIndices).flat();
-    const uniqueIndices = Array.from(new Set(allIndices));
-    combinedFilteredProducts = uniqueIndices.map(i => Product[i]).filter(Boolean);
+    combinedFilteredProducts = Product;
   }
 
   const filteredProducts: PostType[] = combinedFilteredProducts
@@ -199,7 +195,7 @@ function ShopContent() {
                         type="range"
                         className="range"
                         min={0}
-                        max={150}
+                        max={1000}
                         value={maxPrice}
                         onChange={(e) => setMaxPrice(parseInt(e.target.value, 10))}
                       />

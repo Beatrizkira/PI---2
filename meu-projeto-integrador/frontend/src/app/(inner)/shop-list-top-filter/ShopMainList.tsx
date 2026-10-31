@@ -20,12 +20,7 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
     <>
       <div className="single-shopping-card-one discount-offer">
         <a href={`/shop/${Slug}`} className="thumbnail-preview">
-          <div className="badge">
-            <span>
-              25% <br /> Off
-            </span>
-            <i className="fa-solid fa-bookmark" />
-          </div>
+
           <img src={`/assets/images/grocery/${ProductImage}`} alt="grocery" />
         </a>
 
@@ -35,11 +30,11 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
               <h4 className="title">{ProductTitle ?? 'How to growing your business'}</h4>
             </a>
 
-            <span className="availability">500g Pack</span>
+            <span className="availability">Peça original</span>
 
             <div className="price-area">
               <span className="current">{formatBRL(Price ?? '0')}</span>
-              <div className="previous">{formatBRL(36)}</div>
+
             </div>
 
             <div className="cart-counter-action">
