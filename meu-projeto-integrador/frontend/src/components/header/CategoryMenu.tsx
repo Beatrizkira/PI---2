@@ -18,11 +18,11 @@ function CategoryMenu() {
     const menuItems: MenuItem[] = [
         {
             label: "Motor e Componentes",
-            submenu: ["Breakfast", "Dinner", "Pumking"],
+            submenu: ["Motor", "Componentes"],
         },
         {
             label: "Transmissão",
-            submenu: ["Breakfast", "Dinner", "Pumking"],
+            submenu: ["Transmissão", "Componentes"],
         },
         {
             label: "Filtros",
@@ -30,7 +30,7 @@ function CategoryMenu() {
         },
         {
             label: "Sistema de Combustível",
-            submenu: ["Breakfast", "Dinner", "Pumking"],
+            submenu: ["Sistema de Combustível", "Componentes"],
         },
         {
             label: "Acessórios e Acabamento",
