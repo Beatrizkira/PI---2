@@ -1,0 +1,350 @@
+.page {
+  background: #f5f6f8;
+  color: #242a38;
+  min-height: 460px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.breadcrumb {
+  background: #fff;
+  border-top: 1px solid #edf0f4;
+  color: #7d8492;
+  font-size: 13px;
+  padding: 17px 0;
+}
+
+.breadcrumb .container {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+
+.breadcrumb a:hover {
+  color: #18265f;
+}
+
+.breadcrumb [aria-current="page"] {
+  color: #242a38;
+}
+
+.section {
+  padding: 36px 0 56px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #edf0f4;
+  border-radius: 7px;
+  padding: 26px 30px 20px;
+}
+
+.heading {
+  align-items: flex-start;
+  border-bottom: 1px solid #edf0f4;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 26px;
+  padding-bottom: 20px;
+}
+
+.eyebrow {
+  color: #18265f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0 0 7px;
+}
+
+.heading h1 {
+  color: #18265f;
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.heading p:last-child {
+  color: #7d8492;
+  font-size: 13px;
+  margin: 7px 0 0;
+}
+
+.sku {
+  background: #f2f4f8;
+  border-radius: 4px;
+  color: #596173;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 8px 11px;
+}
+
+.formGrid {
+  display: grid;
+  gap: 34px;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.6fr);
+}
+
+.imageColumn {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: #333a49;
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.imagePreview {
+  align-items: center;
+  background: #fbfbfc;
+  border: 1px dashed #d9dee7;
+  border-radius: 5px;
+  display: flex;
+  height: 245px;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.imagePreview img {
+  height: 100%;
+  object-fit: contain;
+  padding: 14px;
+  width: 100%;
+}
+
+.uploadButton {
+  align-items: center;
+  background: #18265f;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 600;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 13px;
+}
+
+.uploadButton:hover {
+  background: #253779;
+}
+
+.uploadButton input {
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+.helpText {
+  color: #9298a4;
+  display: block;
+  font-size: 10px;
+  margin-top: 6px;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.field {
+  display: block;
+  min-width: 0;
+}
+
+.field input,
+.field textarea {
+  background: #fff;
+  border: 1px solid #e3e7ed;
+  border-radius: 4px;
+  color: #252b39;
+  font: inherit;
+  font-size: 13px;
+  padding: 11px 12px;
+  width: 100%;
+}
+
+.field textarea {
+  min-height: 115px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: #18265f;
+  outline: 2px solid rgb(24 38 95 / 12%);
+}
+
+.twoColumns {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.priceInput {
+  align-items: center;
+  border: 1px solid #e3e7ed;
+  border-radius: 4px;
+  display: flex;
+  overflow: hidden;
+}
+
+.priceInput:focus-within {
+  border-color: #18265f;
+  outline: 2px solid rgb(24 38 95 / 12%);
+}
+
+.priceInput span {
+  background: #f7f8fa;
+  color: #596173;
+  font-size: 12px;
+  padding: 11px 12px;
+}
+
+.priceInput input {
+  border: 0;
+  border-radius: 0;
+}
+
+.priceInput input:focus {
+  outline: 0;
+}
+
+.footer {
+  align-items: center;
+  border-top: 1px solid #edf0f4;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 27px;
+  min-height: 70px;
+  padding-top: 16px;
+}
+
+.footer p {
+  color: #537348;
+  font-size: 12px;
+  margin: 0;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.cancelButton,
+.saveButton {
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 12px 18px;
+}
+
+.cancelButton {
+  background: #f2f4f8;
+  color: #4a5262;
+}
+
+.cancelButton:hover {
+  background: #e8ebf1;
+  color: #242a38;
+}
+
+.saveButton {
+  background: #18265f;
+  color: #fff;
+}
+
+.saveButton:hover {
+  background: #253779;
+}
+
+.storageNote {
+  color: #8b92a0;
+  font-size: 10px;
+  margin: 8px 0 0;
+  text-align: right;
+}
+
+.notFound {
+  background: #fff;
+  border-radius: 6px;
+  margin: 36px auto;
+  max-width: 600px;
+  padding: 34px;
+  text-align: center;
+}
+
+.notFound h1 {
+  color: #18265f;
+  font-size: 24px;
+}
+
+.notFound p {
+  color: #7d8492;
+  font-size: 14px;
+}
+
+.notFound a {
+  background: #18265f;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 8px;
+  padding: 11px 15px;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .section {
+    padding: 24px 0 40px;
+  }
+
+  .card {
+    padding: 20px 16px 16px;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .imagePreview {
+    height: 220px;
+  }
+
+  .twoColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .actions {
+    justify-content: flex-end;
+  }
+}
