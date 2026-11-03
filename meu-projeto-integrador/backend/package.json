@@ -12,9 +12,11 @@
     "express": "latest"
   },
   "devDependencies": {
+    "@prisma/client": "^6.19.3",
     "@types/express": "latest",
     "@types/node": "latest",
     "cross-env": "latest",
+    "prisma": "^6.19.3",
     "tsx": "latest",
     "typescript": "latest"
   }
