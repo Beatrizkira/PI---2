@@ -12,7 +12,7 @@ export default async function DetalhesPecaPage({
   return (
     <div className="demo-one">
       <HeaderOne />
-      <DetalhesPeca productId={id} />
+      <DetalhesPeca productId={id} isNew={!id} />
       <FooterOne />
     </div>
   );

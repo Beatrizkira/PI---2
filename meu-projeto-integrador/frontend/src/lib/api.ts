@@ -9,6 +9,19 @@ export type User = {
   role: "CUSTOMER" | "ADMIN";
 };
 
+export type Product = {
+  id: number;
+  sku: string;
+  slug: string;
+  title: string;
+  category: string;
+  price: string;
+  description: string;
+  tags: string;
+  image: string | null;
+  stock: number;
+};
+
 async function request<T>(path: string, options: RequestInit = {}) {
   const response = await fetch(`${API_URL}${path}`, {
     ...options,
@@ -26,6 +39,10 @@ export const api = {
   me: () => request<{ user: User }>("/api/auth/me"),
   updateProfile: (data: Pick<User, "name" | "email" | "phone" | "address">) => request<{ user: User }>("/api/auth/me", { method: "PATCH", body: JSON.stringify(data) }),
   logout: () => request<void>("/api/auth/logout", { method: "POST" }),
-  products: () => request<{ products: { id: number; name: string; sku: string; stock: number }[] }>("/api/admin/products"),
+  products: () => request<{ products: Product[] }>("/api/admin/products"),
+  product: (id: number) => request<{ product: Product }>(`/api/admin/products/${id}`),
+  createProduct: (data: Omit<Product, "id" | "sku" | "slug">) => request<{ product: Product }>("/api/admin/products", { method: "POST", body: JSON.stringify(data) }),
+  updateProduct: (id: number, data: Omit<Product, "id" | "sku" | "slug">) => request<{ product: Product }>(`/api/admin/products/${id}`, { method: "PATCH", body: JSON.stringify(data) }),
   updateStock: (id: number, stock: number) => request<{ product: { id: number; name: string; sku: string; stock: number } }>(`/api/admin/products/${id}/stock`, { method: "PATCH", body: JSON.stringify({ stock }) }),
+  deleteProduct: (id: number) => request<void>(`/api/admin/products/${id}`, { method: "DELETE" }),
 };

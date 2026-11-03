@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL || "http://localhost:3000");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Headers", "Content-Type");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,OPTIONS");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS");
   if (req.method === "OPTIONS") {
     res.sendStatus(204);
     return;
@@ -35,6 +35,40 @@ app.use((req, res, next) => {
 function hashPassword(password: string, salt = crypto.randomBytes(16).toString("hex")) {
   const hash = crypto.scryptSync(password, salt, 64).toString("hex");
   return `${salt}:${hash}`;
+}
+
+function slugify(value: string) {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function parsePrice(value: unknown) {
+  if (typeof value !== "string" && typeof value !== "number") return null;
+  const normalized = String(value).replace(/\./g, "").replace(",", ".");
+  const price = Number(normalized);
+  return Number.isFinite(price) && price >= 0 ? price : null;
+}
+
+function productResponse(product: {
+  id: number; sku: string; slug: string; name: string; description: string;
+  regularPrice: unknown; salePrice: unknown; stock: number; imageUrl: string | null;
+  category: { name: string }; tags: { tag: { name: string } }[];
+}) {
+  return {
+    id: product.id,
+    sku: product.sku,
+    slug: product.slug,
+    title: product.name,
+    category: product.category.name,
+    price: String(product.regularPrice),
+    description: product.description,
+    tags: product.tags.map(({ tag }) => tag.name).join(", "),
+    image: product.imageUrl,
+    stock: product.stock,
+  };
+}
+
+function tagNames(value: unknown) {
+  return String(value ?? "").split(",").map((tag) => tag.trim()).filter(Boolean).filter((tag, index, list) => list.indexOf(tag) === index);
 }
 
 function verifyPassword(password: string, stored: string) {
@@ -166,8 +200,98 @@ app.patch("/api/auth/me", async (req, res) => {
 
 app.get("/api/admin/products", async (req, res) => {
   if (!await getAdminSession(req, res)) return;
-  const products = await prisma.product.findMany({ orderBy: { name: "asc" }, select: { id: true, name: true, sku: true, stock: true } });
-  res.json({ products });
+  const products = await prisma.product.findMany({
+    orderBy: { name: "asc" },
+    include: { category: true, tags: { include: { tag: true } } },
+  });
+  res.json({ products: products.map(productResponse) });
+});
+
+app.get("/api/admin/products/:id", async (req, res) => {
+  if (!await getAdminSession(req, res)) return;
+  const product = await prisma.product.findUnique({
+    where: { id: Number(req.params.id) },
+    include: { category: true, tags: { include: { tag: true } } },
+  });
+  if (!product) {
+    res.status(404).json({ error: "Produto não encontrado." });
+    return;
+  }
+  res.json({ product: productResponse(product) });
+});
+
+app.post("/api/admin/products", async (req, res) => {
+  if (!await getAdminSession(req, res)) return;
+  const { title, category, price, description = "", tags = "", image = "", stock = 0 } = req.body as Record<string, unknown>;
+  const parsedPrice = parsePrice(price);
+  const parsedStock = Number(stock);
+  if (typeof title !== "string" || !title.trim() || typeof category !== "string" || !category.trim() || parsedPrice === null || !Number.isInteger(parsedStock) || parsedStock < 0) {
+    res.status(400).json({ error: "Nome, categoria, preço e estoque válido são obrigatórios." });
+    return;
+  }
+  if (typeof image !== "string" || image.length > 1_500_000) {
+    res.status(400).json({ error: "A imagem deve ter no máximo 1 MB." });
+    return;
+  }
+  const categoryRecord = await prisma.category.upsert({
+    where: { name: category.trim() },
+    update: {},
+    create: { name: category.trim(), slug: `${slugify(category)}-${Date.now()}` },
+  });
+  const baseSlug = slugify(title);
+  const slug = `${baseSlug || "produto"}-${Date.now()}`;
+  const product = await prisma.product.create({
+    data: {
+      sku: `PEC-${Date.now()}`,
+      slug,
+      name: title.trim(),
+      description: String(description),
+      regularPrice: parsedPrice,
+      stock: parsedStock,
+      imageUrl: image || null,
+      categoryId: categoryRecord.id,
+      tags: { create: tagNames(tags).map((name) => ({ tag: { connectOrCreate: { where: { name }, create: { name, slug: `${slugify(name)}-${Date.now()}` } } } })) },
+    },
+    include: { category: true, tags: { include: { tag: true } } },
+  });
+  res.status(201).json({ product: productResponse(product) });
+});
+
+app.patch("/api/admin/products/:id", async (req, res) => {
+  if (!await getAdminSession(req, res)) return;
+  const { title, category, price, description = "", tags = "", image = "", stock = 0 } = req.body as Record<string, unknown>;
+  const parsedPrice = parsePrice(price);
+  const parsedStock = Number(stock);
+  if (typeof title !== "string" || !title.trim() || typeof category !== "string" || !category.trim() || parsedPrice === null || !Number.isInteger(parsedStock) || parsedStock < 0) {
+    res.status(400).json({ error: "Nome, categoria, preço e estoque válido são obrigatórios." });
+    return;
+  }
+  if (typeof image !== "string" || image.length > 1_500_000) {
+    res.status(400).json({ error: "A imagem deve ter no máximo 1 MB." });
+    return;
+  }
+  const categoryRecord = await prisma.category.upsert({
+    where: { name: category.trim() },
+    update: {},
+    create: { name: category.trim(), slug: `${slugify(category)}-${Date.now()}` },
+  });
+  const product = await prisma.product.update({
+    where: { id: Number(req.params.id) },
+    data: {
+      name: title.trim(),
+      description: String(description),
+      regularPrice: parsedPrice,
+      stock: parsedStock,
+      imageUrl: image || null,
+      categoryId: categoryRecord.id,
+      tags: {
+        deleteMany: {},
+        create: tagNames(tags).map((name) => ({ tag: { connectOrCreate: { where: { name }, create: { name, slug: `${slugify(name)}-${Date.now()}` } } } })),
+      },
+    },
+    include: { category: true, tags: { include: { tag: true } } },
+  });
+  res.json({ product: productResponse(product) });
 });
 
 app.patch("/api/admin/products/:id/stock", async (req, res) => {
@@ -183,6 +307,34 @@ app.patch("/api/admin/products/:id/stock", async (req, res) => {
     select: { id: true, name: true, sku: true, stock: true },
   });
   res.json({ product });
+});
+
+app.delete("/api/admin/products/:id", async (req, res) => {
+  if (!await getAdminSession(req, res)) return;
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id)) {
+    res.status(400).json({ error: "Produto inválido." });
+    return;
+  }
+  try {
+    await prisma.$transaction(async (transaction) => {
+      await transaction.productTag.deleteMany({ where: { productId: id } });
+      await transaction.productImage.deleteMany({ where: { productId: id } });
+      await transaction.inventoryMovement.deleteMany({ where: { productId: id } });
+      await transaction.cartItem.deleteMany({ where: { productId: id } });
+      await transaction.wishlistItem.deleteMany({ where: { productId: id } });
+      await transaction.compareItem.deleteMany({ where: { productId: id } });
+      await transaction.product.delete({ where: { id } });
+    });
+    res.sendStatus(204);
+  } catch (error) {
+    if (error instanceof Error && "code" in error && error.code === "P2025") {
+      res.status(404).json({ error: "Produto não encontrado." });
+      return;
+    }
+    console.error("Product deletion failed:", error);
+    res.status(500).json({ error: "Não foi possível remover o produto." });
+  }
 });
 
 app.listen(port, () => {
