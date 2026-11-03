@@ -19,12 +19,11 @@
     "pg": "^8.23.1"
   },
   "devDependencies": {
-    "@prisma/client": "^6.19.3",
     "@types/express": "latest",
     "@types/node": "latest",
     "@types/pg": "^8.23.1",
     "cross-env": "latest",
-    "prisma": "^6.19.3",
+    "prisma": "^7.10.1",
     "tsx": "latest",
     "typescript": "latest"
   }
