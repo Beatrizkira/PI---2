@@ -19,7 +19,7 @@ if (!databaseUrl) {
 const prisma = new PrismaClient({ adapter: new PrismaPg(databaseUrl) });
 const sessionCookie = "session";
 
-app.use(express.json());
+app.use(express.json({ limit: "8mb" }));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL || "http://localhost:3000");
   res.header("Access-Control-Allow-Credentials", "true");
@@ -35,6 +35,35 @@ app.use((req, res, next) => {
 function hashPassword(password: string, salt = crypto.randomBytes(16).toString("hex")) {
   const hash = crypto.scryptSync(password, salt, 64).toString("hex");
   return `${salt}:${hash}`;
+}
+
+function cpfKey() {
+  const value = process.env.CPF_ENCRYPTION_KEY;
+  if (!value) throw new Error("CPF_ENCRYPTION_KEY is required to store CPF data.");
+  const key = Buffer.from(value, "base64");
+  if (key.length !== 32) throw new Error("CPF_ENCRYPTION_KEY must be a base64-encoded 32-byte key.");
+  return key;
+}
+
+function encryptCpf(cpf: string) {
+  const iv = crypto.randomBytes(12);
+  const cipher = crypto.createCipheriv("aes-256-gcm", cpfKey(), iv);
+  const encrypted = Buffer.concat([cipher.update(cpf, "utf8"), cipher.final()]);
+  return [iv, cipher.getAuthTag(), encrypted].map((part) => part.toString("base64")).join(".");
+}
+
+function decryptCpf(value: string | null) {
+  if (!value) return null;
+  const [ivValue, tagValue, encryptedValue] = value.split(".");
+  if (!ivValue || !tagValue || !encryptedValue) return null;
+  const decipher = crypto.createDecipheriv("aes-256-gcm", cpfKey(), Buffer.from(ivValue, "base64"));
+  decipher.setAuthTag(Buffer.from(tagValue, "base64"));
+  return Buffer.concat([decipher.update(Buffer.from(encryptedValue, "base64")), decipher.final()]).toString("utf8");
+}
+
+function normalizeCpf(value: unknown) {
+  const cpf = String(value ?? "").replace(/\D/g, "");
+  return cpf.length === 11 ? cpf : null;
 }
 
 function slugify(value: string) {
@@ -109,8 +138,20 @@ async function getAdminSession(req: express.Request, res: express.Response) {
   return session;
 }
 
-function publicCustomer(customer: { id: number; name: string; email: string; phone: string | null; address?: string | null; role: string }) {
-  return { id: customer.id, name: customer.name, email: customer.email, phone: customer.phone, address: customer.address ?? null, role: customer.role };
+function publicCustomer(customer: { id: number; name: string; email: string; phone: string | null; address?: string | null; cpfEncrypted?: string | null; role: string }) {
+  return { id: customer.id, name: customer.name, email: customer.email, phone: customer.phone, address: customer.address ?? null, cpf: decryptCpf(customer.cpfEncrypted ?? null), role: customer.role };
+}
+
+function normalizeZipCode(value: unknown) {
+  const zipCode = String(value ?? "").replace(/\D/g, "");
+  return /^\d{8}$/.test(zipCode) ? zipCode : null;
+}
+
+function publicAddress(address: {
+  id: number; label: string; zipCode: string; street: string; number: string;
+  complement: string | null; city: string; state: string; isDefault: boolean;
+}) {
+  return { ...address, zipCode: `${address.zipCode.slice(0, 5)}-${address.zipCode.slice(5)}` };
 }
 
 async function createSession(res: express.Response, customerId: number) {
@@ -176,15 +217,19 @@ app.patch("/api/auth/me", async (req, res) => {
     res.status(401).json({ error: "Não autenticado." });
     return;
   }
-  const { name, email, phone, address } = req.body as { name?: string; email?: string; phone?: string; address?: string };
+  const { name, email, phone, address, cpf } = req.body as { name?: string; email?: string; phone?: string; address?: string; cpf?: string };
   if (!name?.trim() || !email?.trim()) {
     res.status(400).json({ error: "Nome e e-mail são obrigatórios." });
+    return;
+  }
+  if (cpf?.trim() && !normalizeCpf(cpf)) {
+    res.status(400).json({ error: "O CPF deve conter 11 números." });
     return;
   }
   try {
     const customer = await prisma.customer.update({
       where: { id: session.customerId },
-      data: { name: name.trim(), email: email.trim().toLowerCase(), phone: phone?.trim() || null, address: address?.trim() || null },
+      data: { name: name.trim(), email: email.trim().toLowerCase(), phone: phone?.trim() || null, address: address?.trim() || null, ...(cpf === undefined ? {} : { cpfEncrypted: normalizeCpf(cpf) ? encryptCpf(normalizeCpf(cpf) as string) : null }) },
     });
 
     res.json({ user: publicCustomer(customer) });
@@ -196,6 +241,114 @@ app.patch("/api/auth/me", async (req, res) => {
     console.error("Profile update failed:", error);
     res.status(500).json({ error: "Não foi possível atualizar o perfil." });
   }
+});
+
+app.patch("/api/auth/password", async (req, res) => {
+  const session = await getSession(req);
+  if (!session) {
+    res.status(401).json({ error: "Não autenticado." });
+    return;
+  }
+  const { currentPassword, newPassword, confirmPassword } = req.body as {
+    currentPassword?: string; newPassword?: string; confirmPassword?: string;
+  };
+  if (!currentPassword || !newPassword || newPassword.length < 8 || newPassword !== confirmPassword) {
+    res.status(400).json({ error: "Informe a senha atual, uma nova senha com pelo menos 8 caracteres e a confirmação igual." });
+    return;
+  }
+  if (!verifyPassword(currentPassword, session.customer.passwordHash)) {
+    res.status(401).json({ error: "A senha atual está incorreta." });
+    return;
+  }
+  await prisma.customer.update({ where: { id: session.customerId }, data: { passwordHash: hashPassword(newPassword) } });
+  res.sendStatus(204);
+});
+
+app.get("/api/auth/addresses", async (req, res) => {
+  const session = await getSession(req);
+  if (!session) {
+    res.status(401).json({ error: "Não autenticado." });
+    return;
+  }
+  const addresses = await prisma.address.findMany({ where: { customerId: session.customerId }, orderBy: [{ isDefault: "desc" }, { createdAt: "desc" }] });
+  res.json({ addresses: addresses.map(publicAddress) });
+});
+
+app.post("/api/auth/addresses", async (req, res) => {
+  const session = await getSession(req);
+  if (!session) {
+    res.status(401).json({ error: "Não autenticado." });
+    return;
+  }
+  const { label, zipCode, street, number, complement, city, state, isDefault = false } = req.body as Record<string, unknown>;
+  const normalizedZip = normalizeZipCode(zipCode);
+  if (typeof label !== "string" || !label.trim() || !normalizedZip || typeof street !== "string" || !street.trim() || typeof number !== "string" || !number.trim() || typeof city !== "string" || !city.trim() || typeof state !== "string" || !/^[A-Za-zÀ-ÿ]{2}$/.test(state.trim())) {
+    res.status(400).json({ error: "Preencha tipo, CEP, endereço, número, cidade e estado corretamente." });
+    return;
+  }
+  const address = await prisma.$transaction(async (transaction) => {
+    if (isDefault) await transaction.address.updateMany({ where: { customerId: session.customerId }, data: { isDefault: false } });
+    return transaction.address.create({ data: { customerId: session.customerId, label: label.trim(), zipCode: normalizedZip, street: street.trim(), number: number.trim(), complement: typeof complement === "string" && complement.trim() ? complement.trim() : null, city: city.trim(), state: state.trim().toUpperCase(), isDefault: Boolean(isDefault) } });
+  });
+  res.status(201).json({ address: publicAddress(address) });
+});
+
+app.patch("/api/auth/addresses/:id", async (req, res) => {
+  const session = await getSession(req);
+  if (!session) {
+    res.status(401).json({ error: "Não autenticado." });
+    return;
+  }
+  const id = Number(req.params.id);
+  const { label, zipCode, street, number, complement, city, state, isDefault = false } = req.body as Record<string, unknown>;
+  const normalizedZip = normalizeZipCode(zipCode);
+  if (!normalizedZip || typeof label !== "string" || !label.trim() || typeof street !== "string" || !street.trim() || typeof number !== "string" || !number.trim() || typeof city !== "string" || !city.trim() || typeof state !== "string" || !/^[A-Za-zÀ-ÿ]{2}$/.test(state.trim())) {
+    res.status(400).json({ error: "Preencha tipo, CEP, endereço, número, cidade e estado corretamente." });
+    return;
+  }
+  const existing = await prisma.address.findFirst({ where: { id, customerId: session.customerId } });
+  if (!existing) {
+    res.status(404).json({ error: "Endereço não encontrado." });
+    return;
+  }
+  const address = await prisma.$transaction(async (transaction) => {
+    if (isDefault) await transaction.address.updateMany({ where: { customerId: session.customerId, id: { not: id } }, data: { isDefault: false } });
+    return transaction.address.update({ where: { id }, data: { label: label.trim(), zipCode: normalizedZip, street: street.trim(), number: number.trim(), complement: typeof complement === "string" && complement.trim() ? complement.trim() : null, city: city.trim(), state: state.trim().toUpperCase(), isDefault: Boolean(isDefault) } });
+  });
+  res.json({ address: publicAddress(address) });
+});
+
+app.delete("/api/auth/addresses/:id", async (req, res) => {
+  const session = await getSession(req);
+  if (!session) {
+    res.status(401).json({ error: "Não autenticado." });
+    return;
+  }
+  await prisma.address.deleteMany({ where: { id: Number(req.params.id), customerId: session.customerId } });
+  res.sendStatus(204);
+});
+
+app.get("/api/admin/customers", async (req, res) => {
+  if (!await getAdminSession(req, res)) return;
+  const page = Math.max(1, Number(req.query.page) || 1);
+  const pageSize = Math.min(50, Math.max(1, Number(req.query.pageSize) || 20));
+  const [total, customers] = await prisma.$transaction([
+    prisma.customer.count({ where: { role: "CUSTOMER" } }),
+    prisma.customer.findMany({
+      where: { role: "CUSTOMER" },
+      orderBy: { name: "asc" },
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+      include: { addresses: { orderBy: [{ isDefault: "desc" }, { createdAt: "desc" }] } },
+    }),
+  ]);
+  res.json({
+    customers: customers.map((customer) => ({
+      ...publicCustomer(customer),
+      addresses: customer.addresses.map(publicAddress),
+    })),
+    pagination: { page, pageSize, total, totalPages: Math.ceil(total / pageSize) },
+  });
 });
 
 app.get("/api/admin/products", async (req, res) => {
@@ -229,8 +382,8 @@ app.post("/api/admin/products", async (req, res) => {
     res.status(400).json({ error: "Nome, categoria, preço e estoque válido são obrigatórios." });
     return;
   }
-  if (typeof image !== "string" || image.length > 1_500_000) {
-    res.status(400).json({ error: "A imagem deve ter no máximo 1 MB." });
+  if (typeof image !== "string" || image.length > 7_500_000) {
+    res.status(400).json({ error: "A imagem deve ter no máximo 5 MB." });
     return;
   }
   const categoryRecord = await prisma.category.upsert({
@@ -266,8 +419,8 @@ app.patch("/api/admin/products/:id", async (req, res) => {
     res.status(400).json({ error: "Nome, categoria, preço e estoque válido são obrigatórios." });
     return;
   }
-  if (typeof image !== "string" || image.length > 1_500_000) {
-    res.status(400).json({ error: "A imagem deve ter no máximo 1 MB." });
+  if (typeof image !== "string" || image.length > 7_500_000) {
+    res.status(400).json({ error: "A imagem deve ter no máximo 5 MB." });
     return;
   }
   const categoryRecord = await prisma.category.upsert({

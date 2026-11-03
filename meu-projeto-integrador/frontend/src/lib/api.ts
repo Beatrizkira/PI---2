@@ -6,6 +6,7 @@ export type User = {
   email: string;
   phone: string | null;
   address: string | null;
+  cpf: string | null;
   role: "CUSTOMER" | "ADMIN";
 };
 
@@ -20,6 +21,18 @@ export type Product = {
   tags: string;
   image: string | null;
   stock: number;
+};
+
+export type Address = {
+  id: number;
+  label: string;
+  zipCode: string;
+  street: string;
+  number: string;
+  complement: string | null;
+  city: string;
+  state: string;
+  isDefault: boolean;
 };
 
 async function request<T>(path: string, options: RequestInit = {}) {
@@ -37,7 +50,7 @@ export const api = {
   login: (email: string, password: string) => request<{ user: User }>("/api/auth/login", { method: "POST", body: JSON.stringify({ email, password }) }),
   register: (name: string, email: string, password: string) => request<{ user: User }>("/api/auth/register", { method: "POST", body: JSON.stringify({ name, email, password }) }),
   me: () => request<{ user: User }>("/api/auth/me"),
-  updateProfile: (data: Pick<User, "name" | "email" | "phone" | "address">) => request<{ user: User }>("/api/auth/me", { method: "PATCH", body: JSON.stringify(data) }),
+  updateProfile: (data: Pick<User, "name" | "email" | "phone"> & { address?: string; cpf?: string }) => request<{ user: User }>("/api/auth/me", { method: "PATCH", body: JSON.stringify(data) }),
   logout: () => request<void>("/api/auth/logout", { method: "POST" }),
   products: () => request<{ products: Product[] }>("/api/admin/products"),
   product: (id: number) => request<{ product: Product }>(`/api/admin/products/${id}`),
@@ -45,4 +58,12 @@ export const api = {
   updateProduct: (id: number, data: Omit<Product, "id" | "sku" | "slug">) => request<{ product: Product }>(`/api/admin/products/${id}`, { method: "PATCH", body: JSON.stringify(data) }),
   updateStock: (id: number, stock: number) => request<{ product: { id: number; name: string; sku: string; stock: number } }>(`/api/admin/products/${id}/stock`, { method: "PATCH", body: JSON.stringify({ stock }) }),
   deleteProduct: (id: number) => request<void>(`/api/admin/products/${id}`, { method: "DELETE" }),
+  changePassword: (data: { currentPassword: string; newPassword: string; confirmPassword: string }) => request<void>("/api/auth/password", { method: "PATCH", body: JSON.stringify(data) }),
+  addresses: () => request<{ addresses: Address[] }>("/api/auth/addresses"),
+  createAddress: (data: Omit<Address, "id">) => request<{ address: Address }>("/api/auth/addresses", { method: "POST", body: JSON.stringify(data) }),
+  updateAddress: (id: number, data: Omit<Address, "id">) => request<{ address: Address }>(`/api/auth/addresses/${id}`, { method: "PATCH", body: JSON.stringify(data) }),
+  deleteAddress: (id: number) => request<void>(`/api/auth/addresses/${id}`, { method: "DELETE" }),
+  customers: (page: number, pageSize = 20) => request<{ customers: Customer[]; pagination: { page: number; pageSize: number; total: number; totalPages: number } }>(`/api/admin/customers?page=${page}&pageSize=${pageSize}`),
 };
+
+export type Customer = User & { addresses: Address[] };
