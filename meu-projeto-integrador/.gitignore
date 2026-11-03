@@ -7,3 +7,5 @@ build/
 !.env.*.example
 coverage/
 .vite/
+backend/src/generated/
+backend/prisma.config.js

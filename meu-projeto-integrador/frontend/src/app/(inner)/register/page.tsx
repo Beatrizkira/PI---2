@@ -1,95 +1,25 @@
+'use client';
 
 import HeaderOne from "@/components/header/HeaderOne";
-import ShortService from "@/components/service/ShortService";
-
 import FooterOne from "@/components/footer/Footer";
+import Link from "next/link";
+import { FormEvent, useState } from "react";
+import { api } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
-  return (
-    <div className="demo-one">
-      <HeaderOne />
-
-
-      <>
-        <div className="rts-navigation-area-breadcrumb bg_light-1">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="navigator-breadcrumb-wrapper">
-                  <a href="index.html">Home</a>
-                  <i className="fa-regular fa-chevron-right" />
-                  <a className="current" href="register.html">
-                    Register
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="section-seperator bg_light-1">
-          <div className="container">
-            <hr className="section-seperator" />
-          </div>
-        </div>
-        {/* rts register area start */}
-        <div className="rts-register-area rts-section-gap bg_light-1">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="registration-wrapper-1">
-                  <div className="logo-area mb--0">
-                    <img
-                      className="mb--10"
-                      src="assets/images/logo/fav.png"
-                      alt="logo"
-                    />
-                  </div>
-                  <h3 className="title">Crie sua conta</h3>
-                  <form action="#" className="registration-form">
-                    <div className="input-wrapper">
-                      <label htmlFor="name">Nome do usuário*</label>
-                      <input type="text" id="name" />
-                    </div>
-                    <div className="input-wrapper">
-                      <label htmlFor="email">Email*</label>
-                      <input type="email" id="email" />
-                    </div>
-                    <div className="input-wrapper">
-                      <label htmlFor="password">Senha*</label>
-                      <input type="password" id="password" />
-                    </div>
-                    <button className="rts-btn btn-primary">Criar Conta</button>
-                    <div className="another-way-to-registration">
-                      <div className="registradion-top-text">
-                        <span>Ou Cadastra-se Com</span>
-                      </div>
-                      <div className="login-with-brand">
-                        <a href="#" className="single">
-                          <img src="assets/images/form/google.svg" alt="login" />
-                        </a>
-                        <a href="#" className="single">
-                          <img src="assets/images/form/facebook.svg" alt="login" />
-                        </a>
-                      </div>
-                      <p>
-                        Já tem uma conta? <a href="#">Login</a>
-                      </p>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* rts register area end */}
-      </>
-
-
-
-
-      <ShortService />
-      <FooterOne />
-
-    </div>
-  );
+export default function RegisterPage() {
+  const router = useRouter();
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [error, setError] = useState("");
+  async function submit(event: FormEvent) {
+    event.preventDefault();
+    setError("");
+    try {
+      await api.register(form.name, form.email, form.password);
+      router.push("/user-account");
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "Não foi possível criar a conta.");
+    }
+  }
+  return <div className="demo-one"><HeaderOne /><div className="rts-register-area rts-section-gap bg_light-1"><div className="container"><div className="registration-wrapper-1"><h3 className="title">Crie sua conta</h3><form className="registration-form" onSubmit={submit}><div className="input-wrapper"><label htmlFor="name">Nome*</label><input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required /></div><div className="input-wrapper"><label htmlFor="email">E-mail*</label><input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required /></div><div className="input-wrapper"><label htmlFor="password">Senha (mínimo 8 caracteres)*</label><input id="password" type="password" minLength={8} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required /></div>{error && <p role="alert">{error}</p>}<button className="rts-btn btn-primary">Criar conta</button><p>Já tem uma conta? <Link href="/login">Entrar</Link></p></form></div></div></div><FooterOne /></div>;
 }
