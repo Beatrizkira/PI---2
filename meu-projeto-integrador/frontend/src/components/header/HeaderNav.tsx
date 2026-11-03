@@ -3,8 +3,16 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Nav from './Nav';
 import Link from 'next/link';
+import { api } from '@/lib/api';
 
 function ComponentName() {
+    const [accountHref, setAccountHref] = useState('/login');
+
+    useEffect(() => {
+        api.me()
+            .then(({ user }) => setAccountHref(user.role === 'ADMIN' ? '/admin-account' : '/user-account'))
+            .catch(() => setAccountHref('/login'));
+    }, []);
 
     // header sticky
     const [isSticky, setIsSticky] = useState(false);
@@ -145,7 +153,7 @@ function ComponentName() {
                                 </div>
                                 <div className="main-wrapper-action-2 d-flex">
                                     <div className="accont-wishlist-cart-area-header">
-                                        <Link href="/account" className="btn-border-only account">
+                                        <Link href={accountHref} className="btn-border-only account">
                                             <i className="fa-light fa-user" />
                                             Account
                                         </Link>

@@ -9,6 +9,7 @@ import BackToTop from "@/components/common/BackToTop";
 import { useCompare } from "@/components/header/CompareContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { api } from "@/lib/api";
 
 function HeaderOne() {
   const { compareItems } = useCompare();
@@ -16,9 +17,16 @@ function HeaderOne() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [accountHref, setAccountHref] = useState("/login");
   const [suggestions, setSuggestions] = useState<
     { id: number; title: string; slug: string }[]
   >([]);
+
+  useEffect(() => {
+    api.me()
+      .then(({ user }) => setAccountHref(user.role === "ADMIN" ? "/admin-account" : "/user-account"))
+      .catch(() => setAccountHref("/login"));
+  }, []);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
 
@@ -274,7 +282,7 @@ function HeaderOne() {
                     </div>
                   </div>
                   <div className="accont-wishlist-cart-area-header">
-                    <Link href="/account" className="btn-border-only account">
+                    <Link href={accountHref} className="btn-border-only account">
                       <i className="fa-light fa-user" />
                       <span>Conta</span>
                     </Link>

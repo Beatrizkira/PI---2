@@ -5,16 +5,24 @@
     "dev": "cross-env NODE_ENV=development tsx watch src/server.ts",
     "build": "tsc",
     "start": "cross-env NODE_ENV=production node dist/server.js",
-    "start:prod": "npm run build && npm run start"
+    "start:prod": "npm run build && npm run start",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.10.1",
+    "@prisma/client": "^7.10.1",
     "dotenv": "latest",
-    "express": "latest"
+    "express": "latest",
+    "pg": "^8.23.1"
   },
   "devDependencies": {
     "@prisma/client": "^6.19.3",
     "@types/express": "latest",
     "@types/node": "latest",
+    "@types/pg": "^8.23.1",
     "cross-env": "latest",
     "prisma": "^6.19.3",
     "tsx": "latest",
