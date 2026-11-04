@@ -12,25 +12,26 @@ productsRouter.get("/", async (_req, res) => {
       include: { category: true, tags: { include: { tag: true } } },
     });
 
-    productsRouter.get("/:slug", async (req, res) => {
-      try {
-        const product = await prisma.product.findFirst({
-          where: { slug: req.params.slug, active: true },
-          include: { category: true, tags: { include: { tag: true } } },
-        });
-        if (!product) {
-          res.status(404).json({ error: "Produto não encontrado." });
-          return;
-        }
-        res.json({ product: productResponse(product) });
-      } catch (error) {
-        console.error("Public product lookup failed:", error);
-        res.status(500).json({ error: "Não foi possível carregar o produto." });
-      }
-    });
     res.json({ products: products.map(productResponse) });
   } catch (error) {
     console.error("Public product listing failed:", error);
     res.status(500).json({ error: "Não foi possível carregar os produtos." });
+  }
+});
+
+productsRouter.get("/:slug", async (req, res) => {
+  try {
+    const product = await prisma.product.findFirst({
+      where: { slug: req.params.slug, active: true },
+      include: { category: true, tags: { include: { tag: true } } },
+    });
+    if (!product) {
+      res.status(404).json({ error: "Produto não encontrado." });
+      return;
+    }
+    res.json({ product: productResponse(product) });
+  } catch (error) {
+    console.error("Public product lookup failed:", error);
+    res.status(500).json({ error: "Não foi possível carregar o produto." });
   }
 });

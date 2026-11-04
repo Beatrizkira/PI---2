@@ -18,6 +18,10 @@ export type Product = {
   category: string;
   price: string;
   description: string;
+  brand: string;
+  weight: string;
+  type: string;
+  dimensions: string;
   tags: string;
   image: string | null;
   stock: number;

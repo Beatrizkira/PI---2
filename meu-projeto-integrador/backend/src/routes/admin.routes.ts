@@ -46,7 +46,7 @@ adminRouter.get("/products/:id", async (req, res) => {
 
 adminRouter.post("/products", async (req, res) => {
   if (!await getAdminSession(req, res)) return;
-  const { title, category, price, description = "", tags = "", image = "", stock = 0 } = req.body as Record<string, unknown>;
+  const { title, category, price, description = "", tags = "", image = "", stock = 0, brand = "", weight = "", type = "", dimensions = "" } = req.body as Record<string, unknown>;
   const parsedPrice = parsePrice(price);
   const parsedStock = Number(stock);
   if (typeof title !== "string" || !title.trim() || typeof category !== "string" || !category.trim() || parsedPrice === null || !Number.isInteger(parsedStock) || parsedStock < 0) {
@@ -62,6 +62,7 @@ adminRouter.post("/products", async (req, res) => {
     data: {
       sku: `PEC-${Date.now()}`, slug: `${slugify(title) || "produto"}-${Date.now()}`, name: title.trim(),
       description: String(description), regularPrice: parsedPrice, stock: parsedStock, imageUrl: image || null, categoryId: categoryRecord.id,
+      brand: String(brand), weight: String(weight), type: String(type), dimensions: String(dimensions),
       tags: { create: tagNames(tags).map((name) => ({ tag: { connectOrCreate: { where: { name }, create: { name, slug: `${slugify(name)}-${Date.now()}` } } } })) },
     },
     include: { category: true, tags: { include: { tag: true } } },
@@ -71,7 +72,7 @@ adminRouter.post("/products", async (req, res) => {
 
 adminRouter.patch("/products/:id", async (req, res) => {
   if (!await getAdminSession(req, res)) return;
-  const { title, category, price, description = "", tags = "", image = "", stock = 0 } = req.body as Record<string, unknown>;
+  const { title, category, price, description = "", tags = "", image = "", stock = 0, brand = "", weight = "", type = "", dimensions = "" } = req.body as Record<string, unknown>;
   const parsedPrice = parsePrice(price);
   const parsedStock = Number(stock);
   if (typeof title !== "string" || !title.trim() || typeof category !== "string" || !category.trim() || parsedPrice === null || !Number.isInteger(parsedStock) || parsedStock < 0) {
@@ -87,6 +88,7 @@ adminRouter.patch("/products/:id", async (req, res) => {
     where: { id: Number(req.params.id) },
     data: {
       name: title.trim(), description: String(description), regularPrice: parsedPrice, stock: parsedStock, imageUrl: image || null, categoryId: categoryRecord.id,
+      brand: String(brand), weight: String(weight), type: String(type), dimensions: String(dimensions),
       tags: { deleteMany: {}, create: tagNames(tags).map((name) => ({ tag: { connectOrCreate: { where: { name }, create: { name, slug: `${slugify(name)}-${Date.now()}` } } } })) },
     },
     include: { category: true, tags: { include: { tag: true } } },

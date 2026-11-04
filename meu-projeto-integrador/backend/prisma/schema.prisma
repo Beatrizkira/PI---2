@@ -58,6 +58,10 @@ model Product {
   slug                 String               @unique
   name                 String
   description          String               @db.Text
+  brand                String               @default("")
+  weight               String               @default("")
+  type                 String               @default("")
+  dimensions           String               @default("")
   regularPrice         Decimal              @db.Decimal(10, 2)
   salePrice            Decimal?             @db.Decimal(10, 2)
   stock                Int                  @default(0)

@@ -63,7 +63,7 @@ const CompareElements: React.FC = () => {
       src: imageSrc,
       alt: blogPost?.title ?? "Produto",
     },
-  
+
   ];
 
   if (!blogPost) {
@@ -134,19 +134,16 @@ const CompareElements: React.FC = () => {
                             </div>
                           </div>
                           <h2 className="product-title">{blogPost.title}</h2>
-                          <p className="mt--20 mb--20">{blogPost.description}</p>
                           <span className="product-price mb--15 d-block" style={{ color: "#DC2626", fontWeight: 600 }}>
                             {formatBRL(blogPost.price)}
                           </span>
 
                           <div className="product-bottom-action">
                             <a
-                              href="#"
+                              href="https://api.whatsapp.com/send/?phone=5511962007833&text&type=phone_number&app_absent=0"
                               className="rts-btn btn-primary radious-sm with-icon"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                handleAdd();
-                              }}
+                              target="_blank"
+                              rel="noopener noreferrer"
                             >
                               <div className="btn-text">Consultar Peça</div>
                             </a>
@@ -156,8 +153,7 @@ const CompareElements: React.FC = () => {
                             <span className="sku product-unipue mb--10"><strong>SKU:</strong> {blogPost.sku}</span>
                             <span className="catagorys product-unipue mb--10"><strong>Categories:</strong> {blogPost.category}</span>
                             <span className="tags product-unipue mb--10"><strong>Tags:</strong> {blogPost.tags || "Sem tags"}</span>
-                            <span className="tags product-unipue mb--10"><strong>LIFE:</strong> 6 Meses</span>
-                            <span className="tags product-unipue mb--10"><strong>Type:</strong> Original</span>
+                            <span className="tags product-unipue mb--10"><strong>Estoque disponível:</strong> {blogPost.stock}</span>
                           </div>
 
                           <div className="share-option-shop-details">
@@ -192,11 +188,7 @@ const CompareElements: React.FC = () => {
                       <div>
                         <div className="single-tab-content-shop-details">
                           <p className="disc">
-                            O filtro de ar externo (ou primário) é a primeira barreira de proteção do sistema 
-                            de admissão de ar do motor da empilhadeira. Sua principal função é reter poeira, 
-                            fuligem, terra e detritos suspensos no ar do ambiente operacional, garantindo a 
-                            entrada de ar limpo na câmara de combustão, aumentando a vida útil do motor e 
-                            evitando o desgaste prematuro dos pistões e cilindros.
+                            {blogPost.description || "Descrição não informada."}
                           </p>
                           <div className="details-row-2">
                             <div className="right">
@@ -216,25 +208,25 @@ const CompareElements: React.FC = () => {
                               <thead>
                                 <tr>
                                   <th>Peso</th>
-                                  <th>550g</th>
+                                  <th>{blogPost.weight || "Não informado"}</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
                                   <td>Tipo: </td>
-                                  <td>Filtro de ar primário (externo)</td>
+                                  <td>{blogPost.type || "Não informado"}</td>
                                 </tr>
                                 <tr>
                                   <td>Medidas:</td>
-                                  <td>86 x 127 x 313 mm</td>
+                                  <td>{blogPost.dimensions || "Não informado"}</td>
                                 </tr>
                               </tbody>
                             </table>
                           </div>
                           <p className="cansellation mt--20">
-                            <span> Devolução/ Cancelamento:</span>Não serão aceitas alterações em pedidos que já 
+                            <span> Devolução/ Cancelamento:</span>Não serão aceitas alterações em pedidos que já
                             tenham sido entregues ao cliente. Caso seja constatado algum problema com a qualidade
-                             ou a quantidade dos produtos, o cliente poderá devolver ou cancelar o pedido no 
+                             ou a quantidade dos produtos, o cliente poderá devolver ou cancelar o pedido no
                              momento da entrega, na presença do entregador.
                           </p>
                           <p className="note">

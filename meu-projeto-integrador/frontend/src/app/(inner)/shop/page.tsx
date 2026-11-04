@@ -32,18 +32,8 @@ function ShopContent() {
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(1000);
 
-  const allCategories = [
-    "Motor e Componentes",
-    "Transmissão",
-    "Filtros",
-    "Sistema de Combustível",
-    "Acessórios e Acabamento",
-    "Direção e Suspensão",
-    "Sistema de Freios",
-    "Sistema Elétrico e Controles",
-    "Outros",
-  ];
-  const allBrands = ["Toyota", "Hyster", "Yale", "Hangcha", "Xinchai"];
+  const allCategories = Array.from(new Set(products.map((product) => product.category.trim()).filter(Boolean))).sort((a, b) => a.localeCompare(b, "pt-BR"));
+  const allBrands = ["Baoli", "Clark", "GM", "Goodsense", "Gurgel", "Hangcha", "Heli", "Hyundai", "Hyster", "JAC", "Komatsu", "Kubota", "Linde", "Liugong", "Loking", "Mazda", "Mitsubishi", "Nissan", "Shangli", "Still", "Tailift", "TCM", "Toyota", "Utilev", "Wanfeg", "Wecan", "Xinchai", "Yale", "Yanmar", "YTO", "Yunnei", "Zoomlion"];
 
   useEffect(() => {
     let cancelled = false;
@@ -97,10 +87,10 @@ function ShopContent() {
       }
 
       const matchesCategory = selectedCategories.length === 0 ||
-        selectedCategories.includes(product.category);
+        selectedCategories.some((category) => product.category.trim().toLocaleLowerCase("pt-BR") === category.toLocaleLowerCase("pt-BR"));
       const searchableText = `${product.title} ${product.category} ${product.tags}`.toLowerCase();
       const matchesBrand = selectedBrands.length === 0 ||
-        selectedBrands.some(brand => searchableText.includes(brand.toLowerCase()));
+        selectedBrands.some((brand) => product.brand.trim().toLocaleLowerCase("pt-BR") === brand.toLocaleLowerCase("pt-BR") || searchableText.includes(brand.toLowerCase()));
       const matchesSearch = !searchQuery || searchableText.includes(searchQuery);
       return matchesCategory && matchesBrand && matchesSearch;
     });
@@ -259,19 +249,6 @@ function ShopContent() {
                             </svg>
                           </button>
                         </li>
-                        <li className="nav-item" role="presentation">
-                          <button
-                            onClick={() => setActiveTab('tab2')}
-                            className={`nav-link single-button ${activeTab === 'tab2' ? 'active' : ''}`}
-                          >
-                            <svg width={16} height={16} viewBox="0 0 16 16" fill="none">
-                              <rect x="0.5" y="0.5" width={6} height={6} rx="1.5" stroke="#2C3C28" />
-                              <rect x="0.5" y="9.5" width={6} height={6} rx="1.5" stroke="#2C3C28" />
-                              <rect x={9} y={3} width={7} height={1} fill="#2C3C28" />
-                              <rect x={9} y={12} width={7} height={1} fill="#2C3C28" />
-                            </svg>
-                          </button>
-                        </li>
                       </ul>
                     </div>
                   </div>
@@ -288,31 +265,6 @@ function ShopContent() {
                           <div key={post.id} className="col-lg-20 col-lg-4 col-md-6 col-sm-6 col-12">
                             <div className="single-shopping-card-one">
                               <ShopMain
-                                Slug={post.slug}
-                                ProductImage={post.image ?? ''}
-                                ProductTitle={post.title}
-                                Price={post.price}
-                              />
-                            </div>
-                          </div>
-                        ))
-                      ) : (
-                        <div className="col-12 text-center py-5">
-                          <h2>Nenhum produto encontrado</h2>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                <div className="product-area-wrapper-shopgrid-list with-list mt--20">
-                  {activeTab === 'tab2' && (
-                    <div className="row">
-                      {filteredProducts.length > 0 ? (
-                        filteredProducts.map((post) => (
-                          <div key={post.id} className="col-lg-6">
-                            <div className="single-shopping-card-one discount-offer">
-                              <ShopMainList
                                 Slug={post.slug}
                                 ProductImage={post.image ?? ''}
                                 ProductTitle={post.title}

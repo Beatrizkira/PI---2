@@ -27,6 +27,7 @@ export function publicAddress(address: {
 
 export function productResponse(product: {
   id: number; sku: string; slug: string; name: string; description: string;
+  brand?: string | null; weight?: string | null; type?: string | null; dimensions?: string | null;
   regularPrice: unknown; salePrice: unknown; stock: number; imageUrl: string | null;
   category: { name: string }; tags: { tag: { name: string } }[];
 }) {
@@ -38,6 +39,10 @@ export function productResponse(product: {
     category: product.category.name,
     price: String(product.regularPrice),
     description: product.description,
+    brand: product.brand ?? "",
+    weight: product.weight ?? "",
+    type: product.type ?? "",
+    dimensions: product.dimensions ?? "",
     tags: product.tags.map(({ tag }) => tag.name).join(", "),
     image: product.imageUrl,
     stock: product.stock,

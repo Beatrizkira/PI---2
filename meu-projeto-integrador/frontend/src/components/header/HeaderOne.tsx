@@ -205,11 +205,13 @@ function HeaderOne() {
                     <img src="/assets/images/logo/logo-01.svg" alt="logo-main" className="logo" />
                   </Link>
                   <div className="category-search-wrapper">
-                    <div className="category-btn category-hover-header">
+                    {/* Menu dropdown de Categorias */}
+                    {/* <div className="category-btn category-hover-header">
                       <img className="parent" src="/assets/images/icons/bar-1.svg" alt="icons" />
                       <span>Categorias</span>
                       <CategoryMenu />
-                    </div>
+                    </div> */}
+
                     {/* Search Input Autocomplete */}
                     <form onSubmit={handleSubmit} className="search-header" autoComplete="off">
                       <input
@@ -284,9 +286,9 @@ function HeaderOne() {
                   <div className="accont-wishlist-cart-area-header">
                     <Link href={accountHref} className="btn-border-only account">
                       <i className="fa-light fa-user" />
-                      <span>Conta</span>
+                      <span>Acessar Conta</span>
                     </Link>
-                    <WishList />
+                    {/* <WishList /> */}
                   </div>
                 </div>
               </div>

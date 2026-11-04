@@ -119,9 +119,12 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
 
         </div>
 
-
         <div className="cart-counter-action">
-          <Link href={`/shop/${Slug}`} className="rts-btn consult-part-button">
+          <Link
+            href="https://api.whatsapp.com/send/?phone=5511962007833&text&type=phone_number&app_absent=0" className="rts-btn consult-part-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Consultar Peça
           </Link>
         </div>
