@@ -1,11 +1,8 @@
 import BannerOne from "@/components/banner/BannerOne";
 import FeatureOne from "@/components/feature/FeatureOne";
 import HeaderOne from "@/components/header/HeaderOne";
-import DiscountProduct from "@/components/product/DiscountProduct";
-import FeatureProduct from "@/components/product/FeatureProduct";
-import WeeklyBestSelling from "@/components/product/WeeklyBestSelling";
 import FeatureDiscount from "@/components/product/FeatureDiscount";
-import TrandingProduct from "@/components/product/TrandingProduct";
+import HomeProducts from "@/components/product/HomeProducts";
 import FooterOne from "@/components/footer/Footer";
 import { CartProvider } from "@/components/header/CartContext";
 import { WishlistProvider } from "@/components/header/WishlistContext";
@@ -22,11 +19,8 @@ export default function Home() {
           <HeaderOne />
           <BannerOne />
           <FeatureOne />
-          <FeatureProduct />
-          <DiscountProduct />
-          <WeeklyBestSelling />
+          <HomeProducts />
           <FeatureDiscount />
-          <TrandingProduct />
           <FooterOne />
         </div>
       </CartProvider>
