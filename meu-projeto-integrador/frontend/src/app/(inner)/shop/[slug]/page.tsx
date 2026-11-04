@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import HeaderOne from "@/components/header/HeaderOne";
 import ShortService from "@/components/service/ShortService";
 import RelatedProduct from "@/components/product/RelatedProduct";
 import FooterOne from "@/components/footer/Footer";
-import Product from "@/data/Product.json";
+import { api, Product } from "@/lib/api";
 import { useParams } from 'next/navigation';
 import { formatBRL, parseBRL } from '@/utils/currency';
 
@@ -14,22 +14,32 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CompareElements: React.FC = () => {
-  const { slug } = useParams(); // Get the slug from URL parameters
-  const blogPost = Product.find(post => post.slug === slug);
+  const { slug } = useParams<{ slug: string }>();
+  const [blogPost, setBlogPost] = useState<Product | null>(null);
+  const [loadError, setLoadError] = useState("");
 
-  if (!blogPost) {
-    return <div>Post not found Man!</div>;
-  }
+  useEffect(() => {
+    if (!slug) return;
+    api.publicProduct(slug)
+      .then(({ product }) => setBlogPost(product))
+      .catch((error: Error) => setLoadError(error.message));
+  }, [slug]);
 
   const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
+  const imageSrc = blogPost?.image
+    ? (blogPost.image.startsWith("/") || blogPost.image.startsWith("data:") || blogPost.image.startsWith("http")
+      ? blogPost.image
+      : `/assets/images/grocery/${blogPost.image}`)
+    : "/assets/images/grocery/19.jpg";
 
   const handleAdd = () => {
+    if (!blogPost) return;
     addToCart({
       id: Date.now(),
-      image: `/assets/images/grocery/${blogPost.bannerImg}`,
-      title: blogPost.title ?? 'Default Product Title',
-      price: parseBRL(blogPost.price ?? '0'),
+      image: imageSrc,
+      title: blogPost.title,
+      price: parseBRL(blogPost.price),
       quantity: 1,
       active: true,
     });
@@ -43,15 +53,22 @@ const CompareElements: React.FC = () => {
   const [activeModal, setActiveModal] = useState<ModalType>(null);
   const handleClose = () => setActiveModal(null);
 
-  const [activeImage, setActiveImage] = useState(`/assets/images/grocery/${blogPost.bannerImg}`);
+  const [activeImage, setActiveImage] = useState(imageSrc);
+  useEffect(() => {
+    if (blogPost) setActiveImage(imageSrc);
+  }, [blogPost, imageSrc]);
   const thumbnails = [
     {
       id: 'one',
-      src: `/assets/images/grocery/${blogPost.bannerImg}`,
-      alt: blogPost.title,
+      src: imageSrc,
+      alt: blogPost?.title ?? "Produto",
     },
   
   ];
+
+  if (!blogPost) {
+    return <div>{loadError || "A carregar produto..."}</div>;
+  }
 
   return (
     <div>
@@ -108,7 +125,7 @@ const CompareElements: React.FC = () => {
 
                         <div className="contents">
                           <div className="product-status">
-                            <span className="product-catagory">Filtros</span>
+                            <span className="product-catagory">{blogPost.category}</span>
                             <div className="rating-stars-group">
                               <div className="rating-star"><i className="fas fa-star" /></div>
                               <div className="rating-star"><i className="fas fa-star" /></div>
@@ -117,11 +134,9 @@ const CompareElements: React.FC = () => {
                             </div>
                           </div>
                           <h2 className="product-title">{blogPost.title}</h2>
-                          <p className="mt--20 mb--20">
-                            Filtro de ar externo para empilhadeiras a combustão
-                          </p>
+                          <p className="mt--20 mb--20">{blogPost.description}</p>
                           <span className="product-price mb--15 d-block" style={{ color: "#DC2626", fontWeight: 600 }}>
-                            {formatBRL(blogPost.price ?? '0')}
+                            {formatBRL(blogPost.price)}
                           </span>
 
                           <div className="product-bottom-action">
@@ -138,9 +153,9 @@ const CompareElements: React.FC = () => {
                           </div>
 
                           <div className="product-uniques">
-                            <span className="sku product-unipue mb--10"><strong>SKU:</strong> BO1D0MX8SJ</span>
-                            <span className="catagorys product-unipue mb--10"><strong>Categories:</strong>  Filtros</span>
-                            <span className="tags product-unipue mb--10"><strong>Tags:</strong> Filtros</span>
+                            <span className="sku product-unipue mb--10"><strong>SKU:</strong> {blogPost.sku}</span>
+                            <span className="catagorys product-unipue mb--10"><strong>Categories:</strong> {blogPost.category}</span>
+                            <span className="tags product-unipue mb--10"><strong>Tags:</strong> {blogPost.tags || "Sem tags"}</span>
                             <span className="tags product-unipue mb--10"><strong>LIFE:</strong> 6 Meses</span>
                             <span className="tags product-unipue mb--10"><strong>Type:</strong> Original</span>
                           </div>

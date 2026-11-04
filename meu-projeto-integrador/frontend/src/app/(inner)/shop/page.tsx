@@ -1,10 +1,10 @@
 "use client";
 import HeaderOne from "@/components/header/HeaderOne";
 import { formatBRL, parseBRL } from '@/utils/currency';
-import { useState, Suspense } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import ShopMain from "./ShopMain";
 import ShopMainList from "./ShopMainList";
-import Product from '@/data/Product.json';
+import { api, Product } from '@/lib/api';
 import FooterOne from "@/components/footer/Footer";
 import { useSearchParams } from 'next/navigation';
 import Link from "next/link";
@@ -12,7 +12,7 @@ import Link from "next/link";
 interface PostType {
   category?: string;
   slug: string;
-  image: string;
+  image: string | null;
   title?: string;
   author?: string;
   publishedDate?: string;
@@ -26,25 +26,42 @@ function ShopContent() {
   const [activeTab, setActiveTab] = useState<string>('tab1');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(1000);
 
-  const allCategories = ["Filtros de Ar", "Filtros de Combustível e Óleo", "Transmissão e Hidráulica"];
+  const allCategories = [
+    "Motor e Componentes",
+    "Transmissão",
+    "Filtros",
+    "Sistema de Combustível",
+    "Acessórios e Acabamento",
+    "Direção e Suspensão",
+    "Sistema de Freios",
+    "Sistema Elétrico e Controles",
+    "Outros",
+  ];
   const allBrands = ["Toyota", "Hyster", "Yale", "Hangcha", "Xinchai"];
 
-  const categoryProductIndices: { [key: string]: number[] } = {
-    "Filtros de Ar": [1, 3, 4, 5, 6, 7],
-    "Filtros de Combustível e Óleo": [8, 9, 10, 12, 16],
-    "Transmissão e Hidráulica": [15, 1, 2, 3],
-  };
+  useEffect(() => {
+    let cancelled = false;
+    api.publicProducts()
+      .then(({ products: loadedProducts }) => {
+        if (!cancelled) setProducts(loadedProducts);
+      })
+      .catch((error: Error) => {
+        if (!cancelled) setLoadError(error.message);
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false);
+      });
 
-  const brandProductIndices: { [key: string]: number[] } = {
-    "Toyota": [1, 3, 4],
-    "Hyster": [3, 1, 4],
-    "Yale": [8, 9, 10],
-    "Hangcha": [3, 4, 10],
-    "Xinchai": [8, 9, 1],
-  };
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategories(prev =>
@@ -72,59 +89,20 @@ function ShopContent() {
     if (!isNaN(val)) setMaxPrice(val);
   };
 
-  const getFilteredByCategoryProducts = (): PostType[] => {
-    if (selectedCategories.length === 0) {
-      return Product;
-    }
-
-    const selectedIndices = selectedCategories
-      .map(cat => categoryProductIndices[cat] || [])
-      .flat();
-    const uniqueSelectedIndices = Array.from(new Set(selectedIndices));
-    return uniqueSelectedIndices.map(i => Product[i]).filter(Boolean);
-  };
-
-  const getFilteredByBrandProducts = (): PostType[] => {
-    if (selectedBrands.length === 0) {
-      return Product;
-    }
-
-    const selectedIndices = selectedBrands
-      .map(brand => brandProductIndices[brand] || [])
-      .flat();
-    const uniqueSelectedIndices = Array.from(new Set(selectedIndices));
-    return uniqueSelectedIndices.map(i => Product[i]).filter(Boolean);
-  };
-
-  const productsByCategory = getFilteredByCategoryProducts();
-  const productsByBrand = getFilteredByBrandProducts();
-
-  const categorySlugs = new Set(productsByCategory.map(p => p.slug));
-  const brandSlugs = new Set(productsByBrand.map(p => p.slug));
-
-  let combinedFilteredProducts = [];
-
-  if (selectedCategories.length > 0 && selectedBrands.length > 0) {
-    combinedFilteredProducts = productsByCategory.filter(p => brandSlugs.has(p.slug));
-  } else if (selectedCategories.length > 0) {
-    combinedFilteredProducts = productsByCategory;
-  } else if (selectedBrands.length > 0) {
-    combinedFilteredProducts = productsByBrand;
-  } else {
-    combinedFilteredProducts = Product;
-  }
-
-  const filteredProducts: PostType[] = combinedFilteredProducts
+  const filteredProducts: Product[] = products
     .filter(product => {
-      const productPrice = product.price ? parseBRL(product.price) : 0;
+      const productPrice = parseBRL(product.price);
       if (productPrice < minPrice || productPrice > maxPrice) {
         return false;
       }
 
-      if (!searchQuery) return true;
-      const title = product.title?.toLowerCase() || '';
-      const category = product.category?.toLowerCase() || '';
-      return title.includes(searchQuery) || category.includes(searchQuery);
+      const matchesCategory = selectedCategories.length === 0 ||
+        selectedCategories.includes(product.category);
+      const searchableText = `${product.title} ${product.category} ${product.tags}`.toLowerCase();
+      const matchesBrand = selectedBrands.length === 0 ||
+        selectedBrands.some(brand => searchableText.includes(brand.toLowerCase()));
+      const matchesSearch = !searchQuery || searchableText.includes(searchQuery);
+      return matchesCategory && matchesBrand && matchesSearch;
     });
 
   const handlePriceFilterSubmit = (e: React.FormEvent) => {
@@ -133,6 +111,12 @@ function ShopContent() {
 
   return (
     <div className="shop-page">
+      {isLoading ? (
+        <div className="text-center py-20"><p>A carregar produtos...</p></div>
+      ) : loadError ? (
+        <div className="text-center py-20"><p>{loadError}</p></div>
+      ) : null}
+
       {/* Navegação / Breadcrumb */}
       <div className="rts-navigation-area-breadcrumb bg_light-1">
         <div className="container">
@@ -300,12 +284,12 @@ function ShopContent() {
                   {activeTab === 'tab1' && (
                     <div className="row g-4">
                       {filteredProducts.length > 0 ? (
-                        filteredProducts.map((post: PostType, index: number) => (
-                          <div key={index} className="col-lg-20 col-lg-4 col-md-6 col-sm-6 col-12">
+                        filteredProducts.map((post) => (
+                          <div key={post.id} className="col-lg-20 col-lg-4 col-md-6 col-sm-6 col-12">
                             <div className="single-shopping-card-one">
                               <ShopMain
                                 Slug={post.slug}
-                                ProductImage={post.image}
+                                ProductImage={post.image ?? ''}
                                 ProductTitle={post.title}
                                 Price={post.price}
                               />
@@ -325,12 +309,12 @@ function ShopContent() {
                   {activeTab === 'tab2' && (
                     <div className="row">
                       {filteredProducts.length > 0 ? (
-                        filteredProducts.map((post: PostType, index: number) => (
-                          <div key={index} className="col-lg-6">
+                        filteredProducts.map((post) => (
+                          <div key={post.id} className="col-lg-6">
                             <div className="single-shopping-card-one discount-offer">
                               <ShopMainList
                                 Slug={post.slug}
-                                ProductImage={post.image}
+                                ProductImage={post.image ?? ''}
                                 ProductTitle={post.title}
                                 Price={post.price}
                               />

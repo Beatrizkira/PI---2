@@ -23,6 +23,11 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
   ProductTitle,
   Price,
 }) => {
+  const imageSrc = ProductImage
+    ? (ProductImage.startsWith("/") || ProductImage.startsWith("data:") || ProductImage.startsWith("http")
+      ? ProductImage
+      : `/assets/images/grocery/${ProductImage}`)
+    : "/assets/images/grocery/19.jpg";
   type ModalType = "one" | "two" | "three" | null;
   const [activeModal, setActiveModal] = useState<ModalType>(null);
   const handleClose = () => setActiveModal(null);
@@ -30,7 +35,7 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
   const { addToCompare } = useCompare();
   const handleCompare = () => {
     addToCompare({
-      image: `/assets/images/grocery/${ProductImage}`,
+      image: imageSrc,
       name: ProductTitle ?? "Default Product Title",
       price: Price ?? "0",
       description:
@@ -46,7 +51,7 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
   const handleWishlist = () => {
     addToWishlist({
       id: Date.now(),
-      image: `/assets/images/grocery/${ProductImage}`,
+      image: imageSrc,
       title: ProductTitle ?? "Default Product Title",
       price: parseBRL(Price ?? "0"),
       quantity: 1,
@@ -61,7 +66,7 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
       <div className="image-and-action-area-wrapper">
         <a href={`/shop/${Slug}`} className="thumbnail-preview">
 
-          <img src={`/assets/images/grocery/${ProductImage}`} alt="grocery" />
+          <img src={imageSrc} alt={ProductTitle ?? "Produto"} />
         </a>
 
         <div className="action-share-option">
@@ -127,7 +132,7 @@ const BlogGridMain: React.FC<BlogGridMainProps> = ({
       <ProductDetails
         show={activeModal === "two"}
         handleClose={handleClose}
-        productImage={`/assets/images/grocery/${ProductImage}`}
+        productImage={imageSrc}
         productTitle={ProductTitle ?? "Default Product Title"}
         productPrice={Price ?? "0"}
       />
