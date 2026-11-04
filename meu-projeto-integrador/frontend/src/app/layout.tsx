@@ -5,6 +5,7 @@ import "./globals.css";
 import { CartProvider } from "../components/header/CartContext";
 import { WishlistProvider } from "../components/header/WishlistContext";
 import { CompareProvider } from "../components/header/CompareContext";
+import VLibras from "../components/common/VLibras"; // <-- 1. IMPORTAÇÃO ADICIONADA AQUI
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -50,6 +51,8 @@ export default function RootLayout({
             </CartProvider>
           </WishlistProvider>
         </CompareProvider>
+
+        <VLibras /> {/* <-- 2. COMPONENTE INJETADO AQUI */}
       </body>
     </html>
   );
