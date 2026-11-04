@@ -15,6 +15,11 @@ const ShopMainList: React.FC<BlogGridMainProps> = ({
   ProductTitle,
   Price,
 }) => {
+  const imageSrc = ProductImage
+    ? (ProductImage.startsWith("/") || ProductImage.startsWith("data:") || ProductImage.startsWith("http")
+      ? ProductImage
+      : `/assets/images/grocery/${ProductImage}`)
+    : "/assets/images/grocery/19.jpg";
 
   return (
     <>
@@ -23,7 +28,7 @@ const ShopMainList: React.FC<BlogGridMainProps> = ({
           <div className="badge">
             <i className="fa-solid fa-bookmark" />
           </div>
-          <img src={`/assets/images/grocery/${ProductImage}`} alt="grocery" />
+          <img src={imageSrc} alt={ProductTitle ?? "Produto"} />
         </a>
 
         <div className="body-content">

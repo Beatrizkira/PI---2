@@ -287,7 +287,12 @@
   font: inherit;
   font-size: 12px;
   font-weight: 600;
-  padding: 12px 20px;
+  padding: 15px 20px;
+}
+
+.btnspecial {
+  float: right;
+  margin-left: 12px;
 }
 
 .storageNote {

@@ -26,6 +26,15 @@ function slugify(value: string) {
     .replace(/(^-|-$)/g, "");
 }
 
+function catalogCategory(category: string) {
+  const categoryMap: Record<string, string> = {
+    "Filtros de Ar": "Filtros",
+    "Filtros de Combustível e Óleo": "Sistema de Combustível",
+    "Transmissão e Hidráulica": "Transmissão",
+  };
+  return categoryMap[category] ?? category;
+}
+
 async function main() {
   const adminEmail = process.env.ADMIN_EMAIL;
   const adminPassword = process.env.ADMIN_PASSWORD;
@@ -39,10 +48,11 @@ async function main() {
     });
   }
   for (const item of catalog) {
+    const categoryName = catalogCategory(item.category);
     const category = await prisma.category.upsert({
-      where: { name: item.category },
+      where: { name: categoryName },
       update: {},
-      create: { name: item.category, slug: slugify(item.category) },
+      create: { name: categoryName, slug: slugify(categoryName) },
     });
 
     await prisma.product.upsert({

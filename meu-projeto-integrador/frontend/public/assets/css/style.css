@@ -713,6 +713,7 @@ ol ul {
 
 .rts-section-gapTop {
   padding-top: 60px;
+  padding-bottom: 120px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -18834,9 +18835,9 @@ li.with-megamenu:hover .rts-megamenu {
 }
 
 .product-with-discount {
-  background: rgba(229, 62, 62, 0.05);
+  background: rgba(166, 187, 228, 0.26);
   padding: 30px;
-  border: 1px solid #E53E3E;
+  border: 1px solid #dde0fa;
   border-radius: 6px;
 }
 

@@ -58,6 +58,10 @@ model Product {
   slug                 String               @unique
   name                 String
   description          String               @db.Text
+  brand                String               @default("")
+  weight               String               @default("")
+  type                 String               @default("")
+  dimensions           String               @default("")
   regularPrice         Decimal              @db.Decimal(10, 2)
   salePrice            Decimal?             @db.Decimal(10, 2)
   stock                Int                  @default(0)
@@ -119,6 +123,7 @@ model Customer {
   role      UserRole  @default(CUSTOMER)
   phone     String?
   address   String?
+  cpfEncrypted String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   carts     Cart[]
@@ -126,6 +131,25 @@ model Customer {
   compare   CompareList?
   orders    Order[]
   sessions  Session[]
+  addresses Address[]
+}
+
+model Address {
+  id         Int      @id @default(autoincrement())
+  customerId Int
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  label      String
+  zipCode    String
+  street     String
+  number     String
+  complement String?
+  city       String
+  state      String
+  isDefault  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([customerId, isDefault])
 }
 
 model Session {
